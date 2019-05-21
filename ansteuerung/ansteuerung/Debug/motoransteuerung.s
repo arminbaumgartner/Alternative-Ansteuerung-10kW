@@ -877,6 +877,8 @@ __vector_29:
 	.loc 1 323 0
 	ldi r24,lo8(2)
 	sts phasen_flag,r24
+	.loc 1 325 0
+	sbi 0xb,4
 	.loc 1 327 0
 	ldi r30,lo8(104)
 	ldi r31,0
@@ -1835,6 +1837,8 @@ richtung:
 	.section	.debug_str,"MS",@progbits,1
 .LASF18:
 	.string	"current_adc_wert"
+.LASF31:
+	.string	"C:\\\\Users\\\\Armin Baumgartner\\\\Desktop\\\\ansteuerung\\\\ansteuerung\\\\Debug"
 .LASF28:
 	.string	"ext_int_kommunikation_abfrage"
 .LASF23:
@@ -1889,8 +1893,6 @@ richtung:
 	.string	"long int"
 .LASF12:
 	.string	"__vector_9"
-.LASF31:
-	.string	"C:\\\\Users\\\\Armin Baumgartner\\\\Desktop\\\\ansteuerung_02\\\\ansteuerung\\\\Debug"
 .LASF15:
 	.string	"richtung"
 .LASF0:

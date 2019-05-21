@@ -1,5 +1,5 @@
 # 1 ".././motoransteuerung.c"
-# 1 "C:\\Users\\Armin Baumgartner\\Desktop\\ansteuerung_02\\ansteuerung\\Debug//"
+# 1 "C:\\Users\\Armin Baumgartner\\Desktop\\ansteuerung\\ansteuerung\\Debug//"
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 ".././motoransteuerung.c"
@@ -2427,7 +2427,19 @@ void __vector_29 (void) __attribute__ ((signal,used, externally_visible)) ; void
  {
   phasen_flag = 2;
 
-
+  
+# 325 ".././motoransteuerung.c" 3
+ (*(volatile uint8_t *)((0x0B) + 0x20)) 
+# 325 ".././motoransteuerung.c"
+       = 
+# 325 ".././motoransteuerung.c" 3
+         (*(volatile uint8_t *)((0x0B) + 0x20)) 
+# 325 ".././motoransteuerung.c"
+               | (1<<
+# 325 ".././motoransteuerung.c" 3
+                     4
+# 325 ".././motoransteuerung.c"
+                           );
 
   
 # 327 ".././motoransteuerung.c" 3

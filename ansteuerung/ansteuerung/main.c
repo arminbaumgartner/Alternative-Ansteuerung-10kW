@@ -85,7 +85,7 @@ int main(void)
 	//PORTD = PORTD | (1<<PORTD2);		// pull up um keine störungen einzufangen
 	
 	//MOSFET für Relai
-	DDRD = DDRD | (1<<DDD4);	//MOSFET PIN 	
+	DDRD = DDRD | (1<<DDD4);	//MOSFET für Railai	
 	
 	//Modi Schalter
 	DDRD = DDRD &~ (1<<DDD0);
@@ -138,8 +138,6 @@ int main(void)
     while (1) 
     {	
 		kommunikations_daten_mitteln();
-		
-		PORTD = PORTD ^ (1<<PORTD4);
 						
 		if(zeitlicher_ablauf >= 10)
 		{
