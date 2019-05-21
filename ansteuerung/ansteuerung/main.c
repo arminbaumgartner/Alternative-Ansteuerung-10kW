@@ -81,10 +81,6 @@ int main(void)
 	DDRF = DDRF | (1<<PORTF5);		//LCD-DB5 (PF5 µC) als OUTPUT
 	DDRF = DDRF | (1<<PORTF4);		//LCD-DB4 (PF4 µC) als OUTPUT
 	
-	//Kommunikation über EXT-INT
-	DDRD = DDRD &~ (1<<DDD2);		//Eingang INT2
-	PORTD = PORTD | (1<<PORTD2);	//PULL-UP
-	
 	//UART
 	//PORTD = PORTD | (1<<PORTD2);		// pull up um keine störungen einzufangen
 	
@@ -122,6 +118,8 @@ int main(void)
 	LCD_cmd(0x0C);		//Display ON, Cursor OFF, Blinking OFF 
 	
 	Hallsensoren_abfragen();
+	
+	init_ext_int_kommunikation();	//Initialiesierung des externen interrupt für akkuüberwachung
 		
 	sei();
 	

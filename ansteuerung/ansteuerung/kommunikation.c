@@ -21,6 +21,8 @@
 #include "lcd.h"
 #include "kommunikation.h"
 #include "datenverarbeitung.h"
+#include "motoransteuerung.h"
+#include "berechnung.h"
 
 
 char start = 0;
@@ -47,7 +49,7 @@ char empfang_test;
 
 char counter_falsch = 0;
 
-uint8_t akku_unterladen = 0;
+volatile uint8_t akku_unterladen = 0;
 
 
 void init_usart (void)
@@ -188,14 +190,8 @@ void init_ext_int_kommunikation(void)
 }
 uint8_t ext_int_kommunikation_abfrage(void)
 {
-	if (akku_unterladen == 1)
-	{
-		return 1;
-	}
-	else
-	{
-		return 0;
-	}
+	
+	return akku_unterladen;
 }
 ISR(USART1_RX_vect)     //Interrupt für Empfang 
 {  
@@ -249,7 +245,12 @@ ISR(INT2_vect) //Flanke low aktiv
 {
 	//Der Akku fällt unter XXVolt deswegen muss abgeschalten werden
 
-	akku_unterladen = 1;
+	if ((drehzahl_holen() >= 10))
+	{
+		akku_unterladen = 1;
+	}
+
+	
 	
 
 	

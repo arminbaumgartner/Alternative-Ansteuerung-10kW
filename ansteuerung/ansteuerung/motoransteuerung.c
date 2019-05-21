@@ -44,7 +44,7 @@ char adc_counter=0;
 char hilfe;
 
 volatile uint8_t adc_0_flag = 0;
-volatile uint8_t phasen_flag =0;
+volatile uint8_t phasen_flag = 0;
 
 void Init_PWM (void){
 	
@@ -305,16 +305,11 @@ ISR(ADC_vect)						//Löst aus, wenn die Konversation beendet ist
 	
 	help = ext_int_kommunikation_abfrage();
 	
-	
-	if (help == 1)
+	if (help)
 	{
-		PORTB = PORTB ^ (1<<PORTB7);
 		adc_high = 0;
 	}
-	else
-	{
-		
-	}
+
 	
 		
 	if (adc_high <= 0 && phasen_flag == 0)
@@ -327,7 +322,7 @@ ISR(ADC_vect)						//Löst aus, wenn die Konversation beendet ist
 	{
 		phasen_flag = 2;
 		
-		init_ext_int_kommunikation();	//Initialiesierung des externen interrupt für akkuüberwachung
+		
 		
 		PCICR =  PCICR | (1<<PCIE0);	//pin change interrupt enable
 		

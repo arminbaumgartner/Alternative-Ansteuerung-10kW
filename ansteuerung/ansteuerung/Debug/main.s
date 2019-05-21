@@ -13,37 +13,37 @@ __zero_reg__ = 1
 init_timer_zeitlicher_ablauf:
 .LFB12:
 	.file 1 ".././main.c"
-	.loc 1 174 0
+	.loc 1 172 0
 	.cfi_startproc
 /* prologue: function */
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	.loc 1 177 0
+	.loc 1 175 0
 	ldi r30,lo8(-111)
 	ldi r31,0
 	ld r24,Z
-	.loc 1 177 0
+	.loc 1 175 0
 	ori r24,lo8(1)
 	st Z,r24
-	.loc 1 178 0
+	.loc 1 176 0
 	ld r24,Z
-	.loc 1 178 0
+	.loc 1 176 0
 	ori r24,lo8(2)
 	st Z,r24
-	.loc 1 179 0
+	.loc 1 177 0
 	ld r24,Z
-	.loc 1 179 0
+	.loc 1 177 0
 	andi r24,lo8(-5)
 	st Z,r24
-	.loc 1 181 0
+	.loc 1 179 0
 	ldi r30,lo8(113)
 	ldi r31,0
 	ld r24,Z
-	.loc 1 181 0
+	.loc 1 179 0
 	ori r24,lo8(2)
 	st Z,r24
-	.loc 1 183 0
+	.loc 1 181 0
 	ldi r24,lo8(-60)
 	ldi r25,lo8(9)
 	sts 152+1,r25
@@ -127,56 +127,55 @@ main:
 	sbi 0x10,5
 	.loc 1 82 0
 	sbi 0x10,4
-	.loc 1 85 0
-	cbi 0xa,2
-	.loc 1 86 0
-	sbi 0xb,2
-	.loc 1 92 0
+	.loc 1 88 0
 	sbi 0xa,4
-	.loc 1 95 0
+	.loc 1 91 0
 	cbi 0xa,0
-	.loc 1 96 0
+	.loc 1 92 0
 	sbi 0xb,0
-	.loc 1 99 0
+	.loc 1 95 0
 	cbi 0xa,2
-	.loc 1 100 0
+	.loc 1 96 0
 	sbi 0xb,2
-	.loc 1 104 0
+	.loc 1 100 0
 	sbi 0x4,7
-	.loc 1 107 0
+	.loc 1 103 0
 	call Init_Pinchange
 .LVL1:
-	.loc 1 109 0
+	.loc 1 105 0
 	call Init_PWM
 .LVL2:
-	.loc 1 111 0
+	.loc 1 107 0
 	call Init_ADC
 .LVL3:
-	.loc 1 113 0
+	.loc 1 109 0
 	call Init_Timer1
 .LVL4:
-	.loc 1 119 0
+	.loc 1 115 0
 	call init_timer_zeitlicher_ablauf
 .LVL5:
-	.loc 1 121 0
+	.loc 1 117 0
 	call LCD_init
 .LVL6:
-	.loc 1 122 0
+	.loc 1 118 0
 	ldi r24,lo8(12)
 	call LCD_cmd
 .LVL7:
-	.loc 1 124 0
+	.loc 1 120 0
 	call Hallsensoren_abfragen
 .LVL8:
-	.loc 1 126 0
+	.loc 1 122 0
+	call init_ext_int_kommunikation
+.LVL9:
+	.loc 1 124 0
 /* #APP */
- ;  126 ".././main.c" 1
+ ;  124 ".././main.c" 1
 	sei
  ;  0 "" 2
-	.loc 1 128 0
+	.loc 1 126 0
 /* #NOAPP */
 	call LCD_Display
-.LVL9:
+.LVL10:
 .LBB4:
 .LBB5:
 	.file 2 "c:\\program files (x86)\\atmel\\studio\\7.0\\toolchain\\avr8\\avr8-gnu-toolchain\\avr\\include\\util\\delay.h"
@@ -190,54 +189,54 @@ main:
 	brne 1b
 	rjmp .
 	nop
-.LVL10:
+.LVL11:
 .LBE5:
 .LBE4:
-	.loc 1 133 0
+	.loc 1 131 0
 	cbi 0xe,6
-	.loc 1 136 0
+	.loc 1 134 0
 	call preset_drehzahl_gesch
-.LVL11:
-	.loc 1 138 0
-	sts zeitlicher_ablauf,__zero_reg__
-	.loc 1 144 0
-	ldi r28,lo8(16)
 .LVL12:
-.L3:
+	.loc 1 136 0
+	sts zeitlicher_ablauf,__zero_reg__
 	.loc 1 142 0
-	call kommunikations_daten_mitteln
+	ldi r28,lo8(16)
 .LVL13:
-	.loc 1 144 0
+.L3:
+	.loc 1 140 0
+	call kommunikations_daten_mitteln
+.LVL14:
+	.loc 1 142 0
 	in r24,0xb
-	.loc 1 144 0
+	.loc 1 142 0
 	eor r24,r28
 	out 0xb,r24
-	.loc 1 146 0
+	.loc 1 144 0
 	lds r24,zeitlicher_ablauf
 	cpi r24,lo8(10)
 	brlo .L3
-	.loc 1 150 0
+	.loc 1 148 0
 	call ges_spannung_uebertragung
-.LVL14:
-	movw r16,r24
 .LVL15:
-	.loc 1 152 0
-	call geschwindigkeit_berechnung
+	movw r16,r24
 .LVL16:
-	.loc 1 153 0
+	.loc 1 150 0
+	call geschwindigkeit_berechnung
+.LVL17:
+	.loc 1 151 0
 	movw r24,r16
 	call akku_ladestand
-.LVL17:
-	.loc 1 154 0
-	call ladestand_ausgabe
 .LVL18:
-	.loc 1 159 0
-	call drehzahl_ausgabe
+	.loc 1 152 0
+	call ladestand_ausgabe
 .LVL19:
-	.loc 1 162 0
-	call geschwindigkeits_ausgabe
+	.loc 1 157 0
+	call drehzahl_ausgabe
 .LVL20:
-	.loc 1 165 0
+	.loc 1 160 0
+	call geschwindigkeits_ausgabe
+.LVL21:
+	.loc 1 163 0
 	sts zeitlicher_ablauf,__zero_reg__
 	rjmp .L3
 	.cfi_endproc
@@ -248,7 +247,7 @@ main:
 	.type	__vector_32, @function
 __vector_32:
 .LFB13:
-	.loc 1 191 0
+	.loc 1 189 0
 	.cfi_startproc
 	push r1
 .LCFI0:
@@ -269,22 +268,22 @@ __vector_32:
 /* frame size = 0 */
 /* stack size = 4 */
 .L__stack_usage = 4
-	.loc 1 192 0
+	.loc 1 190 0
 	sts 148+1,__zero_reg__
 	sts 148,__zero_reg__
-	.loc 1 195 0
+	.loc 1 193 0
 	lds r24,zeitlicher_ablauf
 	cpi r24,lo8(25)
 	brlo .L7
-	.loc 1 198 0
+	.loc 1 196 0
 	sts zeitlicher_ablauf,__zero_reg__
 .L7:
-	.loc 1 201 0
+	.loc 1 199 0
 	lds r24,zeitlicher_ablauf
 	subi r24,lo8(-(1))
 	sts zeitlicher_ablauf,r24
 /* epilogue start */
-	.loc 1 204 0
+	.loc 1 202 0
 	pop r24
 	pop r0
 	out __SREG__,r0
@@ -310,15 +309,15 @@ zeitlicher_ablauf:
 	.file 8 ".././datenverarbeitung.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.long	0x306
+	.long	0x31c
 	.word	0x2
 	.long	.Ldebug_abbrev0
 	.byte	0x4
 	.uleb128 0x1
-	.long	.LASF34
-	.byte	0xc
 	.long	.LASF35
+	.byte	0xc
 	.long	.LASF36
+	.long	.LASF37
 	.long	.Ldebug_ranges0+0
 	.long	0
 	.long	0
@@ -375,14 +374,14 @@ zeitlicher_ablauf:
 	.byte	0x8
 	.long	.LASF10
 	.uleb128 0x5
-	.long	.LASF37
+	.long	.LASF38
 	.byte	0x2
 	.byte	0xa6
 	.byte	0x1
 	.byte	0x3
 	.long	0xc2
 	.uleb128 0x6
-	.long	.LASF38
+	.long	.LASF39
 	.byte	0x2
 	.byte	0xa6
 	.long	0xc2
@@ -398,7 +397,7 @@ zeitlicher_ablauf:
 	.long	0x62
 	.uleb128 0x8
 	.byte	0x1
-	.long	.LASF39
+	.long	.LASF40
 	.byte	0x2
 	.byte	0xad
 	.byte	0x1
@@ -412,7 +411,7 @@ zeitlicher_ablauf:
 	.byte	0x1
 	.long	.LASF16
 	.byte	0x1
-	.byte	0xad
+	.byte	0xab
 	.byte	0x1
 	.long	.LFB12
 	.long	.LFE12
@@ -423,7 +422,7 @@ zeitlicher_ablauf:
 	.byte	0x1
 	.uleb128 0xa
 	.byte	0x1
-	.long	.LASF40
+	.long	.LASF41
 	.byte	0x1
 	.byte	0x24
 	.byte	0x1
@@ -436,7 +435,7 @@ zeitlicher_ablauf:
 	.uleb128 0x20
 	.sleb128 2
 	.byte	0x1
-	.long	0x20c
+	.long	0x215
 	.uleb128 0xb
 	.long	.LASF14
 	.byte	0x1
@@ -460,7 +459,7 @@ zeitlicher_ablauf:
 	.long	.LBB4
 	.long	.LBE4
 	.byte	0x1
-	.byte	0x83
+	.byte	0x81
 	.long	0x158
 	.uleb128 0xe
 	.long	0x96
@@ -478,25 +477,25 @@ zeitlicher_ablauf:
 	.byte	0
 	.uleb128 0x11
 	.long	.LVL1
-	.long	0x239
+	.long	0x242
 	.uleb128 0x11
 	.long	.LVL2
-	.long	0x246
+	.long	0x24f
 	.uleb128 0x11
 	.long	.LVL3
-	.long	0x253
+	.long	0x25c
 	.uleb128 0x11
 	.long	.LVL4
-	.long	0x260
+	.long	0x269
 	.uleb128 0x11
 	.long	.LVL5
 	.long	0xc9
 	.uleb128 0x11
 	.long	.LVL6
-	.long	0x26d
+	.long	0x276
 	.uleb128 0x12
 	.long	.LVL7
-	.long	0x27a
+	.long	0x283
 	.long	0x1a1
 	.uleb128 0x13
 	.byte	0x1
@@ -506,26 +505,29 @@ zeitlicher_ablauf:
 	.byte	0
 	.uleb128 0x11
 	.long	.LVL8
-	.long	0x287
+	.long	0x290
 	.uleb128 0x11
 	.long	.LVL9
-	.long	0x294
+	.long	0x29d
 	.uleb128 0x11
-	.long	.LVL11
-	.long	0x2a1
+	.long	.LVL10
+	.long	0x2aa
 	.uleb128 0x11
-	.long	.LVL13
-	.long	0x2ae
+	.long	.LVL12
+	.long	0x2b7
 	.uleb128 0x11
 	.long	.LVL14
-	.long	0x2bb
+	.long	0x2c4
 	.uleb128 0x11
-	.long	.LVL16
-	.long	0x2c8
-	.uleb128 0x12
+	.long	.LVL15
+	.long	0x2d1
+	.uleb128 0x11
 	.long	.LVL17
-	.long	0x2d5
-	.long	0x1f0
+	.long	0x2de
+	.uleb128 0x12
+	.long	.LVL18
+	.long	0x2eb
+	.long	0x1f9
 	.uleb128 0x13
 	.byte	0x6
 	.byte	0x68
@@ -539,30 +541,30 @@ zeitlicher_ablauf:
 	.sleb128 0
 	.byte	0
 	.uleb128 0x11
-	.long	.LVL18
-	.long	0x2e2
-	.uleb128 0x11
 	.long	.LVL19
-	.long	0x2ef
+	.long	0x2f8
 	.uleb128 0x11
 	.long	.LVL20
-	.long	0x2fc
+	.long	0x305
+	.uleb128 0x11
+	.long	.LVL21
+	.long	0x312
 	.byte	0
 	.uleb128 0x14
 	.byte	0x1
 	.long	.LASF17
 	.byte	0x1
-	.byte	0xbe
+	.byte	0xbc
 	.byte	0x1
 	.long	.LFB13
 	.long	.LFE13
 	.long	.LLST4
 	.byte	0x1
 	.uleb128 0x15
-	.long	.LASF41
+	.long	.LASF42
 	.byte	0x1
 	.byte	0x21
-	.long	0x234
+	.long	0x23d
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -623,62 +625,69 @@ zeitlicher_ablauf:
 	.byte	0x1
 	.long	.LASF25
 	.long	.LASF25
+	.byte	0x7
+	.byte	0x17
+	.uleb128 0x17
+	.byte	0x1
+	.byte	0x1
+	.long	.LASF26
+	.long	.LASF26
 	.byte	0x6
 	.byte	0x48
 	.uleb128 0x17
 	.byte	0x1
 	.byte	0x1
-	.long	.LASF26
-	.long	.LASF26
+	.long	.LASF27
+	.long	.LASF27
 	.byte	0x5
 	.byte	0xe
 	.uleb128 0x17
 	.byte	0x1
 	.byte	0x1
-	.long	.LASF27
-	.long	.LASF27
+	.long	.LASF28
+	.long	.LASF28
 	.byte	0x7
 	.byte	0x1a
 	.uleb128 0x17
 	.byte	0x1
 	.byte	0x1
-	.long	.LASF28
-	.long	.LASF28
+	.long	.LASF29
+	.long	.LASF29
 	.byte	0x7
 	.byte	0x1d
 	.uleb128 0x17
 	.byte	0x1
 	.byte	0x1
-	.long	.LASF29
-	.long	.LASF29
+	.long	.LASF30
+	.long	.LASF30
 	.byte	0x5
 	.byte	0xa
 	.uleb128 0x17
 	.byte	0x1
 	.byte	0x1
-	.long	.LASF30
-	.long	.LASF30
+	.long	.LASF31
+	.long	.LASF31
 	.byte	0x8
 	.byte	0x1a
 	.uleb128 0x17
 	.byte	0x1
 	.byte	0x1
-	.long	.LASF31
-	.long	.LASF31
+	.long	.LASF32
+	.long	.LASF32
 	.byte	0x8
 	.byte	0x1e
 	.uleb128 0x17
 	.byte	0x1
 	.byte	0x1
-	.long	.LASF32
-	.long	.LASF32
+	.long	.LASF33
+	.long	.LASF33
 	.byte	0x5
 	.byte	0xc
 	.uleb128 0x17
 	.byte	0x1
 	.byte	0x1
-	.long	.LASF33
-	.long	.LASF33
+	.long	.LASF34
+	.long	.LASF34
 	.byte	0x5
 	.byte	0xd
 	.byte	0
@@ -1024,19 +1033,19 @@ zeitlicher_ablauf:
 .Ldebug_loc0:
 .LLST0:
 	.long	.LVL0
-	.long	.LVL12
+	.long	.LVL13
 	.word	0x2
 	.byte	0x30
 	.byte	0x9f
-	.long	.LVL17
-	.long	.LVL18-1
+	.long	.LVL18
+	.long	.LVL19-1
 	.word	0x1
 	.byte	0x68
 	.long	0
 	.long	0
 .LLST1:
-	.long	.LVL9
 	.long	.LVL10
+	.long	.LVL11
 	.word	0x6
 	.byte	0x9e
 	.uleb128 0x4
@@ -1044,8 +1053,8 @@ zeitlicher_ablauf:
 	.long	0
 	.long	0
 .LLST2:
-	.long	.LVL9
 	.long	.LVL10
+	.long	.LVL11
 	.word	0x6
 	.byte	0x9e
 	.uleb128 0x4
@@ -1053,8 +1062,8 @@ zeitlicher_ablauf:
 	.long	0
 	.long	0
 .LLST3:
-	.long	.LVL9
 	.long	.LVL10
+	.long	.LVL11
 	.word	0x6
 	.byte	0xc
 	.long	0x1e84800
@@ -1119,15 +1128,17 @@ zeitlicher_ablauf:
 	.section	.debug_str,"MS",@progbits,1
 .LASF24:
 	.string	"Hallsensoren_abfragen"
-.LASF41:
+.LASF42:
 	.string	"zeitlicher_ablauf"
-.LASF39:
+.LASF40:
 	.string	"__builtin_avr_delay_cycles"
 .LASF11:
 	.string	"__tmp"
-.LASF40:
+.LASF41:
 	.string	"main"
-.LASF25:
+.LASF37:
+	.string	"C:\\\\Users\\\\Armin Baumgartner\\\\Desktop\\\\ansteuerung_02\\\\ansteuerung\\\\Debug"
+.LASF26:
 	.string	"LCD_Display"
 .LASF2:
 	.string	"uint8_t"
@@ -1135,15 +1146,15 @@ zeitlicher_ablauf:
 	.string	"__vector_32"
 .LASF8:
 	.string	"long long int"
-.LASF27:
+.LASF28:
 	.string	"kommunikations_daten_mitteln"
 .LASF5:
 	.string	"long int"
 .LASF21:
 	.string	"Init_Timer1"
-.LASF37:
+.LASF38:
 	.string	"_delay_ms"
-.LASF28:
+.LASF29:
 	.string	"ges_spannung_uebertragung"
 .LASF20:
 	.string	"Init_ADC"
@@ -1151,53 +1162,53 @@ zeitlicher_ablauf:
 	.string	"ladestand_test"
 .LASF1:
 	.string	"unsigned char"
-.LASF32:
+.LASF33:
 	.string	"drehzahl_ausgabe"
 .LASF14:
 	.string	"ges_spannung_main"
-.LASF36:
-	.string	"C:\\\\Users\\\\Stefan\\\\Desktop\\\\ansteuerung\\\\ansteuerung\\\\Debug"
 .LASF0:
 	.string	"signed char"
 .LASF9:
 	.string	"long long unsigned int"
 .LASF6:
 	.string	"uint32_t"
-.LASF26:
+.LASF27:
 	.string	"preset_drehzahl_gesch"
 .LASF4:
 	.string	"unsigned int"
-.LASF33:
+.LASF34:
 	.string	"geschwindigkeits_ausgabe"
 .LASF3:
 	.string	"uint16_t"
 .LASF18:
 	.string	"Init_Pinchange"
-.LASF35:
+.LASF36:
 	.string	".././main.c"
+.LASF25:
+	.string	"init_ext_int_kommunikation"
 .LASF10:
 	.string	"char"
 .LASF16:
 	.string	"init_timer_zeitlicher_ablauf"
-.LASF30:
+.LASF31:
 	.string	"akku_ladestand"
 .LASF7:
 	.string	"long unsigned int"
 .LASF13:
 	.string	"double"
-.LASF31:
+.LASF32:
 	.string	"ladestand_ausgabe"
 .LASF19:
 	.string	"Init_PWM"
 .LASF23:
 	.string	"LCD_cmd"
-.LASF34:
+.LASF35:
 	.string	"GNU C99 5.4.0 -mn-flash=1 -mno-skip-bug -mmcu=avr5 -g2 -O1 -std=gnu99 -funsigned-char -funsigned-bitfields -ffunction-sections -fdata-sections -fpack-struct -fshort-enums"
-.LASF38:
+.LASF39:
 	.string	"__ms"
 .LASF12:
 	.string	"__ticks_dc"
-.LASF29:
+.LASF30:
 	.string	"geschwindigkeit_berechnung"
 .LASF22:
 	.string	"LCD_init"

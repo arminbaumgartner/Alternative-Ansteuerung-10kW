@@ -850,87 +850,77 @@ __vector_29:
 	.loc 1 306 0
 	call ext_int_kommunikation_abfrage
 .LVL7:
-	.loc 1 309 0
-	cpi r24,lo8(1)
-	brne .L30
-	.loc 1 311 0
-	in r24,0x5
-.LVL8:
-	.loc 1 311 0
-	subi r24,lo8(-(-128))
-	out 0x5,r24
-	.loc 1 312 0
+	.loc 1 308 0
+	tst r24
+	breq .L30
+	.loc 1 310 0
 	sts adc_high,__zero_reg__
 	rjmp .L31
-.LVL9:
 .L30:
-	.loc 1 320 0
+	.loc 1 315 0
 	lds r24,adc_high
-.LVL10:
+.LVL8:
 	cpse r24,__zero_reg__
 	rjmp .L32
 .L31:
-	.loc 1 320 0 is_stmt 0 discriminator 1
+	.loc 1 315 0 is_stmt 0 discriminator 1
 	lds r24,phasen_flag
 	cpse r24,__zero_reg__
 	rjmp .L33
-	.loc 1 322 0 is_stmt 1
+	.loc 1 317 0 is_stmt 1
 	ldi r24,lo8(1)
 	sts adc_0_flag,r24
-	.loc 1 323 0
+	.loc 1 318 0
 	sts phasen_flag,r24
 	rjmp .L33
 .L37:
-	.loc 1 328 0
+	.loc 1 323 0
 	ldi r24,lo8(2)
 	sts phasen_flag,r24
-	.loc 1 330 0
-	call init_ext_int_kommunikation
-.LVL11:
-	.loc 1 332 0
+	.loc 1 327 0
 	ldi r30,lo8(104)
 	ldi r31,0
 	ld r24,Z
-	.loc 1 332 0
+	.loc 1 327 0
 	ori r24,lo8(1)
 	st Z,r24
 .L38:
-	.loc 1 337 0
+	.loc 1 332 0
 	lds r24,phasen_flag
 	cpi r24,lo8(2)
 	brne .L34
-	.loc 1 339 0
+	.loc 1 334 0
 	call drehzahl_holen
-.LVL12:
+.LVL9:
 	ldi r18,0
 	ldi r19,0
 	ldi r20,lo8(-6)
 	ldi r21,lo8(68)
 	call __lesf2
-.LVL13:
+.LVL10:
 	cp __zero_reg__,r24
 	brlt .L35
-	.loc 1 342 0
+	.loc 1 337 0
 	lds r24,adc_high
 	call geschwindigkeits_regulierung
-.LVL14:
+.LVL11:
 	sts 207,r24
 	rjmp .L35
 .L34:
-	.loc 1 349 0
+	.loc 1 344 0
 	sts 207,__zero_reg__
 .L35:
-	.loc 1 381 0
+	.loc 1 376 0
 	ldi r30,lo8(122)
 	ldi r31,0
 	ld r24,Z
-	.loc 1 381 0
+	.loc 1 376 0
 	ori r24,lo8(64)
 	st Z,r24
-	.loc 1 382 0
+	.loc 1 377 0
 	rjmp .L40
 .L32:
-	.loc 1 326 0
+	.loc 1 321 0
 	lds r24,phasen_flag
 	cpi r24,lo8(1)
 	brne .L38
@@ -940,7 +930,7 @@ __vector_29:
 	rjmp .L38
 .L40:
 /* epilogue start */
-	.loc 1 382 0
+	.loc 1 377 0
 	pop r31
 	pop r30
 	pop r27
@@ -1009,15 +999,15 @@ richtung:
 	.file 5 "c:\\program files (x86)\\atmel\\studio\\7.0\\toolchain\\avr8\\avr8-gnu-toolchain\\avr\\include\\stdint.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.long	0x29e
+	.long	0x288
 	.word	0x2
 	.long	.Ldebug_abbrev0
 	.byte	0x4
 	.uleb128 0x1
-	.long	.LASF30
+	.long	.LASF29
 	.byte	0xc
+	.long	.LASF30
 	.long	.LASF31
-	.long	.LASF32
 	.long	.Ldebug_ranges0+0
 	.long	0
 	.long	0
@@ -1027,7 +1017,7 @@ richtung:
 	.byte	0x6
 	.long	.LASF0
 	.uleb128 0x3
-	.long	.LASF33
+	.long	.LASF32
 	.byte	0x5
 	.byte	0x7e
 	.long	0x3b
@@ -1115,11 +1105,11 @@ richtung:
 	.long	0xd9
 	.uleb128 0x8
 	.long	.LVL0
-	.long	0x246
+	.long	0x23d
 	.byte	0
 	.uleb128 0x9
 	.byte	0x1
-	.long	.LASF34
+	.long	.LASF33
 	.byte	0x1
 	.word	0x107
 	.byte	0x1
@@ -1144,19 +1134,19 @@ richtung:
 	.long	0x13d
 	.uleb128 0x8
 	.long	.LVL1
-	.long	0x253
+	.long	0x24a
 	.uleb128 0x8
 	.long	.LVL2
 	.long	0xb5
 	.uleb128 0x8
 	.long	.LVL3
-	.long	0x260
+	.long	0x257
 	.uleb128 0x8
 	.long	.LVL4
-	.long	0x26d
+	.long	0x264
 	.uleb128 0x8
 	.long	.LVL6
-	.long	0x27a
+	.long	0x271
 	.byte	0
 	.uleb128 0xa
 	.byte	0x1
@@ -1168,25 +1158,22 @@ richtung:
 	.long	.LFE17
 	.long	.LLST2
 	.byte	0x1
-	.long	0x18d
+	.long	0x184
 	.uleb128 0xb
-	.long	.LASF35
+	.long	.LASF34
 	.byte	0x1
 	.word	0x12d
 	.long	0x30
 	.long	.LLST3
 	.uleb128 0x8
 	.long	.LVL7
-	.long	0x287
+	.long	0x27e
+	.uleb128 0x8
+	.long	.LVL9
+	.long	0x264
 	.uleb128 0x8
 	.long	.LVL11
-	.long	0x294
-	.uleb128 0x8
-	.long	.LVL12
-	.long	0x26d
-	.uleb128 0x8
-	.long	.LVL14
-	.long	0x27a
+	.long	0x271
 	.byte	0
 	.uleb128 0xc
 	.long	.LASF14
@@ -1264,7 +1251,7 @@ richtung:
 	.long	.LASF21
 	.byte	0x1
 	.byte	0x2e
-	.long	0x22f
+	.long	0x226
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -1275,7 +1262,7 @@ richtung:
 	.long	.LASF22
 	.byte	0x1
 	.byte	0x2f
-	.long	0x22f
+	.long	0x226
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
@@ -1322,13 +1309,6 @@ richtung:
 	.long	.LASF28
 	.byte	0x4
 	.byte	0x18
-	.uleb128 0xf
-	.byte	0x1
-	.byte	0x1
-	.long	.LASF29
-	.long	.LASF29
-	.byte	0x4
-	.byte	0x17
 	.byte	0
 	.section	.debug_abbrev,"",@progbits
 .Ldebug_abbrev0:
@@ -1806,10 +1786,6 @@ richtung:
 	.long	.LVL8
 	.word	0x1
 	.byte	0x68
-	.long	.LVL9
-	.long	.LVL10
-	.word	0x1
-	.byte	0x68
 	.long	0
 	.long	0
 	.section	.debug_aranges,"",@progbits
@@ -1869,34 +1845,32 @@ richtung:
 	.string	"adc_high"
 .LASF22:
 	.string	"phasen_flag"
-.LASF34:
+.LASF33:
 	.string	"adc_abfrage"
 .LASF8:
 	.string	"Init_PWM"
 .LASF1:
 	.string	"unsigned char"
-.LASF30:
+.LASF29:
 	.string	"GNU C99 5.4.0 -mn-flash=1 -mno-skip-bug -mmcu=avr5 -g2 -O1 -std=gnu99 -funsigned-char -funsigned-bitfields -ffunction-sections -fdata-sections -fpack-struct -fshort-enums"
 .LASF4:
 	.string	"long unsigned int"
-.LASF35:
+.LASF34:
 	.string	"help"
 .LASF25:
 	.string	"drehzahl_berechnung"
-.LASF29:
-	.string	"init_ext_int_kommunikation"
 .LASF2:
 	.string	"unsigned int"
 .LASF6:
 	.string	"long long unsigned int"
-.LASF33:
+.LASF32:
 	.string	"uint8_t"
 .LASF14:
 	.string	"stufe"
-.LASF31:
+.LASF30:
 	.string	".././motoransteuerung.c"
-.LASF32:
-	.string	"C:\\\\Users\\\\Stefan\\\\Desktop\\\\ansteuerung\\\\ansteuerung\\\\Debug"
+.LASF16:
+	.string	"adc_low"
 .LASF9:
 	.string	"Init_Pinchange"
 .LASF26:
@@ -1905,8 +1879,6 @@ richtung:
 	.string	"long long int"
 .LASF7:
 	.string	"char"
-.LASF16:
-	.string	"adc_low"
 .LASF11:
 	.string	"Hallsensoren_abfragen"
 .LASF13:
@@ -1917,6 +1889,8 @@ richtung:
 	.string	"long int"
 .LASF12:
 	.string	"__vector_9"
+.LASF31:
+	.string	"C:\\\\Users\\\\Armin Baumgartner\\\\Desktop\\\\ansteuerung_02\\\\ansteuerung\\\\Debug"
 .LASF15:
 	.string	"richtung"
 .LASF0:

@@ -13,79 +13,79 @@ __zero_reg__ = 1
 init_usart:
 .LFB11:
 	.file 1 ".././kommunikation.c"
-	.loc 1 54 0
+	.loc 1 56 0
 	.cfi_startproc
 /* prologue: function */
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	.loc 1 55 0
+	.loc 1 57 0
 	sts 205,__zero_reg__
-	.loc 1 56 0
+	.loc 1 58 0
 	ldi r24,lo8(103)
 	sts 204,r24
-	.loc 1 57 0
+	.loc 1 59 0
 	ldi r26,lo8(-55)
 	ldi r27,0
 	ld r24,X
-	.loc 1 57 0
+	.loc 1 59 0
 	ori r24,lo8(16)
 	st X,r24
-	.loc 1 58 0
+	.loc 1 60 0
 	ld r24,X
-	.loc 1 58 0
+	.loc 1 60 0
 	ori r24,lo8(-128)
 	st X,r24
-	.loc 1 59 0
+	.loc 1 61 0
 	ld r24,X
-	.loc 1 59 0
+	.loc 1 61 0
 	ori r24,lo8(8)
 	st X,r24
-	.loc 1 61 0
+	.loc 1 63 0
 	ldi r30,lo8(-54)
 	ldi r31,0
 	ld r24,Z
-	.loc 1 61 0
+	.loc 1 63 0
 	andi r24,lo8(-65)
 	st Z,r24
-	.loc 1 62 0
+	.loc 1 64 0
 	ld r24,Z
-	.loc 1 62 0
+	.loc 1 64 0
 	andi r24,lo8(127)
 	st Z,r24
-	.loc 1 64 0
+	.loc 1 66 0
 	ld r24,Z
-	.loc 1 64 0
+	.loc 1 66 0
 	andi r24,lo8(-17)
 	st Z,r24
-	.loc 1 65 0
+	.loc 1 67 0
 	ld r24,Z
-	.loc 1 65 0
+	.loc 1 67 0
 	ori r24,lo8(32)
 	st Z,r24
-	.loc 1 67 0
+	.loc 1 69 0
 	ld r24,Z
-	.loc 1 67 0
+	.loc 1 69 0
 	andi r24,lo8(-9)
 	st Z,r24
-	.loc 1 69 0
+	.loc 1 71 0
 	ld r24,Z
-	.loc 1 69 0
+	.loc 1 71 0
 	ori r24,lo8(2)
 	st Z,r24
-	.loc 1 70 0
+	.loc 1 72 0
 	ld r24,Z
-	.loc 1 70 0
+	.loc 1 72 0
 	ori r24,lo8(4)
 	st Z,r24
-	.loc 1 71 0
+	.loc 1 73 0
 	ld r24,X
-	.loc 1 71 0
+	.loc 1 73 0
 	andi r24,lo8(-5)
 	st X,r24
-	.loc 1 73 0
+	.loc 1 75 0
 	ld r24,Z
-	.loc 1 73 0
+	.loc 1 75 0
 	st Z,r24
 	ret
 	.cfi_endproc
@@ -96,60 +96,60 @@ init_usart:
 	.type	init_transmission_timer, @function
 init_transmission_timer:
 .LFB12:
-	.loc 1 78 0
+	.loc 1 80 0
 	.cfi_startproc
 /* prologue: function */
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	.loc 1 79 0
+	.loc 1 81 0
 	in r24,0x24
-	.loc 1 79 0
+	.loc 1 81 0
 	andi r24,lo8(-65)
 	out 0x24,r24
-	.loc 1 80 0
+	.loc 1 82 0
 	in r24,0x24
-	.loc 1 80 0
+	.loc 1 82 0
 	andi r24,lo8(127)
 	out 0x24,r24
-	.loc 1 82 0
+	.loc 1 84 0
 	in r24,0x24
-	.loc 1 82 0
+	.loc 1 84 0
 	andi r24,lo8(-2)
 	out 0x24,r24
-	.loc 1 83 0
+	.loc 1 85 0
 	in r24,0x24
-	.loc 1 83 0
+	.loc 1 85 0
 	andi r24,lo8(-3)
 	out 0x24,r24
-	.loc 1 84 0
+	.loc 1 86 0
 	in r24,0x25
-	.loc 1 84 0
+	.loc 1 86 0
 	andi r24,lo8(-9)
 	out 0x25,r24
-	.loc 1 86 0
+	.loc 1 88 0
 	in r24,0x25
-	.loc 1 86 0
+	.loc 1 88 0
 	andi r24,lo8(-2)
 	out 0x25,r24
-	.loc 1 87 0
+	.loc 1 89 0
 	in r24,0x25
-	.loc 1 87 0
+	.loc 1 89 0
 	andi r24,lo8(-3)
 	out 0x25,r24
-	.loc 1 88 0
+	.loc 1 90 0
 	in r24,0x25
-	.loc 1 88 0
+	.loc 1 90 0
 	ori r24,lo8(4)
 	out 0x25,r24
-	.loc 1 90 0
+	.loc 1 92 0
 	ldi r24,lo8(100)
 	out 0x27,r24
-	.loc 1 92 0
+	.loc 1 94 0
 	ldi r30,lo8(110)
 	ldi r31,0
 	ld r24,Z
-	.loc 1 92 0
+	.loc 1 94 0
 	ori r24,lo8(2)
 	st Z,r24
 	ret
@@ -161,7 +161,7 @@ init_transmission_timer:
 	.type	daten_aufteilen, @function
 daten_aufteilen:
 .LFB13:
-	.loc 1 97 0
+	.loc 1 99 0
 	.cfi_startproc
 	push r28
 .LCFI0:
@@ -175,7 +175,7 @@ daten_aufteilen:
 /* frame size = 0 */
 /* stack size = 2 */
 .L__stack_usage = 2
-	.loc 1 99 0
+	.loc 1 101 0
 	lds r30,zahler_array
 	ldi r31,0
 	ldi r28,lo8(akku_daten)
@@ -184,7 +184,7 @@ daten_aufteilen:
 	subi r30,lo8(-(temperatur_array))
 	sbci r31,hi8(-(temperatur_array))
 	st Z,r24
-	.loc 1 100 0
+	.loc 1 102 0
 	lds r30,zahler_array
 	ldi r31,0
 	ldd r24,Y+1
@@ -195,7 +195,7 @@ daten_aufteilen:
 	sbci r31,hi8(-(niedrige_akku_voltage_array))
 	std Z+1,r25
 	st Z,r24
-	.loc 1 101 0
+	.loc 1 103 0
 	lds r30,zahler_array
 	ldi r31,0
 	lds r26,zahler_array
@@ -214,7 +214,7 @@ daten_aufteilen:
 	sbci r31,hi8(-(niedrige_akku_voltage_array))
 	std Z+1,r25
 	st Z,r24
-	.loc 1 102 0
+	.loc 1 104 0
 	lds r30,zahler_array
 	ldi r31,0
 	ldd r24,Y+3
@@ -225,7 +225,7 @@ daten_aufteilen:
 	sbci r31,hi8(-(ges_volatage_array))
 	std Z+1,r25
 	st Z,r24
-	.loc 1 103 0
+	.loc 1 105 0
 	lds r30,zahler_array
 	ldi r31,0
 	lds r26,zahler_array
@@ -244,19 +244,19 @@ daten_aufteilen:
 	sbci r31,hi8(-(ges_volatage_array))
 	std Z+1,r25
 	st Z,r24
-	.loc 1 105 0
+	.loc 1 107 0
 	lds r24,zahler_array
 	subi r24,lo8(-(1))
 	sts zahler_array,r24
-	.loc 1 107 0
+	.loc 1 109 0
 	lds r24,zahler_array
 	cpi r24,lo8(5)
 	brlo .L3
-	.loc 1 109 0
+	.loc 1 111 0
 	sts zahler_array,__zero_reg__
 .L3:
 /* epilogue start */
-	.loc 1 114 0
+	.loc 1 116 0
 	pop r29
 	pop r28
 	ret
@@ -268,7 +268,7 @@ daten_aufteilen:
 	.type	kommunikations_daten_mitteln, @function
 kommunikations_daten_mitteln:
 .LFB14:
-	.loc 1 116 0
+	.loc 1 118 0
 	.cfi_startproc
 	push r17
 .LCFI2:
@@ -288,14 +288,14 @@ kommunikations_daten_mitteln:
 .L__stack_usage = 3
 .LVL0:
 .LBB2:
-	.loc 1 117 0
+	.loc 1 119 0
 	ldi r20,0
 	ldi r21,0
-	.loc 1 119 0
+	.loc 1 121 0
 	ldi r17,lo8(-51)
 .LVL1:
 .L6:
-	.loc 1 119 0 is_stmt 0 discriminator 3
+	.loc 1 121 0 is_stmt 0 discriminator 3
 	movw r30,r20
 	subi r30,lo8(-(temperatur_array))
 	sbci r31,hi8(-(temperatur_array))
@@ -308,7 +308,7 @@ kommunikations_daten_mitteln:
 	lsr r24
 	add r24,r18
 	sts temperatur,r24
-	.loc 1 120 0 is_stmt 1 discriminator 3
+	.loc 1 122 0 is_stmt 1 discriminator 3
 	movw r30,r20
 	lsl r30
 	rol r31
@@ -330,7 +330,7 @@ kommunikations_daten_mitteln:
 	adc r29,r25
 	sts niedrige_akku_voltage+1,r29
 	sts niedrige_akku_voltage,r28
-	.loc 1 121 0 discriminator 3
+	.loc 1 123 0 discriminator 3
 	subi r30,lo8(-(ges_volatage_array))
 	sbci r31,hi8(-(ges_volatage_array))
 	ld r18,Z
@@ -346,7 +346,7 @@ kommunikations_daten_mitteln:
 	adc r31,r25
 	sts ges_volatage+1,r31
 	sts ges_volatage,r30
-	.loc 1 117 0 discriminator 3
+	.loc 1 119 0 discriminator 3
 	subi r20,-1
 	sbci r21,-1
 .LVL2:
@@ -355,7 +355,7 @@ kommunikations_daten_mitteln:
 	breq .+2
 	rjmp .L6
 .LBE2:
-	.loc 1 124 0
+	.loc 1 126 0
 	lds r30,zahler_array
 	ldi r31,0
 	lsl r30
@@ -365,7 +365,7 @@ kommunikations_daten_mitteln:
 	ld r24,Z
 	ldd r25,Z+1
 /* epilogue start */
-	.loc 1 129 0
+	.loc 1 131 0
 	pop r29
 	pop r28
 	pop r17
@@ -378,35 +378,35 @@ kommunikations_daten_mitteln:
 	.type	save_akku_daten, @function
 save_akku_daten:
 .LFB15:
-	.loc 1 131 0
+	.loc 1 133 0
 	.cfi_startproc
 /* prologue: function */
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	.loc 1 133 0
+	.loc 1 135 0
 	ldi r26,lo8(empfangs_daten)
 	ldi r27,hi8(empfangs_daten)
 	ld r24,X
 	ldi r30,lo8(akku_daten)
 	ldi r31,hi8(akku_daten)
 	st Z,r24
-	.loc 1 134 0
+	.loc 1 136 0
 	adiw r26,1
 	ld r24,X
 	sbiw r26,1
 	std Z+1,r24
-	.loc 1 135 0
+	.loc 1 137 0
 	adiw r26,2
 	ld r24,X
 	sbiw r26,2
 	std Z+2,r24
-	.loc 1 136 0
+	.loc 1 138 0
 	adiw r26,3
 	ld r24,X
 	sbiw r26,3
 	std Z+3,r24
-	.loc 1 137 0
+	.loc 1 139 0
 	adiw r26,4
 	ld r24,X
 	std Z+4,r24
@@ -419,37 +419,37 @@ save_akku_daten:
 	.type	ges_spannung_uebertragung, @function
 ges_spannung_uebertragung:
 .LFB16:
-	.loc 1 144 0
+	.loc 1 146 0
 	.cfi_startproc
 /* prologue: function */
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	.loc 1 145 0
+	.loc 1 147 0
 	lds r24,ges_volatage
 	lds r25,ges_volatage+1
 	cpi r24,64
 	sbci r25,-100
 	brlo .L11
-	.loc 1 145 0 is_stmt 0 discriminator 1
+	.loc 1 147 0 is_stmt 0 discriminator 1
 	lds r24,ges_volatage
 	lds r25,ges_volatage+1
 	cpi r24,-63
 	sbci r25,-38
 	brsh .L12
-	.loc 1 147 0 is_stmt 1
+	.loc 1 149 0 is_stmt 1
 	lds r24,ges_volatage
 	lds r25,ges_volatage+1
 	ret
 .L11:
-	.loc 1 151 0
+	.loc 1 153 0
 	ldi r24,lo8(-128)
 	ldi r25,lo8(-69)
 	ret
 .L12:
 	ldi r24,lo8(-128)
 	ldi r25,lo8(-69)
-	.loc 1 155 0
+	.loc 1 157 0
 	ret
 	.cfi_endproc
 .LFE16:
@@ -459,37 +459,37 @@ ges_spannung_uebertragung:
 	.type	niedrigste_akku_voltage_uebertragung, @function
 niedrigste_akku_voltage_uebertragung:
 .LFB17:
-	.loc 1 157 0
+	.loc 1 159 0
 	.cfi_startproc
 /* prologue: function */
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	.loc 1 158 0
+	.loc 1 160 0
 	lds r24,niedrige_akku_voltage
 	lds r25,niedrige_akku_voltage+1
 	cpi r24,-16
 	sbci r25,10
 	brlo .L15
-	.loc 1 158 0 is_stmt 0 discriminator 1
+	.loc 1 160 0 is_stmt 0 discriminator 1
 	lds r24,niedrige_akku_voltage
 	lds r25,niedrige_akku_voltage+1
 	cpi r24,-39
 	sbci r25,14
 	brsh .L16
-	.loc 1 160 0 is_stmt 1
+	.loc 1 162 0 is_stmt 1
 	lds r24,niedrige_akku_voltage
 	lds r25,niedrige_akku_voltage+1
 	ret
 .L15:
-	.loc 1 164 0
+	.loc 1 166 0
 	ldi r24,lo8(-28)
 	ldi r25,lo8(12)
 	ret
 .L16:
 	ldi r24,lo8(-28)
 	ldi r25,lo8(12)
-	.loc 1 167 0
+	.loc 1 169 0
 	ret
 	.cfi_endproc
 .LFE17:
@@ -499,23 +499,23 @@ niedrigste_akku_voltage_uebertragung:
 	.type	temperatur_uebertragung, @function
 temperatur_uebertragung:
 .LFB18:
-	.loc 1 169 0
+	.loc 1 171 0
 	.cfi_startproc
 /* prologue: function */
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	.loc 1 170 0
+	.loc 1 172 0
 	lds r24,temperatur
 	cpi r24,lo8(61)
 	brsh .L19
-	.loc 1 172 0
+	.loc 1 174 0
 	lds r24,temperatur
 	ret
 .L19:
-	.loc 1 176 0
+	.loc 1 178 0
 	ldi r24,lo8(20)
-	.loc 1 180 0
+	.loc 1 182 0
 	ret
 	.cfi_endproc
 .LFE18:
@@ -525,25 +525,25 @@ temperatur_uebertragung:
 	.type	init_ext_int_kommunikation, @function
 init_ext_int_kommunikation:
 .LFB19:
-	.loc 1 182 0
+	.loc 1 184 0
 	.cfi_startproc
 /* prologue: function */
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	.loc 1 184 0
+	.loc 1 186 0
 	ldi r30,lo8(105)
 	ldi r31,0
 	ld r24,Z
-	.loc 1 184 0
+	.loc 1 186 0
 	ori r24,lo8(32)
 	st Z,r24
-	.loc 1 185 0
+	.loc 1 187 0
 	ld r24,Z
-	.loc 1 185 0
+	.loc 1 187 0
 	andi r24,lo8(-17)
 	st Z,r24
-	.loc 1 187 0
+	.loc 1 189 0
 	sbi 0x1d,2
 	ret
 	.cfi_endproc
@@ -554,19 +554,15 @@ init_ext_int_kommunikation:
 	.type	ext_int_kommunikation_abfrage, @function
 ext_int_kommunikation_abfrage:
 .LFB20:
-	.loc 1 190 0
+	.loc 1 192 0
 	.cfi_startproc
 /* prologue: function */
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	ldi r24,lo8(1)
-	lds r25,akku_unterladen
-	cpi r25,lo8(1)
-	breq .L22
-	ldi r24,0
-.L22:
-	.loc 1 199 0
+	.loc 1 194 0
+	lds r24,akku_unterladen
+	.loc 1 195 0
 	ret
 	.cfi_endproc
 .LFE20:
@@ -576,7 +572,7 @@ ext_int_kommunikation_abfrage:
 	.type	__vector_25, @function
 __vector_25:
 .LFB21:
-	.loc 1 201 0
+	.loc 1 197 0
 	.cfi_startproc
 	push r1
 .LCFI5:
@@ -641,48 +637,48 @@ __vector_25:
 /* frame size = 0 */
 /* stack size = 15 */
 .L__stack_usage = 15
-	.loc 1 204 0
+	.loc 1 200 0
 	lds r24,start
 	cpi r24,lo8(1)
-	brne .L24
-	.loc 1 204 0 is_stmt 0 discriminator 1
+	brne .L23
+	.loc 1 200 0 is_stmt 0 discriminator 1
 	lds r24,overflow_counter
 	cpi r24,lo8(5)
-	brsh .L25
-.L24:
-	.loc 1 204 0 discriminator 3
+	brsh .L24
+.L23:
+	.loc 1 200 0 discriminator 3
 	lds r24,zahler_uebertragung
 	tst r24
-	breq .L23
-.L25:
-	.loc 1 208 0 is_stmt 1
+	breq .L22
+.L24:
+	.loc 1 204 0 is_stmt 1
 	sts overflow_counter,__zero_reg__
-	.loc 1 209 0
+	.loc 1 205 0
 	out 0x26,__zero_reg__
-	.loc 1 212 0
+	.loc 1 208 0
 	lds r30,zahler_uebertragung
 	ldi r31,0
-	.loc 1 212 0
+	.loc 1 208 0
 	lds r24,206
-	.loc 1 212 0
+	.loc 1 208 0
 	subi r30,lo8(-(empfangs_daten))
 	sbci r31,hi8(-(empfangs_daten))
 	st Z,r24
-	.loc 1 215 0
+	.loc 1 211 0
 	lds r24,zahler_uebertragung
 	cpi r24,lo8(4)
-	brne .L27
-	.loc 1 217 0
+	brne .L26
+	.loc 1 213 0
 	call save_akku_daten
 .LVL3:
-.L27:
-	.loc 1 220 0
+.L26:
+	.loc 1 216 0
 	lds r24,zahler_uebertragung
 	subi r24,lo8(-(1))
 	sts zahler_uebertragung,r24
-.L23:
+.L22:
 /* epilogue start */
-	.loc 1 224 0
+	.loc 1 220 0
 	pop r31
 	pop r30
 	pop r27
@@ -708,7 +704,7 @@ __vector_25:
 	.type	__vector_21, @function
 __vector_21:
 .LFB22:
-	.loc 1 226 0
+	.loc 1 222 0
 	.cfi_startproc
 	push r1
 .LCFI19:
@@ -773,34 +769,34 @@ __vector_21:
 /* frame size = 0 */
 /* stack size = 15 */
 .L__stack_usage = 15
-	.loc 1 227 0
+	.loc 1 223 0
 	out 0x26,__zero_reg__
-	.loc 1 228 0
+	.loc 1 224 0
 	ldi r24,lo8(1)
 	sts start,r24
-	.loc 1 232 0
+	.loc 1 228 0
 	sts zahler_uebertragung,__zero_reg__
-	.loc 1 235 0
+	.loc 1 231 0
 	lds r24,overflow_counter
 	subi r24,lo8(-(1))
 	sts overflow_counter,r24
-	.loc 1 237 0
+	.loc 1 233 0
 	cpi r24,lo8(2)
-	brne .L29
-	.loc 1 239 0
+	brne .L28
+	.loc 1 235 0
 	call daten_aufteilen
 .LVL4:
-.L29:
-	.loc 1 242 0
+.L28:
+	.loc 1 238 0
 	lds r24,overflow_counter
 	cpi r24,lo8(-5)
-	brlo .L28
-	.loc 1 244 0
+	brlo .L27
+	.loc 1 240 0
 	ldi r24,lo8(-6)
 	sts overflow_counter,r24
-.L28:
+.L27:
 /* epilogue start */
-	.loc 1 247 0
+	.loc 1 243 0
 	pop r31
 	pop r30
 	pop r27
@@ -821,12 +817,13 @@ __vector_21:
 	.cfi_endproc
 .LFE22:
 	.size	__vector_21, .-__vector_21
+.global	__gesf2
 	.section	.text.__vector_3,"ax",@progbits
 .global	__vector_3
 	.type	__vector_3, @function
 __vector_3:
 .LFB23:
-	.loc 1 249 0
+	.loc 1 245 0
 	.cfi_startproc
 	push r1
 .LCFI33:
@@ -839,20 +836,87 @@ __vector_3:
 	in r0,__SREG__
 	push r0
 	clr __zero_reg__
-	push r24
+	push r18
 .LCFI35:
 	.cfi_def_cfa_offset 5
-	.cfi_offset 24, -4
+	.cfi_offset 18, -4
+	push r19
+.LCFI36:
+	.cfi_def_cfa_offset 6
+	.cfi_offset 19, -5
+	push r20
+.LCFI37:
+	.cfi_def_cfa_offset 7
+	.cfi_offset 20, -6
+	push r21
+.LCFI38:
+	.cfi_def_cfa_offset 8
+	.cfi_offset 21, -7
+	push r22
+.LCFI39:
+	.cfi_def_cfa_offset 9
+	.cfi_offset 22, -8
+	push r23
+.LCFI40:
+	.cfi_def_cfa_offset 10
+	.cfi_offset 23, -9
+	push r24
+.LCFI41:
+	.cfi_def_cfa_offset 11
+	.cfi_offset 24, -10
+	push r25
+.LCFI42:
+	.cfi_def_cfa_offset 12
+	.cfi_offset 25, -11
+	push r26
+.LCFI43:
+	.cfi_def_cfa_offset 13
+	.cfi_offset 26, -12
+	push r27
+.LCFI44:
+	.cfi_def_cfa_offset 14
+	.cfi_offset 27, -13
+	push r30
+.LCFI45:
+	.cfi_def_cfa_offset 15
+	.cfi_offset 30, -14
+	push r31
+.LCFI46:
+	.cfi_def_cfa_offset 16
+	.cfi_offset 31, -15
 /* prologue: Signal */
 /* frame size = 0 */
-/* stack size = 4 */
-.L__stack_usage = 4
-	.loc 1 252 0
+/* stack size = 15 */
+.L__stack_usage = 15
+	.loc 1 248 0
+	call drehzahl_holen
+.LVL5:
+	ldi r18,0
+	ldi r19,0
+	ldi r20,lo8(32)
+	ldi r21,lo8(65)
+	call __gesf2
+.LVL6:
+	tst r24
+	brlt .L30
+	.loc 1 250 0
 	ldi r24,lo8(1)
 	sts akku_unterladen,r24
+.L30:
 /* epilogue start */
-	.loc 1 256 0
+	.loc 1 257 0
+	pop r31
+	pop r30
+	pop r27
+	pop r26
+	pop r25
 	pop r24
+	pop r23
+	pop r22
+	pop r21
+	pop r20
+	pop r19
+	pop r18
 	pop r0
 	out __SREG__,r0
 	pop r0
@@ -930,9 +994,10 @@ start:
 	.text
 .Letext0:
 	.file 2 "c:\\program files (x86)\\atmel\\studio\\7.0\\toolchain\\avr8\\avr8-gnu-toolchain\\avr\\include\\stdint.h"
+	.file 3 ".././berechnung.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.long	0x35f
+	.long	0x37a
 	.word	0x2
 	.long	.Ldebug_abbrev0
 	.byte	0x4
@@ -995,7 +1060,7 @@ start:
 	.byte	0x1
 	.long	.LASF10
 	.byte	0x1
-	.byte	0x35
+	.byte	0x37
 	.byte	0x1
 	.long	.LFB11
 	.long	.LFE11
@@ -1008,7 +1073,7 @@ start:
 	.byte	0x1
 	.long	.LASF11
 	.byte	0x1
-	.byte	0x4d
+	.byte	0x4f
 	.byte	0x1
 	.long	.LFB12
 	.long	.LFE12
@@ -1021,7 +1086,7 @@ start:
 	.byte	0x1
 	.long	.LASF12
 	.byte	0x1
-	.byte	0x60
+	.byte	0x62
 	.byte	0x1
 	.long	.LFB13
 	.long	.LFE13
@@ -1031,7 +1096,7 @@ start:
 	.byte	0x1
 	.long	.LASF19
 	.byte	0x1
-	.byte	0x73
+	.byte	0x75
 	.byte	0x1
 	.long	.LFB14
 	.long	.LFE14
@@ -1044,7 +1109,7 @@ start:
 	.uleb128 0x9
 	.string	"k"
 	.byte	0x1
-	.byte	0x75
+	.byte	0x77
 	.long	0x42
 	.long	.LLST2
 	.byte	0
@@ -1053,7 +1118,7 @@ start:
 	.byte	0x1
 	.long	.LASF13
 	.byte	0x1
-	.byte	0x82
+	.byte	0x84
 	.byte	0x1
 	.long	.LFB15
 	.long	.LFE15
@@ -1066,7 +1131,7 @@ start:
 	.byte	0x1
 	.long	.LASF14
 	.byte	0x1
-	.byte	0x8f
+	.byte	0x91
 	.byte	0x1
 	.long	0x49
 	.long	.LFB16
@@ -1080,7 +1145,7 @@ start:
 	.byte	0x1
 	.long	.LASF15
 	.byte	0x1
-	.byte	0x9c
+	.byte	0x9e
 	.byte	0x1
 	.long	0x49
 	.long	.LFB17
@@ -1094,7 +1159,7 @@ start:
 	.byte	0x1
 	.long	.LASF16
 	.byte	0x1
-	.byte	0xa8
+	.byte	0xaa
 	.byte	0x1
 	.long	0x30
 	.long	.LFB18
@@ -1108,7 +1173,7 @@ start:
 	.byte	0x1
 	.long	.LASF17
 	.byte	0x1
-	.byte	0xb5
+	.byte	0xb7
 	.byte	0x1
 	.long	.LFB19
 	.long	.LFE19
@@ -1121,7 +1186,7 @@ start:
 	.byte	0x1
 	.long	.LASF18
 	.byte	0x1
-	.byte	0xbd
+	.byte	0xbf
 	.byte	0x1
 	.long	0x30
 	.long	.LFB20
@@ -1135,7 +1200,7 @@ start:
 	.byte	0x1
 	.long	.LASF20
 	.byte	0x1
-	.byte	0xc8
+	.byte	0xc4
 	.byte	0x1
 	.long	.LFB21
 	.long	.LFE21
@@ -1150,7 +1215,7 @@ start:
 	.byte	0x1
 	.long	.LASF21
 	.byte	0x1
-	.byte	0xe1
+	.byte	0xdd
 	.byte	0x1
 	.long	.LFB22
 	.long	.LFE22
@@ -1161,201 +1226,213 @@ start:
 	.long	.LVL4
 	.long	0xaa
 	.byte	0
-	.uleb128 0x6
+	.uleb128 0xc
 	.byte	0x1
 	.long	.LASF22
 	.byte	0x1
-	.byte	0xf8
+	.byte	0xf4
 	.byte	0x1
 	.long	.LFB23
 	.long	.LFE23
 	.long	.LLST5
 	.byte	0x1
-	.uleb128 0xc
-	.long	.LASF23
-	.byte	0x1
-	.byte	0x1a
-	.long	0x77
-	.byte	0x1
-	.byte	0x5
-	.byte	0x3
-	.long	start
+	.long	0x1f2
+	.uleb128 0xb
+	.long	.LVL5
+	.long	0x370
+	.byte	0
 	.uleb128 0xd
-	.string	"bf"
+	.long	.LASF23
 	.byte	0x1
 	.byte	0x1c
 	.long	0x77
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
-	.long	bf
-	.uleb128 0xc
-	.long	.LASF24
+	.long	start
+	.uleb128 0xe
+	.string	"bf"
 	.byte	0x1
 	.byte	0x1e
-	.long	0x219
+	.long	0x77
+	.byte	0x1
+	.byte	0x5
+	.byte	0x3
+	.long	bf
+	.uleb128 0xd
+	.long	.LASF24
+	.byte	0x1
+	.byte	0x20
+	.long	0x227
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.long	zahler_uebertragung
-	.uleb128 0xe
-	.long	0x30
 	.uleb128 0xf
-	.long	0x235
-	.long	0x22e
+	.long	0x30
 	.uleb128 0x10
-	.long	0x22e
+	.long	0x243
+	.long	0x23c
+	.uleb128 0x11
+	.long	0x23c
 	.byte	0x4
 	.byte	0
 	.uleb128 0x2
 	.byte	0x2
 	.byte	0x7
 	.long	.LASF25
-	.uleb128 0xe
+	.uleb128 0xf
 	.long	0x3b
-	.uleb128 0xc
+	.uleb128 0xd
 	.long	.LASF26
 	.byte	0x1
-	.byte	0x20
-	.long	0x24c
+	.byte	0x22
+	.long	0x25a
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.long	empfangs_daten
-	.uleb128 0xe
-	.long	0x21e
-	.uleb128 0xc
+	.uleb128 0xf
+	.long	0x22c
+	.uleb128 0xd
 	.long	.LASF27
 	.byte	0x1
-	.byte	0x21
-	.long	0x263
+	.byte	0x23
+	.long	0x271
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.long	akku_daten
-	.uleb128 0xe
-	.long	0x21e
-	.uleb128 0xc
+	.uleb128 0xf
+	.long	0x22c
+	.uleb128 0xd
 	.long	.LASF28
 	.byte	0x1
-	.byte	0x22
+	.byte	0x24
 	.long	0x77
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.long	overflow_counter
-	.uleb128 0xf
-	.long	0x28a
-	.long	0x28a
 	.uleb128 0x10
-	.long	0x22e
+	.long	0x298
+	.long	0x298
+	.uleb128 0x11
+	.long	0x23c
 	.byte	0x4
 	.byte	0
-	.uleb128 0xe
+	.uleb128 0xf
 	.long	0x49
-	.uleb128 0xc
+	.uleb128 0xd
 	.long	.LASF29
 	.byte	0x1
-	.byte	0x24
-	.long	0x2a1
+	.byte	0x26
+	.long	0x2af
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.long	niedrige_akku_voltage_array
-	.uleb128 0xe
-	.long	0x27a
 	.uleb128 0xf
-	.long	0x219
-	.long	0x2b6
+	.long	0x288
 	.uleb128 0x10
-	.long	0x22e
+	.long	0x227
+	.long	0x2c4
+	.uleb128 0x11
+	.long	0x23c
 	.byte	0x4
 	.byte	0
-	.uleb128 0xc
+	.uleb128 0xd
 	.long	.LASF30
 	.byte	0x1
-	.byte	0x25
-	.long	0x2c8
+	.byte	0x27
+	.long	0x2d6
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.long	temperatur_array
-	.uleb128 0xe
-	.long	0x2a6
-	.uleb128 0xc
+	.uleb128 0xf
+	.long	0x2b4
+	.uleb128 0xd
 	.long	.LASF31
 	.byte	0x1
-	.byte	0x26
-	.long	0x2df
+	.byte	0x28
+	.long	0x2ed
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.long	ges_volatage_array
-	.uleb128 0xe
-	.long	0x27a
-	.uleb128 0xc
+	.uleb128 0xf
+	.long	0x288
+	.uleb128 0xd
 	.long	.LASF32
 	.byte	0x1
-	.byte	0x28
-	.long	0x28a
+	.byte	0x2a
+	.long	0x298
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.long	niedrige_akku_voltage
-	.uleb128 0xc
+	.uleb128 0xd
 	.long	.LASF33
 	.byte	0x1
-	.byte	0x29
-	.long	0x219
+	.byte	0x2b
+	.long	0x227
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.long	temperatur
-	.uleb128 0xc
+	.uleb128 0xd
 	.long	.LASF34
 	.byte	0x1
-	.byte	0x2a
-	.long	0x28a
+	.byte	0x2c
+	.long	0x298
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.long	ges_volatage
-	.uleb128 0xc
+	.uleb128 0xd
 	.long	.LASF35
 	.byte	0x1
-	.byte	0x2c
-	.long	0x219
+	.byte	0x2e
+	.long	0x227
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.long	zahler_array
-	.uleb128 0xc
+	.uleb128 0xd
 	.long	.LASF36
-	.byte	0x1
-	.byte	0x2e
-	.long	0x77
-	.byte	0x1
-	.byte	0x5
-	.byte	0x3
-	.long	empfang_test
-	.uleb128 0xc
-	.long	.LASF37
 	.byte	0x1
 	.byte	0x30
 	.long	0x77
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
-	.long	counter_falsch
-	.uleb128 0xc
-	.long	.LASF38
+	.long	empfang_test
+	.uleb128 0xd
+	.long	.LASF37
 	.byte	0x1
 	.byte	0x32
-	.long	0x30
+	.long	0x77
+	.byte	0x1
+	.byte	0x5
+	.byte	0x3
+	.long	counter_falsch
+	.uleb128 0xd
+	.long	.LASF38
+	.byte	0x1
+	.byte	0x34
+	.long	0x227
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.long	akku_unterladen
+	.uleb128 0x12
+	.byte	0x1
+	.byte	0x1
+	.long	.LASF42
+	.long	.LASF42
+	.byte	0x3
+	.byte	0x11
 	.byte	0
 	.section	.debug_abbrev,"",@progbits
 .Ldebug_abbrev0:
@@ -1545,6 +1622,31 @@ start:
 	.byte	0
 	.byte	0
 	.uleb128 0xc
+	.uleb128 0x2e
+	.byte	0x1
+	.uleb128 0x3f
+	.uleb128 0xc
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
+	.uleb128 0xb
+	.uleb128 0x27
+	.uleb128 0xc
+	.uleb128 0x11
+	.uleb128 0x1
+	.uleb128 0x12
+	.uleb128 0x1
+	.uleb128 0x40
+	.uleb128 0x6
+	.uleb128 0x2116
+	.uleb128 0xc
+	.uleb128 0x1
+	.uleb128 0x13
+	.byte	0
+	.byte	0
+	.uleb128 0xd
 	.uleb128 0x34
 	.byte	0
 	.uleb128 0x3
@@ -1561,7 +1663,7 @@ start:
 	.uleb128 0xa
 	.byte	0
 	.byte	0
-	.uleb128 0xd
+	.uleb128 0xe
 	.uleb128 0x34
 	.byte	0
 	.uleb128 0x3
@@ -1578,14 +1680,14 @@ start:
 	.uleb128 0xa
 	.byte	0
 	.byte	0
-	.uleb128 0xe
+	.uleb128 0xf
 	.uleb128 0x35
 	.byte	0
 	.uleb128 0x49
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0xf
+	.uleb128 0x10
 	.uleb128 0x1
 	.byte	0x1
 	.uleb128 0x49
@@ -1594,12 +1696,29 @@ start:
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0x10
+	.uleb128 0x11
 	.uleb128 0x21
 	.byte	0
 	.uleb128 0x49
 	.uleb128 0x13
 	.uleb128 0x2f
+	.uleb128 0xb
+	.byte	0
+	.byte	0
+	.uleb128 0x12
+	.uleb128 0x2e
+	.byte	0
+	.uleb128 0x3f
+	.uleb128 0xc
+	.uleb128 0x3c
+	.uleb128 0xc
+	.uleb128 0x2007
+	.uleb128 0xe
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
 	.uleb128 0xb
 	.byte	0
 	.byte	0
@@ -1877,11 +1996,77 @@ start:
 	.uleb128 0x20
 	.sleb128 4
 	.long	.LCFI35
-	.long	.LFE23
+	.long	.LCFI36
 	.word	0x3
 	.byte	0x92
 	.uleb128 0x20
 	.sleb128 5
+	.long	.LCFI36
+	.long	.LCFI37
+	.word	0x3
+	.byte	0x92
+	.uleb128 0x20
+	.sleb128 6
+	.long	.LCFI37
+	.long	.LCFI38
+	.word	0x3
+	.byte	0x92
+	.uleb128 0x20
+	.sleb128 7
+	.long	.LCFI38
+	.long	.LCFI39
+	.word	0x3
+	.byte	0x92
+	.uleb128 0x20
+	.sleb128 8
+	.long	.LCFI39
+	.long	.LCFI40
+	.word	0x3
+	.byte	0x92
+	.uleb128 0x20
+	.sleb128 9
+	.long	.LCFI40
+	.long	.LCFI41
+	.word	0x3
+	.byte	0x92
+	.uleb128 0x20
+	.sleb128 10
+	.long	.LCFI41
+	.long	.LCFI42
+	.word	0x3
+	.byte	0x92
+	.uleb128 0x20
+	.sleb128 11
+	.long	.LCFI42
+	.long	.LCFI43
+	.word	0x3
+	.byte	0x92
+	.uleb128 0x20
+	.sleb128 12
+	.long	.LCFI43
+	.long	.LCFI44
+	.word	0x3
+	.byte	0x92
+	.uleb128 0x20
+	.sleb128 13
+	.long	.LCFI44
+	.long	.LCFI45
+	.word	0x3
+	.byte	0x92
+	.uleb128 0x20
+	.sleb128 14
+	.long	.LCFI45
+	.long	.LCFI46
+	.word	0x3
+	.byte	0x92
+	.uleb128 0x20
+	.sleb128 15
+	.long	.LCFI46
+	.long	.LFE23
+	.word	0x3
+	.byte	0x92
+	.uleb128 0x20
+	.sleb128 16
 	.long	0
 	.long	0
 	.section	.debug_aranges,"",@progbits
@@ -1967,6 +2152,8 @@ start:
 	.string	"temperatur"
 .LASF25:
 	.string	"sizetype"
+.LASF41:
+	.string	"C:\\\\Users\\\\Armin Baumgartner\\\\Desktop\\\\ansteuerung_02\\\\ansteuerung\\\\Debug"
 .LASF2:
 	.string	"uint8_t"
 .LASF32:
@@ -1997,8 +2184,6 @@ start:
 	.string	"akku_unterladen"
 .LASF1:
 	.string	"unsigned char"
-.LASF41:
-	.string	"C:\\\\Users\\\\Stefan\\\\Desktop\\\\ansteuerung\\\\ansteuerung\\\\Debug"
 .LASF0:
 	.string	"signed char"
 .LASF8:
@@ -2017,6 +2202,8 @@ start:
 	.string	"init_ext_int_kommunikation"
 .LASF9:
 	.string	"char"
+.LASF42:
+	.string	"drehzahl_holen"
 .LASF26:
 	.string	"empfangs_daten"
 .LASF16:

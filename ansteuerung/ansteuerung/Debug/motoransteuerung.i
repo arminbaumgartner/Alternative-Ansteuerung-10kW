@@ -1,5 +1,5 @@
 # 1 ".././motoransteuerung.c"
-# 1 "C:\\Users\\Stefan\\Desktop\\ansteuerung\\ansteuerung\\Debug//"
+# 1 "C:\\Users\\Armin Baumgartner\\Desktop\\ansteuerung_02\\ansteuerung\\Debug//"
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 ".././motoransteuerung.c"
@@ -1039,7 +1039,7 @@ char adc_counter=0;
 char hilfe;
 
 volatile uint8_t adc_0_flag = 0;
-volatile uint8_t phasen_flag =0;
+volatile uint8_t phasen_flag = 0;
 
 void Init_PWM (void){
 
@@ -2410,28 +2410,11 @@ void __vector_29 (void) __attribute__ ((signal,used, externally_visible)) ; void
 
  help = ext_int_kommunikation_abfrage();
 
-
- if (help == 1)
+ if (help)
  {
-  
-# 311 ".././motoransteuerung.c" 3
- (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 311 ".././motoransteuerung.c"
-       = 
-# 311 ".././motoransteuerung.c" 3
-         (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 311 ".././motoransteuerung.c"
-               ^ (1<<
-# 311 ".././motoransteuerung.c" 3
-                     7
-# 311 ".././motoransteuerung.c"
-                           );
   adc_high = 0;
  }
- else
- {
 
- }
 
 
  if (adc_high <= 0 && phasen_flag == 0)
@@ -2444,20 +2427,20 @@ void __vector_29 (void) __attribute__ ((signal,used, externally_visible)) ; void
  {
   phasen_flag = 2;
 
-  init_ext_int_kommunikation();
+
 
   
-# 332 ".././motoransteuerung.c" 3
+# 327 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0x68)) 
-# 332 ".././motoransteuerung.c"
+# 327 ".././motoransteuerung.c"
        = 
-# 332 ".././motoransteuerung.c" 3
+# 327 ".././motoransteuerung.c" 3
           (*(volatile uint8_t *)(0x68)) 
-# 332 ".././motoransteuerung.c"
+# 327 ".././motoransteuerung.c"
                 | (1<<
-# 332 ".././motoransteuerung.c" 3
+# 327 ".././motoransteuerung.c" 3
                       0
-# 332 ".././motoransteuerung.c"
+# 327 ".././motoransteuerung.c"
                            );
 
  }
@@ -2469,9 +2452,9 @@ void __vector_29 (void) __attribute__ ((signal,used, externally_visible)) ; void
   {
 
    
-# 342 ".././motoransteuerung.c" 3
+# 337 ".././motoransteuerung.c" 3
   (*(volatile uint8_t *)(0xCF)) 
-# 342 ".././motoransteuerung.c"
+# 337 ".././motoransteuerung.c"
         = geschwindigkeits_regulierung(adc_high);
 
 
@@ -2480,23 +2463,23 @@ void __vector_29 (void) __attribute__ ((signal,used, externally_visible)) ; void
  else
  {
   
-# 349 ".././motoransteuerung.c" 3
+# 344 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0xCF)) 
-# 349 ".././motoransteuerung.c"
+# 344 ".././motoransteuerung.c"
        = 0;
  }
-# 381 ".././motoransteuerung.c"
+# 376 ".././motoransteuerung.c"
  
-# 381 ".././motoransteuerung.c" 3
+# 376 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0x7A)) 
-# 381 ".././motoransteuerung.c"
+# 376 ".././motoransteuerung.c"
        = 
-# 381 ".././motoransteuerung.c" 3
+# 376 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0x7A)) 
-# 381 ".././motoransteuerung.c"
+# 376 ".././motoransteuerung.c"
                 | (1<<
-# 381 ".././motoransteuerung.c" 3
+# 376 ".././motoransteuerung.c" 3
                       6
-# 381 ".././motoransteuerung.c"
+# 376 ".././motoransteuerung.c"
                           );
 }
