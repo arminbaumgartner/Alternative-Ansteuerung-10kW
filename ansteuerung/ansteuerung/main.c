@@ -95,6 +95,10 @@ int main(void)
 	DDRD = DDRD &~ (1<<DDD0);
 	PORTD = PORTD | (1<<PORTD0);		//Pull-up
 	
+	//Kommunikation über EXT-Int
+	DDRD = DDRD &~ (1<<DDD2);		//Eingang INT2
+	PORTD = PORTD | (1<<PORTD2);	//PULL-UP
+	
 	
 	//Debug-Pins
 	DDRB = DDRB | (1<<DDB7);
@@ -111,7 +115,6 @@ int main(void)
 	//init_usart();				//Initialisierung von Kommunikationsschnittstelle UART
 	//init_transmission_timer();	//Initaliesierung von Timer0 für UART
 	
-	init_ext_int_kommunikation();	//Initialiesierung des externen interrupt für akkuüberwachung
 	
 	init_timer_zeitlicher_ablauf();
 	

@@ -1,5 +1,5 @@
 # 1 ".././kommunikation.c"
-# 1 "C:\\Users\\Armin Baumgartner\\Desktop\\10kW-master\\10kW-master\\ansteuerung\\ansteuerung\\Debug//"
+# 1 "C:\\Users\\Stefan\\Desktop\\ansteuerung\\ansteuerung\\Debug//"
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 ".././kommunikation.c"
@@ -1410,73 +1410,47 @@ uint8_t temperatur_uebertragung(void)
 }
 void init_ext_int_kommunikation(void)
 {
- 
-# 183 ".././kommunikation.c" 3
-(*(volatile uint8_t *)((0x0A) + 0x20)) 
-# 183 ".././kommunikation.c"
-     = 
-# 183 ".././kommunikation.c" 3
-       (*(volatile uint8_t *)((0x0A) + 0x20)) 
-# 183 ".././kommunikation.c"
-            &~ (1<<
-# 183 ".././kommunikation.c" 3
-                   2
-# 183 ".././kommunikation.c"
-                       );
- 
-# 184 ".././kommunikation.c" 3
-(*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 184 ".././kommunikation.c"
-      = 
-# 184 ".././kommunikation.c" 3
-        (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 184 ".././kommunikation.c"
-              | (1<<
-# 184 ".././kommunikation.c" 3
-                    2
-# 184 ".././kommunikation.c"
-                          );
 
  
-# 186 ".././kommunikation.c" 3
-(*(volatile uint8_t *)((0x1D) + 0x20)) 
-# 186 ".././kommunikation.c"
-      = 
-# 186 ".././kommunikation.c" 3
-        (*(volatile uint8_t *)((0x1D) + 0x20)) 
-# 186 ".././kommunikation.c"
-              | (1<<
-# 186 ".././kommunikation.c" 3
-                    2
-# 186 ".././kommunikation.c"
-                        );
-
- 
-# 188 ".././kommunikation.c" 3
+# 184 ".././kommunikation.c" 3
 (*(volatile uint8_t *)(0x69)) 
-# 188 ".././kommunikation.c"
+# 184 ".././kommunikation.c"
       = 
-# 188 ".././kommunikation.c" 3
+# 184 ".././kommunikation.c" 3
         (*(volatile uint8_t *)(0x69)) 
-# 188 ".././kommunikation.c"
+# 184 ".././kommunikation.c"
               | (1<<
-# 188 ".././kommunikation.c" 3
+# 184 ".././kommunikation.c" 3
                     5
-# 188 ".././kommunikation.c"
+# 184 ".././kommunikation.c"
                          );
  
-# 189 ".././kommunikation.c" 3
+# 185 ".././kommunikation.c" 3
 (*(volatile uint8_t *)(0x69)) 
-# 189 ".././kommunikation.c"
+# 185 ".././kommunikation.c"
       = 
-# 189 ".././kommunikation.c" 3
+# 185 ".././kommunikation.c" 3
         (*(volatile uint8_t *)(0x69)) 
-# 189 ".././kommunikation.c"
+# 185 ".././kommunikation.c"
               &~ (1<<
-# 189 ".././kommunikation.c" 3
+# 185 ".././kommunikation.c" 3
                      4
-# 189 ".././kommunikation.c"
+# 185 ".././kommunikation.c"
                           );
+
+ 
+# 187 ".././kommunikation.c" 3
+(*(volatile uint8_t *)((0x1D) + 0x20)) 
+# 187 ".././kommunikation.c"
+      = 
+# 187 ".././kommunikation.c" 3
+        (*(volatile uint8_t *)((0x1D) + 0x20)) 
+# 187 ".././kommunikation.c"
+              | (1<<
+# 187 ".././kommunikation.c" 3
+                    2
+# 187 ".././kommunikation.c"
+                        );
 }
 uint8_t ext_int_kommunikation_abfrage(void)
 {
@@ -1490,10 +1464,10 @@ uint8_t ext_int_kommunikation_abfrage(void)
  }
 }
 
-# 202 ".././kommunikation.c" 3
+# 200 ".././kommunikation.c" 3
 void __vector_25 (void) __attribute__ ((signal,used, externally_visible)) ; void __vector_25 (void)
 
-# 203 ".././kommunikation.c"
+# 201 ".././kommunikation.c"
 {
 
 
@@ -1503,16 +1477,16 @@ void __vector_25 (void) __attribute__ ((signal,used, externally_visible)) ; void
 
    overflow_counter = 0;
    
-# 211 ".././kommunikation.c" 3
+# 209 ".././kommunikation.c" 3
   (*(volatile uint8_t *)((0x26) + 0x20)) 
-# 211 ".././kommunikation.c"
+# 209 ".././kommunikation.c"
         = 0;
 
 
    empfangs_daten[zahler_uebertragung] = 
-# 214 ".././kommunikation.c" 3
+# 212 ".././kommunikation.c" 3
                                         (*(volatile uint8_t *)(0xCE))
-# 214 ".././kommunikation.c"
+# 212 ".././kommunikation.c"
                                             ;
 
 
@@ -1527,15 +1501,15 @@ void __vector_25 (void) __attribute__ ((signal,used, externally_visible)) ; void
 
 }
 
-# 227 ".././kommunikation.c" 3
+# 225 ".././kommunikation.c" 3
 void __vector_21 (void) __attribute__ ((signal,used, externally_visible)) ; void __vector_21 (void)
 
-# 228 ".././kommunikation.c"
+# 226 ".././kommunikation.c"
 {
  
-# 229 ".././kommunikation.c" 3
+# 227 ".././kommunikation.c" 3
 (*(volatile uint8_t *)((0x26) + 0x20)) 
-# 229 ".././kommunikation.c"
+# 227 ".././kommunikation.c"
       = 0;
  start = 1;
 
@@ -1558,28 +1532,15 @@ void __vector_21 (void) __attribute__ ((signal,used, externally_visible)) ; void
 
 }
 
-# 250 ".././kommunikation.c" 3
+# 248 ".././kommunikation.c" 3
 void __vector_3 (void) __attribute__ ((signal,used, externally_visible)) ; void __vector_3 (void)
 
-# 251 ".././kommunikation.c"
+# 249 ".././kommunikation.c"
 {
 
 
  akku_unterladen = 1;
 
- 
-# 256 ".././kommunikation.c" 3
-(*(volatile uint8_t *)((0x05) + 0x20)) 
-# 256 ".././kommunikation.c"
-      = 
-# 256 ".././kommunikation.c" 3
-        (*(volatile uint8_t *)((0x05) + 0x20)) 
-# 256 ".././kommunikation.c"
-              ^ (1<<
-# 256 ".././kommunikation.c" 3
-                    7
-# 256 ".././kommunikation.c"
-                          );
 
 
 }

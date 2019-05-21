@@ -531,24 +531,20 @@ init_ext_int_kommunikation:
 /* frame size = 0 */
 /* stack size = 0 */
 .L__stack_usage = 0
-	.loc 1 183 0
-	cbi 0xa,2
 	.loc 1 184 0
-	sbi 0xb,2
-	.loc 1 186 0
-	sbi 0x1d,2
-	.loc 1 188 0
 	ldi r30,lo8(105)
 	ldi r31,0
 	ld r24,Z
-	.loc 1 188 0
+	.loc 1 184 0
 	ori r24,lo8(32)
 	st Z,r24
-	.loc 1 189 0
+	.loc 1 185 0
 	ld r24,Z
-	.loc 1 189 0
+	.loc 1 185 0
 	andi r24,lo8(-17)
 	st Z,r24
+	.loc 1 187 0
+	sbi 0x1d,2
 	ret
 	.cfi_endproc
 .LFE19:
@@ -558,7 +554,7 @@ init_ext_int_kommunikation:
 	.type	ext_int_kommunikation_abfrage, @function
 ext_int_kommunikation_abfrage:
 .LFB20:
-	.loc 1 192 0
+	.loc 1 190 0
 	.cfi_startproc
 /* prologue: function */
 /* frame size = 0 */
@@ -570,7 +566,7 @@ ext_int_kommunikation_abfrage:
 	breq .L22
 	ldi r24,0
 .L22:
-	.loc 1 201 0
+	.loc 1 199 0
 	ret
 	.cfi_endproc
 .LFE20:
@@ -580,7 +576,7 @@ ext_int_kommunikation_abfrage:
 	.type	__vector_25, @function
 __vector_25:
 .LFB21:
-	.loc 1 203 0
+	.loc 1 201 0
 	.cfi_startproc
 	push r1
 .LCFI5:
@@ -645,48 +641,48 @@ __vector_25:
 /* frame size = 0 */
 /* stack size = 15 */
 .L__stack_usage = 15
-	.loc 1 206 0
+	.loc 1 204 0
 	lds r24,start
 	cpi r24,lo8(1)
 	brne .L24
-	.loc 1 206 0 is_stmt 0 discriminator 1
+	.loc 1 204 0 is_stmt 0 discriminator 1
 	lds r24,overflow_counter
 	cpi r24,lo8(5)
 	brsh .L25
 .L24:
-	.loc 1 206 0 discriminator 3
+	.loc 1 204 0 discriminator 3
 	lds r24,zahler_uebertragung
 	tst r24
 	breq .L23
 .L25:
-	.loc 1 210 0 is_stmt 1
+	.loc 1 208 0 is_stmt 1
 	sts overflow_counter,__zero_reg__
-	.loc 1 211 0
+	.loc 1 209 0
 	out 0x26,__zero_reg__
-	.loc 1 214 0
+	.loc 1 212 0
 	lds r30,zahler_uebertragung
 	ldi r31,0
-	.loc 1 214 0
+	.loc 1 212 0
 	lds r24,206
-	.loc 1 214 0
+	.loc 1 212 0
 	subi r30,lo8(-(empfangs_daten))
 	sbci r31,hi8(-(empfangs_daten))
 	st Z,r24
-	.loc 1 217 0
+	.loc 1 215 0
 	lds r24,zahler_uebertragung
 	cpi r24,lo8(4)
 	brne .L27
-	.loc 1 219 0
+	.loc 1 217 0
 	call save_akku_daten
 .LVL3:
 .L27:
-	.loc 1 222 0
+	.loc 1 220 0
 	lds r24,zahler_uebertragung
 	subi r24,lo8(-(1))
 	sts zahler_uebertragung,r24
 .L23:
 /* epilogue start */
-	.loc 1 226 0
+	.loc 1 224 0
 	pop r31
 	pop r30
 	pop r27
@@ -712,7 +708,7 @@ __vector_25:
 	.type	__vector_21, @function
 __vector_21:
 .LFB22:
-	.loc 1 228 0
+	.loc 1 226 0
 	.cfi_startproc
 	push r1
 .LCFI19:
@@ -777,34 +773,34 @@ __vector_21:
 /* frame size = 0 */
 /* stack size = 15 */
 .L__stack_usage = 15
-	.loc 1 229 0
+	.loc 1 227 0
 	out 0x26,__zero_reg__
-	.loc 1 230 0
+	.loc 1 228 0
 	ldi r24,lo8(1)
 	sts start,r24
-	.loc 1 234 0
+	.loc 1 232 0
 	sts zahler_uebertragung,__zero_reg__
-	.loc 1 237 0
+	.loc 1 235 0
 	lds r24,overflow_counter
 	subi r24,lo8(-(1))
 	sts overflow_counter,r24
-	.loc 1 239 0
+	.loc 1 237 0
 	cpi r24,lo8(2)
 	brne .L29
-	.loc 1 241 0
+	.loc 1 239 0
 	call daten_aufteilen
 .LVL4:
 .L29:
-	.loc 1 244 0
+	.loc 1 242 0
 	lds r24,overflow_counter
 	cpi r24,lo8(-5)
 	brlo .L28
-	.loc 1 246 0
+	.loc 1 244 0
 	ldi r24,lo8(-6)
 	sts overflow_counter,r24
 .L28:
 /* epilogue start */
-	.loc 1 249 0
+	.loc 1 247 0
 	pop r31
 	pop r30
 	pop r27
@@ -830,7 +826,7 @@ __vector_21:
 	.type	__vector_3, @function
 __vector_3:
 .LFB23:
-	.loc 1 251 0
+	.loc 1 249 0
 	.cfi_startproc
 	push r1
 .LCFI33:
@@ -851,16 +847,11 @@ __vector_3:
 /* frame size = 0 */
 /* stack size = 4 */
 .L__stack_usage = 4
-	.loc 1 254 0
+	.loc 1 252 0
 	ldi r24,lo8(1)
 	sts akku_unterladen,r24
-	.loc 1 256 0
-	in r24,0x5
-	.loc 1 256 0
-	subi r24,lo8(-(-128))
-	out 0x5,r24
 /* epilogue start */
-	.loc 1 259 0
+	.loc 1 256 0
 	pop r24
 	pop r0
 	out __SREG__,r0
@@ -1130,7 +1121,7 @@ start:
 	.byte	0x1
 	.long	.LASF18
 	.byte	0x1
-	.byte	0xbf
+	.byte	0xbd
 	.byte	0x1
 	.long	0x30
 	.long	.LFB20
@@ -1144,7 +1135,7 @@ start:
 	.byte	0x1
 	.long	.LASF20
 	.byte	0x1
-	.byte	0xca
+	.byte	0xc8
 	.byte	0x1
 	.long	.LFB21
 	.long	.LFE21
@@ -1159,7 +1150,7 @@ start:
 	.byte	0x1
 	.long	.LASF21
 	.byte	0x1
-	.byte	0xe3
+	.byte	0xe1
 	.byte	0x1
 	.long	.LFB22
 	.long	.LFE22
@@ -1174,7 +1165,7 @@ start:
 	.byte	0x1
 	.long	.LASF22
 	.byte	0x1
-	.byte	0xfa
+	.byte	0xf8
 	.byte	0x1
 	.long	.LFB23
 	.long	.LFE23
@@ -2006,6 +1997,8 @@ start:
 	.string	"akku_unterladen"
 .LASF1:
 	.string	"unsigned char"
+.LASF41:
+	.string	"C:\\\\Users\\\\Stefan\\\\Desktop\\\\ansteuerung\\\\ansteuerung\\\\Debug"
 .LASF0:
 	.string	"signed char"
 .LASF8:
@@ -2024,8 +2017,6 @@ start:
 	.string	"init_ext_int_kommunikation"
 .LASF9:
 	.string	"char"
-.LASF41:
-	.string	"C:\\\\Users\\\\Armin Baumgartner\\\\Desktop\\\\10kW-master\\\\10kW-master\\\\ansteuerung\\\\ansteuerung\\\\Debug"
 .LASF26:
 	.string	"empfangs_daten"
 .LASF16:

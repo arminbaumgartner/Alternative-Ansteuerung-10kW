@@ -1,5 +1,5 @@
 # 1 ".././motoransteuerung.c"
-# 1 "C:\\Users\\Armin Baumgartner\\Desktop\\10kW-master\\10kW-master\\ansteuerung\\ansteuerung\\Debug//"
+# 1 "C:\\Users\\Stefan\\Desktop\\ansteuerung\\ansteuerung\\Debug//"
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 ".././motoransteuerung.c"
@@ -2395,21 +2395,42 @@ void __vector_29 (void) __attribute__ ((signal,used, externally_visible)) ; void
 
 # 300 ".././motoransteuerung.c"
 {
+ uint8_t help;
 
  adc_low = 
-# 302 ".././motoransteuerung.c" 3
+# 303 ".././motoransteuerung.c" 3
           (*(volatile uint8_t *)(0x78))
-# 302 ".././motoransteuerung.c"
+# 303 ".././motoransteuerung.c"
               ;
  adc_high = 
-# 303 ".././motoransteuerung.c" 3
+# 304 ".././motoransteuerung.c" 3
            (*(volatile uint8_t *)(0x79))
-# 303 ".././motoransteuerung.c"
+# 304 ".././motoransteuerung.c"
                ;
 
- if (ext_int_kommunikation_abfrage() == 1)
+ help = ext_int_kommunikation_abfrage();
+
+
+ if (help == 1)
  {
+  
+# 311 ".././motoransteuerung.c" 3
+ (*(volatile uint8_t *)((0x05) + 0x20)) 
+# 311 ".././motoransteuerung.c"
+       = 
+# 311 ".././motoransteuerung.c" 3
+         (*(volatile uint8_t *)((0x05) + 0x20)) 
+# 311 ".././motoransteuerung.c"
+               ^ (1<<
+# 311 ".././motoransteuerung.c" 3
+                     7
+# 311 ".././motoransteuerung.c"
+                           );
   adc_high = 0;
+ }
+ else
+ {
+
  }
 
 
@@ -2422,19 +2443,23 @@ void __vector_29 (void) __attribute__ ((signal,used, externally_visible)) ; void
  if(phasen_flag == 1 && adc_high >= 1)
  {
   phasen_flag = 2;
+
+  init_ext_int_kommunikation();
+
   
-# 320 ".././motoransteuerung.c" 3
+# 332 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0x68)) 
-# 320 ".././motoransteuerung.c"
+# 332 ".././motoransteuerung.c"
        = 
-# 320 ".././motoransteuerung.c" 3
+# 332 ".././motoransteuerung.c" 3
           (*(volatile uint8_t *)(0x68)) 
-# 320 ".././motoransteuerung.c"
+# 332 ".././motoransteuerung.c"
                 | (1<<
-# 320 ".././motoransteuerung.c" 3
+# 332 ".././motoransteuerung.c" 3
                       0
-# 320 ".././motoransteuerung.c"
+# 332 ".././motoransteuerung.c"
                            );
+
  }
 
 
@@ -2444,9 +2469,9 @@ void __vector_29 (void) __attribute__ ((signal,used, externally_visible)) ; void
   {
 
    
-# 329 ".././motoransteuerung.c" 3
+# 342 ".././motoransteuerung.c" 3
   (*(volatile uint8_t *)(0xCF)) 
-# 329 ".././motoransteuerung.c"
+# 342 ".././motoransteuerung.c"
         = geschwindigkeits_regulierung(adc_high);
 
 
@@ -2455,23 +2480,23 @@ void __vector_29 (void) __attribute__ ((signal,used, externally_visible)) ; void
  else
  {
   
-# 336 ".././motoransteuerung.c" 3
+# 349 ".././motoransteuerung.c" 3
  (*(volatile uint8_t *)(0xCF)) 
-# 336 ".././motoransteuerung.c"
+# 349 ".././motoransteuerung.c"
        = 0;
  }
-# 368 ".././motoransteuerung.c"
+# 381 ".././motoransteuerung.c"
  
-# 368 ".././motoransteuerung.c" 3
+# 381 ".././motoransteuerung.c" 3
 (*(volatile uint8_t *)(0x7A)) 
-# 368 ".././motoransteuerung.c"
+# 381 ".././motoransteuerung.c"
        = 
-# 368 ".././motoransteuerung.c" 3
+# 381 ".././motoransteuerung.c" 3
          (*(volatile uint8_t *)(0x7A)) 
-# 368 ".././motoransteuerung.c"
+# 381 ".././motoransteuerung.c"
                 | (1<<
-# 368 ".././motoransteuerung.c" 3
+# 381 ".././motoransteuerung.c" 3
                       6
-# 368 ".././motoransteuerung.c"
+# 381 ".././motoransteuerung.c"
                           );
 }

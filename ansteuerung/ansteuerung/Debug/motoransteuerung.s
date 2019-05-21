@@ -841,84 +841,96 @@ __vector_29:
 /* frame size = 0 */
 /* stack size = 15 */
 .L__stack_usage = 15
-	.loc 1 302 0
+	.loc 1 303 0
 	lds r24,120
 	sts adc_low,r24
-	.loc 1 303 0
+	.loc 1 304 0
 	lds r24,121
 	sts adc_high,r24
-	.loc 1 305 0
+	.loc 1 306 0
 	call ext_int_kommunikation_abfrage
 .LVL7:
+	.loc 1 309 0
 	cpi r24,lo8(1)
 	brne .L30
-	.loc 1 307 0
+	.loc 1 311 0
+	in r24,0x5
+.LVL8:
+	.loc 1 311 0
+	subi r24,lo8(-(-128))
+	out 0x5,r24
+	.loc 1 312 0
 	sts adc_high,__zero_reg__
 	rjmp .L31
+.LVL9:
 .L30:
-	.loc 1 311 0
+	.loc 1 320 0
 	lds r24,adc_high
+.LVL10:
 	cpse r24,__zero_reg__
 	rjmp .L32
 .L31:
-	.loc 1 311 0 is_stmt 0 discriminator 1
+	.loc 1 320 0 is_stmt 0 discriminator 1
 	lds r24,phasen_flag
 	cpse r24,__zero_reg__
 	rjmp .L33
-	.loc 1 313 0 is_stmt 1
+	.loc 1 322 0 is_stmt 1
 	ldi r24,lo8(1)
 	sts adc_0_flag,r24
-	.loc 1 314 0
+	.loc 1 323 0
 	sts phasen_flag,r24
 	rjmp .L33
 .L37:
-	.loc 1 319 0
+	.loc 1 328 0
 	ldi r24,lo8(2)
 	sts phasen_flag,r24
-	.loc 1 320 0
+	.loc 1 330 0
+	call init_ext_int_kommunikation
+.LVL11:
+	.loc 1 332 0
 	ldi r30,lo8(104)
 	ldi r31,0
 	ld r24,Z
-	.loc 1 320 0
+	.loc 1 332 0
 	ori r24,lo8(1)
 	st Z,r24
 .L38:
-	.loc 1 324 0
+	.loc 1 337 0
 	lds r24,phasen_flag
 	cpi r24,lo8(2)
 	brne .L34
-	.loc 1 326 0
+	.loc 1 339 0
 	call drehzahl_holen
-.LVL8:
+.LVL12:
 	ldi r18,0
 	ldi r19,0
 	ldi r20,lo8(-6)
 	ldi r21,lo8(68)
 	call __lesf2
-.LVL9:
+.LVL13:
 	cp __zero_reg__,r24
 	brlt .L35
-	.loc 1 329 0
+	.loc 1 342 0
 	lds r24,adc_high
 	call geschwindigkeits_regulierung
-.LVL10:
+.LVL14:
 	sts 207,r24
 	rjmp .L35
 .L34:
-	.loc 1 336 0
+	.loc 1 349 0
 	sts 207,__zero_reg__
 .L35:
-	.loc 1 368 0
+	.loc 1 381 0
 	ldi r30,lo8(122)
 	ldi r31,0
 	ld r24,Z
-	.loc 1 368 0
+	.loc 1 381 0
 	ori r24,lo8(64)
 	st Z,r24
-	.loc 1 369 0
+	.loc 1 382 0
 	rjmp .L40
 .L32:
-	.loc 1 317 0
+	.loc 1 326 0
 	lds r24,phasen_flag
 	cpi r24,lo8(1)
 	brne .L38
@@ -928,7 +940,7 @@ __vector_29:
 	rjmp .L38
 .L40:
 /* epilogue start */
-	.loc 1 369 0
+	.loc 1 382 0
 	pop r31
 	pop r30
 	pop r27
@@ -997,15 +1009,15 @@ richtung:
 	.file 5 "c:\\program files (x86)\\atmel\\studio\\7.0\\toolchain\\avr8\\avr8-gnu-toolchain\\avr\\include\\stdint.h"
 	.section	.debug_info,"",@progbits
 .Ldebug_info0:
-	.long	0x278
+	.long	0x29e
 	.word	0x2
 	.long	.Ldebug_abbrev0
 	.byte	0x4
 	.uleb128 0x1
-	.long	.LASF29
-	.byte	0xc
 	.long	.LASF30
+	.byte	0xc
 	.long	.LASF31
+	.long	.LASF32
 	.long	.Ldebug_ranges0+0
 	.long	0
 	.long	0
@@ -1015,7 +1027,7 @@ richtung:
 	.byte	0x6
 	.long	.LASF0
 	.uleb128 0x3
-	.long	.LASF32
+	.long	.LASF33
 	.byte	0x5
 	.byte	0x7e
 	.long	0x3b
@@ -1103,11 +1115,11 @@ richtung:
 	.long	0xd9
 	.uleb128 0x8
 	.long	.LVL0
-	.long	0x22d
+	.long	0x246
 	.byte	0
 	.uleb128 0x9
 	.byte	0x1
-	.long	.LASF33
+	.long	.LASF34
 	.byte	0x1
 	.word	0x107
 	.byte	0x1
@@ -1132,19 +1144,19 @@ richtung:
 	.long	0x13d
 	.uleb128 0x8
 	.long	.LVL1
-	.long	0x23a
+	.long	0x253
 	.uleb128 0x8
 	.long	.LVL2
 	.long	0xb5
 	.uleb128 0x8
 	.long	.LVL3
-	.long	0x247
+	.long	0x260
 	.uleb128 0x8
 	.long	.LVL4
-	.long	0x254
+	.long	0x26d
 	.uleb128 0x8
 	.long	.LVL6
-	.long	0x261
+	.long	0x27a
 	.byte	0
 	.uleb128 0xa
 	.byte	0x1
@@ -1156,18 +1168,27 @@ richtung:
 	.long	.LFE17
 	.long	.LLST2
 	.byte	0x1
-	.long	0x174
+	.long	0x18d
+	.uleb128 0xb
+	.long	.LASF35
+	.byte	0x1
+	.word	0x12d
+	.long	0x30
+	.long	.LLST3
 	.uleb128 0x8
 	.long	.LVL7
-	.long	0x26e
+	.long	0x287
 	.uleb128 0x8
-	.long	.LVL8
-	.long	0x254
+	.long	.LVL11
+	.long	0x294
 	.uleb128 0x8
-	.long	.LVL10
-	.long	0x261
+	.long	.LVL12
+	.long	0x26d
+	.uleb128 0x8
+	.long	.LVL14
+	.long	0x27a
 	.byte	0
-	.uleb128 0xb
+	.uleb128 0xc
 	.long	.LASF14
 	.byte	0x1
 	.byte	0x22
@@ -1176,7 +1197,7 @@ richtung:
 	.byte	0x5
 	.byte	0x3
 	.long	stufe
-	.uleb128 0xb
+	.uleb128 0xc
 	.long	.LASF15
 	.byte	0x1
 	.byte	0x23
@@ -1185,7 +1206,7 @@ richtung:
 	.byte	0x5
 	.byte	0x3
 	.long	richtung
-	.uleb128 0xc
+	.uleb128 0xd
 	.string	"vor"
 	.byte	0x1
 	.byte	0x24
@@ -1194,7 +1215,7 @@ richtung:
 	.byte	0x5
 	.byte	0x3
 	.long	vor
-	.uleb128 0xb
+	.uleb128 0xc
 	.long	.LASF16
 	.byte	0x1
 	.byte	0x25
@@ -1203,7 +1224,7 @@ richtung:
 	.byte	0x5
 	.byte	0x3
 	.long	adc_low
-	.uleb128 0xb
+	.uleb128 0xc
 	.long	.LASF17
 	.byte	0x1
 	.byte	0x26
@@ -1212,7 +1233,7 @@ richtung:
 	.byte	0x5
 	.byte	0x3
 	.long	adc_high
-	.uleb128 0xb
+	.uleb128 0xc
 	.long	.LASF18
 	.byte	0x1
 	.byte	0x28
@@ -1221,7 +1242,7 @@ richtung:
 	.byte	0x5
 	.byte	0x3
 	.long	current_adc_wert
-	.uleb128 0xb
+	.uleb128 0xc
 	.long	.LASF19
 	.byte	0x1
 	.byte	0x2a
@@ -1230,7 +1251,7 @@ richtung:
 	.byte	0x5
 	.byte	0x3
 	.long	adc_counter
-	.uleb128 0xb
+	.uleb128 0xc
 	.long	.LASF20
 	.byte	0x1
 	.byte	0x2c
@@ -1239,68 +1260,75 @@ richtung:
 	.byte	0x5
 	.byte	0x3
 	.long	hilfe
-	.uleb128 0xb
+	.uleb128 0xc
 	.long	.LASF21
 	.byte	0x1
 	.byte	0x2e
-	.long	0x216
+	.long	0x22f
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.long	adc_0_flag
-	.uleb128 0xd
+	.uleb128 0xe
 	.long	0x30
-	.uleb128 0xb
+	.uleb128 0xc
 	.long	.LASF22
 	.byte	0x1
 	.byte	0x2f
-	.long	0x216
+	.long	0x22f
 	.byte	0x1
 	.byte	0x5
 	.byte	0x3
 	.long	phasen_flag
-	.uleb128 0xe
+	.uleb128 0xf
 	.byte	0x1
 	.byte	0x1
 	.long	.LASF23
 	.long	.LASF23
 	.byte	0x2
 	.byte	0x15
-	.uleb128 0xe
+	.uleb128 0xf
 	.byte	0x1
 	.byte	0x1
 	.long	.LASF24
 	.long	.LASF24
 	.byte	0x2
 	.byte	0x7
-	.uleb128 0xe
+	.uleb128 0xf
 	.byte	0x1
 	.byte	0x1
 	.long	.LASF25
 	.long	.LASF25
 	.byte	0x2
 	.byte	0x9
-	.uleb128 0xe
+	.uleb128 0xf
 	.byte	0x1
 	.byte	0x1
 	.long	.LASF26
 	.long	.LASF26
 	.byte	0x2
 	.byte	0x11
-	.uleb128 0xe
+	.uleb128 0xf
 	.byte	0x1
 	.byte	0x1
 	.long	.LASF27
 	.long	.LASF27
 	.byte	0x3
 	.byte	0x1c
-	.uleb128 0xe
+	.uleb128 0xf
 	.byte	0x1
 	.byte	0x1
 	.long	.LASF28
 	.long	.LASF28
 	.byte	0x4
 	.byte	0x18
+	.uleb128 0xf
+	.byte	0x1
+	.byte	0x1
+	.long	.LASF29
+	.long	.LASF29
+	.byte	0x4
+	.byte	0x17
 	.byte	0
 	.section	.debug_abbrev,"",@progbits
 .Ldebug_abbrev0:
@@ -1498,6 +1526,21 @@ richtung:
 	.uleb128 0x3a
 	.uleb128 0xb
 	.uleb128 0x3b
+	.uleb128 0x5
+	.uleb128 0x49
+	.uleb128 0x13
+	.uleb128 0x2
+	.uleb128 0x6
+	.byte	0
+	.byte	0
+	.uleb128 0xc
+	.uleb128 0x34
+	.byte	0
+	.uleb128 0x3
+	.uleb128 0xe
+	.uleb128 0x3a
+	.uleb128 0xb
+	.uleb128 0x3b
 	.uleb128 0xb
 	.uleb128 0x49
 	.uleb128 0x13
@@ -1507,7 +1550,7 @@ richtung:
 	.uleb128 0xa
 	.byte	0
 	.byte	0
-	.uleb128 0xc
+	.uleb128 0xd
 	.uleb128 0x34
 	.byte	0
 	.uleb128 0x3
@@ -1524,14 +1567,14 @@ richtung:
 	.uleb128 0xa
 	.byte	0
 	.byte	0
-	.uleb128 0xd
+	.uleb128 0xe
 	.uleb128 0x35
 	.byte	0
 	.uleb128 0x49
 	.uleb128 0x13
 	.byte	0
 	.byte	0
-	.uleb128 0xe
+	.uleb128 0xf
 	.uleb128 0x2e
 	.byte	0
 	.uleb128 0x3f
@@ -1758,6 +1801,17 @@ richtung:
 	.sleb128 16
 	.long	0
 	.long	0
+.LLST3:
+	.long	.LVL7
+	.long	.LVL8
+	.word	0x1
+	.byte	0x68
+	.long	.LVL9
+	.long	.LVL10
+	.word	0x1
+	.byte	0x68
+	.long	0
+	.long	0
 	.section	.debug_aranges,"",@progbits
 	.long	0x4c
 	.word	0x2
@@ -1815,32 +1869,34 @@ richtung:
 	.string	"adc_high"
 .LASF22:
 	.string	"phasen_flag"
-.LASF33:
+.LASF34:
 	.string	"adc_abfrage"
 .LASF8:
 	.string	"Init_PWM"
 .LASF1:
 	.string	"unsigned char"
-.LASF29:
+.LASF30:
 	.string	"GNU C99 5.4.0 -mn-flash=1 -mno-skip-bug -mmcu=avr5 -g2 -O1 -std=gnu99 -funsigned-char -funsigned-bitfields -ffunction-sections -fdata-sections -fpack-struct -fshort-enums"
 .LASF4:
 	.string	"long unsigned int"
-.LASF31:
-	.string	"C:\\\\Users\\\\Armin Baumgartner\\\\Desktop\\\\10kW-master\\\\10kW-master\\\\ansteuerung\\\\ansteuerung\\\\Debug"
+.LASF35:
+	.string	"help"
 .LASF25:
 	.string	"drehzahl_berechnung"
+.LASF29:
+	.string	"init_ext_int_kommunikation"
 .LASF2:
 	.string	"unsigned int"
 .LASF6:
 	.string	"long long unsigned int"
-.LASF32:
+.LASF33:
 	.string	"uint8_t"
 .LASF14:
 	.string	"stufe"
-.LASF30:
+.LASF31:
 	.string	".././motoransteuerung.c"
-.LASF16:
-	.string	"adc_low"
+.LASF32:
+	.string	"C:\\\\Users\\\\Stefan\\\\Desktop\\\\ansteuerung\\\\ansteuerung\\\\Debug"
 .LASF9:
 	.string	"Init_Pinchange"
 .LASF26:
@@ -1849,6 +1905,8 @@ richtung:
 	.string	"long long int"
 .LASF7:
 	.string	"char"
+.LASF16:
+	.string	"adc_low"
 .LASF11:
 	.string	"Hallsensoren_abfragen"
 .LASF13:

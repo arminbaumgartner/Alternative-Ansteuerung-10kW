@@ -298,13 +298,22 @@ ISR(INT0_vect)
 */
 ISR(ADC_vect)						//Löst aus, wenn die Konversation beendet ist
 {	
+	uint8_t help;
 	
 	adc_low = ADCL;					//zuerst immer Low Bits holen
 	adc_high = ADCH;				//dann High Bits holen
 	
-	if (ext_int_kommunikation_abfrage() == 1)
+	help = ext_int_kommunikation_abfrage();
+	
+	
+	if (help == 1)
 	{
+		PORTB = PORTB ^ (1<<PORTB7);
 		adc_high = 0;
+	}
+	else
+	{
+		
 	}
 	
 		
@@ -317,7 +326,11 @@ ISR(ADC_vect)						//Löst aus, wenn die Konversation beendet ist
 	if(phasen_flag == 1 && adc_high >= 1)
 	{
 		phasen_flag = 2;
+		
+		init_ext_int_kommunikation();	//Initialiesierung des externen interrupt für akkuüberwachung
+		
 		PCICR =  PCICR | (1<<PCIE0);	//pin change interrupt enable
+		
 	}
 	
 	

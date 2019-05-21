@@ -659,65 +659,65 @@ END GROUP
                 0x00000b22       0x12 kommunikation.o
                 0x00000b22                temperatur_uebertragung
  .text.init_ext_int_kommunikation
-                0x00000b34       0x18 kommunikation.o
+                0x00000b34       0x14 kommunikation.o
                 0x00000b34                init_ext_int_kommunikation
  .text.ext_int_kommunikation_abfrage
-                0x00000b4c        0xe kommunikation.o
-                0x00000b4c                ext_int_kommunikation_abfrage
+                0x00000b48        0xe kommunikation.o
+                0x00000b48                ext_int_kommunikation_abfrage
  .text.__vector_25
-                0x00000b5a       0x88 kommunikation.o
-                0x00000b5a                __vector_25
+                0x00000b56       0x88 kommunikation.o
+                0x00000b56                __vector_25
  .text.__vector_21
-                0x00000be2       0x70 kommunikation.o
-                0x00000be2                __vector_21
+                0x00000bde       0x70 kommunikation.o
+                0x00000bde                __vector_21
  .text.__vector_3
-                0x00000c52       0x24 kommunikation.o
-                0x00000c52                __vector_3
+                0x00000c4e       0x1e kommunikation.o
+                0x00000c4e                __vector_3
  .text.delay_ms
-                0x00000c76       0x20 lcd.o
-                0x00000c76                delay_ms
- .text.Enable   0x00000c96        0x6 lcd.o
-                0x00000c96                Enable
+                0x00000c6c       0x20 lcd.o
+                0x00000c6c                delay_ms
+ .text.Enable   0x00000c8c        0x6 lcd.o
+                0x00000c8c                Enable
  .text.LCD_init
-                0x00000c9c      0x164 lcd.o
-                0x00000c9c                LCD_init
+                0x00000c92      0x164 lcd.o
+                0x00000c92                LCD_init
  .text.LCD_send
-                0x00000e00       0x72 lcd.o
-                0x00000e00                LCD_send
- .text.LCD_cmd  0x00000e72       0x72 lcd.o
-                0x00000e72                LCD_cmd
+                0x00000df6       0x72 lcd.o
+                0x00000df6                LCD_send
+ .text.LCD_cmd  0x00000e68       0x72 lcd.o
+                0x00000e68                LCD_cmd
  .text.LCD_string
-                0x00000ee4       0x1e lcd.o
-                0x00000ee4                LCD_string
+                0x00000eda       0x1e lcd.o
+                0x00000eda                LCD_string
  .text.LCD_Display
-                0x00000f02       0x3a lcd.o
-                0x00000f02                LCD_Display
+                0x00000ef8       0x3a lcd.o
+                0x00000ef8                LCD_Display
  .text.init_timer_zeitlicher_ablauf
-                0x00000f3c       0x2e main.o
-                0x00000f3c                init_timer_zeitlicher_ablauf
- .text.main     0x00000f6a       0xce main.o
-                0x00000f6a                main
+                0x00000f32       0x2e main.o
+                0x00000f32                init_timer_zeitlicher_ablauf
+ .text.main     0x00000f60       0xce main.o
+                0x00000f60                main
  .text.__vector_32
-                0x00001038       0x36 main.o
-                0x00001038                __vector_32
+                0x0000102e       0x36 main.o
+                0x0000102e                __vector_32
  .text.Init_PWM
-                0x0000106e       0x82 motoransteuerung.o
-                0x0000106e                Init_PWM
+                0x00001064       0x82 motoransteuerung.o
+                0x00001064                Init_PWM
  .text.Init_Pinchange
-                0x000010f0       0x3a motoransteuerung.o
-                0x000010f0                Init_Pinchange
+                0x000010e6       0x3a motoransteuerung.o
+                0x000010e6                Init_Pinchange
  .text.Init_ADC
-                0x0000112a       0x68 motoransteuerung.o
-                0x0000112a                Init_ADC
+                0x00001120       0x68 motoransteuerung.o
+                0x00001120                Init_ADC
  .text.Hallsensoren_abfragen
-                0x00001192      0x1c2 motoransteuerung.o
-                0x00001192                Hallsensoren_abfragen
+                0x00001188      0x1c2 motoransteuerung.o
+                0x00001188                Hallsensoren_abfragen
  .text.__vector_9
-                0x00001354       0x70 motoransteuerung.o
-                0x00001354                __vector_9
+                0x0000134a       0x70 motoransteuerung.o
+                0x0000134a                __vector_9
  .text.__vector_29
-                0x000013c4       0xd8 motoransteuerung.o
-                0x000013c4                __vector_29
+                0x000013ba       0xe2 motoransteuerung.o
+                0x000013ba                __vector_29
  .text.avr-libc.fplib
                 0x0000149c        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3.o)
                 0x0000149c                __subsf3
@@ -1059,17 +1059,17 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x219c
+.debug_info     0x00000000     0x21ac
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x9f4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/crtatmega32u4.o
  .debug_info    0x000009f4      0x47d berechnung.o
  .debug_info    0x00000e71      0x315 datenverarbeitung.o
  .debug_info    0x00001186      0x363 kommunikation.o
  .debug_info    0x000014e9      0x717 lcd.o
- .debug_info    0x00001c00      0x320 main.o
- .debug_info    0x00001f20      0x27c motoransteuerung.o
+ .debug_info    0x00001c00      0x30a main.o
+ .debug_info    0x00001f0a      0x2a2 motoransteuerung.o
 
-.debug_abbrev   0x00000000     0x1176
+.debug_abbrev   0x00000000     0x1185
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x96a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/crtatmega32u4.o
  .debug_abbrev  0x0000096a      0x1d0 berechnung.o
@@ -1077,17 +1077,17 @@ END GROUP
  .debug_abbrev  0x00000c9a       0xfb kommunikation.o
  .debug_abbrev  0x00000d95      0x188 lcd.o
  .debug_abbrev  0x00000f1d      0x15c main.o
- .debug_abbrev  0x00001079       0xfd motoransteuerung.o
+ .debug_abbrev  0x00001079      0x10c motoransteuerung.o
 
-.debug_line     0x00000000     0x18fb
+.debug_line     0x00000000     0x1901
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000       0x1a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/crtatmega32u4.o
  .debug_line    0x0000001a      0x378 berechnung.o
  .debug_line    0x00000392      0x233 datenverarbeitung.o
- .debug_line    0x000005c5      0x444 kommunikation.o
- .debug_line    0x00000a09      0x571 lcd.o
- .debug_line    0x00000f7a      0x348 main.o
- .debug_line    0x000012c2      0x639 motoransteuerung.o
+ .debug_line    0x000005c5      0x42c kommunikation.o
+ .debug_line    0x000009f1      0x571 lcd.o
+ .debug_line    0x00000f62      0x34e main.o
+ .debug_line    0x000012b0      0x651 motoransteuerung.o
 
 .debug_frame    0x00000000      0x62c
  *(.debug_frame)
@@ -1098,30 +1098,30 @@ END GROUP
  .debug_frame   0x000004b8       0x54 main.o
  .debug_frame   0x0000050c      0x120 motoransteuerung.o
 
-.debug_str      0x00000000      0xc80
+.debug_str      0x00000000      0xcbc
  *(.debug_str)
  .debug_str     0x00000000      0x371 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/crtatmega32u4.o
  .debug_str     0x00000371      0x38d berechnung.o
                                 0x3e3 (size before relaxing)
  .debug_str     0x000006fe      0x234 datenverarbeitung.o
                                 0x3ba (size before relaxing)
- .debug_str     0x00000932      0x1b2 kommunikation.o
-                                0x3a6 (size before relaxing)
- .debug_str     0x00000ae4       0x80 lcd.o
+ .debug_str     0x00000932      0x1ee kommunikation.o
+                                0x381 (size before relaxing)
+ .debug_str     0x00000b20       0x80 lcd.o
                                 0x207 (size before relaxing)
- .debug_str     0x00000b64       0x8d main.o
-                                0x36f (size before relaxing)
- .debug_str     0x00000bf1       0x8f motoransteuerung.o
-                                0x2d1 (size before relaxing)
+ .debug_str     0x00000ba0       0x8d main.o
+                                0x32f (size before relaxing)
+ .debug_str     0x00000c2d       0x8f motoransteuerung.o
+                                0x2cc (size before relaxing)
 
-.debug_loc      0x00000000     0x1279
+.debug_loc      0x00000000     0x1297
  *(.debug_loc)
  .debug_loc     0x00000000      0x344 berechnung.o
  .debug_loc     0x00000344      0x4ba datenverarbeitung.o
  .debug_loc     0x000007fe      0x261 kommunikation.o
  .debug_loc     0x00000a5f      0x5b2 lcd.o
  .debug_loc     0x00001011       0xa3 main.o
- .debug_loc     0x000010b4      0x1c5 motoransteuerung.o
+ .debug_loc     0x000010b4      0x1e3 motoransteuerung.o
 
 .debug_macinfo
  *(.debug_macinfo)

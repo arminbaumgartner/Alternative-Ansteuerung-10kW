@@ -180,13 +180,11 @@ uint8_t temperatur_uebertragung(void)
 }
 void init_ext_int_kommunikation(void)
 {
-	DDRD = DDRD &~ (1<<DDD2);		//Eingang INT2
-	PORTD = PORTD | (1<<PORTD2);	//PULL-UP	
-	
-	EIMSK = EIMSK | (1<<INT2);		//enable ext_int2
 	
 	EICRA = EICRA | (1<<ISC21);
 	EICRA = EICRA &~ (1<<ISC20);	//falling edge
+	
+	EIMSK = EIMSK | (1<<INT2);		//enable ext_int2
 }
 uint8_t ext_int_kommunikation_abfrage(void)
 {
@@ -250,10 +248,9 @@ ISR (TIMER0_COMPA_vect)
 ISR(INT2_vect) //Flanke low aktiv
 {
 	//Der Akku fällt unter XXVolt deswegen muss abgeschalten werden
-	
+
 	akku_unterladen = 1;
 	
-	PORTB = PORTB ^ (1<<PORTB7);
 
 	
 }

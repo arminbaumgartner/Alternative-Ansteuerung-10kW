@@ -1,5 +1,5 @@
 # 1 ".././main.c"
-# 1 "C:\\Users\\Armin Baumgartner\\Desktop\\10kW-master\\10kW-master\\ansteuerung\\ansteuerung\\Debug//"
+# 1 "C:\\Users\\Stefan\\Desktop\\ansteuerung\\ansteuerung\\Debug//"
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 ".././main.c"
@@ -1471,19 +1471,47 @@ int main(void)
                           );
 
 
-
+ 
+# 99 ".././main.c" 3
+(*(volatile uint8_t *)((0x0A) + 0x20)) 
+# 99 ".././main.c"
+     = 
+# 99 ".././main.c" 3
+       (*(volatile uint8_t *)((0x0A) + 0x20)) 
+# 99 ".././main.c"
+            &~ (1<<
+# 99 ".././main.c" 3
+                   2
+# 99 ".././main.c"
+                       );
  
 # 100 ".././main.c" 3
+(*(volatile uint8_t *)((0x0B) + 0x20)) 
+# 100 ".././main.c"
+      = 
+# 100 ".././main.c" 3
+        (*(volatile uint8_t *)((0x0B) + 0x20)) 
+# 100 ".././main.c"
+              | (1<<
+# 100 ".././main.c" 3
+                    2
+# 100 ".././main.c"
+                          );
+
+
+
+ 
+# 104 ".././main.c" 3
 (*(volatile uint8_t *)((0x04) + 0x20)) 
-# 100 ".././main.c"
+# 104 ".././main.c"
      = 
-# 100 ".././main.c" 3
+# 104 ".././main.c" 3
        (*(volatile uint8_t *)((0x04) + 0x20)) 
-# 100 ".././main.c"
+# 104 ".././main.c"
             | (1<<
-# 100 ".././main.c" 3
+# 104 ".././main.c" 3
                   7
-# 100 ".././main.c"
+# 104 ".././main.c"
                       );
 
 
@@ -1498,7 +1526,6 @@ int main(void)
 
 
 
- init_ext_int_kommunikation();
 
  init_timer_zeitlicher_ablauf();
 
@@ -1508,9 +1535,9 @@ int main(void)
  Hallsensoren_abfragen();
 
  
-# 123 ".././main.c" 3
+# 126 ".././main.c" 3
 __asm__ __volatile__ ("sei" ::: "memory")
-# 123 ".././main.c"
+# 126 ".././main.c"
      ;
 
  LCD_Display();
@@ -1519,17 +1546,17 @@ __asm__ __volatile__ ("sei" ::: "memory")
  _delay_ms(2000);
 
  
-# 130 ".././main.c" 3
+# 133 ".././main.c" 3
 (*(volatile uint8_t *)((0x0E) + 0x20)) 
-# 130 ".././main.c"
+# 133 ".././main.c"
       = 
-# 130 ".././main.c" 3
+# 133 ".././main.c" 3
         (*(volatile uint8_t *)((0x0E) + 0x20)) 
-# 130 ".././main.c"
+# 133 ".././main.c"
               &~ (1<<
-# 130 ".././main.c" 3
+# 133 ".././main.c" 3
                      6
-# 130 ".././main.c"
+# 133 ".././main.c"
                            );
 
 
@@ -1542,17 +1569,17 @@ __asm__ __volatile__ ("sei" ::: "memory")
   kommunikations_daten_mitteln();
 
   
-# 141 ".././main.c" 3
+# 144 ".././main.c" 3
  (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 141 ".././main.c"
+# 144 ".././main.c"
        = 
-# 141 ".././main.c" 3
+# 144 ".././main.c" 3
          (*(volatile uint8_t *)((0x0B) + 0x20)) 
-# 141 ".././main.c"
+# 144 ".././main.c"
                ^ (1<<
-# 141 ".././main.c" 3
+# 144 ".././main.c" 3
                      4
-# 141 ".././main.c"
+# 144 ".././main.c"
                            );
 
   if(zeitlicher_ablauf >= 10)
@@ -1587,63 +1614,63 @@ void init_timer_zeitlicher_ablauf(void)
 
 
  
-# 174 ".././main.c" 3
+# 177 ".././main.c" 3
 (*(volatile uint8_t *)(0x91)) 
-# 174 ".././main.c"
+# 177 ".././main.c"
        = 
-# 174 ".././main.c" 3
+# 177 ".././main.c" 3
          (*(volatile uint8_t *)(0x91)) 
-# 174 ".././main.c"
+# 177 ".././main.c"
                 | (1<<
-# 174 ".././main.c" 3
+# 177 ".././main.c" 3
                       0
-# 174 ".././main.c"
+# 177 ".././main.c"
                           );
  
-# 175 ".././main.c" 3
+# 178 ".././main.c" 3
 (*(volatile uint8_t *)(0x91)) 
-# 175 ".././main.c"
+# 178 ".././main.c"
        = 
-# 175 ".././main.c" 3
+# 178 ".././main.c" 3
          (*(volatile uint8_t *)(0x91)) 
-# 175 ".././main.c"
+# 178 ".././main.c"
                 | (1<<
-# 175 ".././main.c" 3
+# 178 ".././main.c" 3
                       1
-# 175 ".././main.c"
+# 178 ".././main.c"
                           );
  
-# 176 ".././main.c" 3
+# 179 ".././main.c" 3
 (*(volatile uint8_t *)(0x91)) 
-# 176 ".././main.c"
+# 179 ".././main.c"
        = 
-# 176 ".././main.c" 3
+# 179 ".././main.c" 3
          (*(volatile uint8_t *)(0x91)) 
-# 176 ".././main.c"
+# 179 ".././main.c"
                 &~ (1<<
-# 176 ".././main.c" 3
+# 179 ".././main.c" 3
                        2
-# 176 ".././main.c"
+# 179 ".././main.c"
                            );
 
  
-# 178 ".././main.c" 3
+# 181 ".././main.c" 3
 (*(volatile uint8_t *)(0x71)) 
-# 178 ".././main.c"
+# 181 ".././main.c"
        = 
-# 178 ".././main.c" 3
+# 181 ".././main.c" 3
          (*(volatile uint8_t *)(0x71)) 
-# 178 ".././main.c"
+# 181 ".././main.c"
                 | (1<<
-# 178 ".././main.c" 3
+# 181 ".././main.c" 3
                       1
-# 178 ".././main.c"
+# 181 ".././main.c"
                             );
 
  
-# 180 ".././main.c" 3
+# 183 ".././main.c" 3
 (*(volatile uint16_t *)(0x98)) 
-# 180 ".././main.c"
+# 183 ".././main.c"
       = 2500;
 
 
@@ -1652,15 +1679,15 @@ void init_timer_zeitlicher_ablauf(void)
 }
 
 
-# 187 ".././main.c" 3
+# 190 ".././main.c" 3
 void __vector_32 (void) __attribute__ ((signal,used, externally_visible)) ; void __vector_32 (void)
 
-# 188 ".././main.c"
+# 191 ".././main.c"
 {
  
-# 189 ".././main.c" 3
+# 192 ".././main.c" 3
 (*(volatile uint16_t *)(0x94)) 
-# 189 ".././main.c"
+# 192 ".././main.c"
       = 0;
 
 
