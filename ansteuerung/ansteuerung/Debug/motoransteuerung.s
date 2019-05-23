@@ -1837,8 +1837,6 @@ richtung:
 	.section	.debug_str,"MS",@progbits,1
 .LASF18:
 	.string	"current_adc_wert"
-.LASF31:
-	.string	"C:\\\\Users\\\\Armin Baumgartner\\\\Desktop\\\\ansteuerung\\\\ansteuerung\\\\Debug"
 .LASF28:
 	.string	"ext_int_kommunikation_abfrage"
 .LASF23:
@@ -1893,6 +1891,8 @@ richtung:
 	.string	"long int"
 .LASF12:
 	.string	"__vector_9"
+.LASF31:
+	.string	"C:\\\\Users\\\\Armin Baumgartner\\\\Desktop\\\\ansteuerung_alternativ\\\\ansteuerung\\\\Debug"
 .LASF15:
 	.string	"richtung"
 .LASF0:

@@ -1,5 +1,5 @@
 # 1 ".././datenverarbeitung.c"
-# 1 "C:\\Users\\Armin Baumgartner\\Desktop\\10kW-master\\10kW-master\\ansteuerung\\ansteuerung\\Debug//"
+# 1 "C:\\Users\\Armin Baumgartner\\Desktop\\ansteuerung_alternativ\\ansteuerung\\Debug//"
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 ".././datenverarbeitung.c"
@@ -1089,7 +1089,7 @@ char geschwindigkeits_regulierung(char adc_wert)
  kennlinie_wert_float = kennlinie_voltage * (253/48);
  kennlinie_wert = (char)kennlinie_wert_float;
 # 112 ".././datenverarbeitung.c"
-  angleich_gerade_gas = (14 -0.0035*drehzahl) + 14; ;
+  angleich_gerade_gas = (14 -0.0035*drehzahl) + 21; ;
 
   if (angleich_gerade_gas <= 0)
   {

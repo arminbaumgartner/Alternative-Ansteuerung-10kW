@@ -23,11 +23,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
   9 .debug_frame  00000664  00000000  00000000  00007020  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000cca  00000000  00000000  00007684  2**0
+ 10 .debug_str    00000cbb  00000000  00000000  00007684  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00001343  00000000  00000000  0000834e  2**0
+ 11 .debug_loc    00001343  00000000  00000000  0000833f  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000001c0  00000000  00000000  00009691  2**0
+ 12 .debug_ranges 000001c0  00000000  00000000  00009682  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -118,12 +118,6 @@ Disassembly of section .text:
       e6:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 000000ea <Init_Timer1>:
-	
-}
-float drehzahl_alt_holen(void)
-{
-	return drehzahl_alt_ermittelt;
-}
       ea:	e1 e8       	ldi	r30, 0x81	; 129
       ec:	f0 e0       	ldi	r31, 0x00	; 0
       ee:	80 81       	ld	r24, Z
@@ -569,9 +563,6 @@ float drehzahl_alt_holen(void)
      5c2:	08 95       	ret
 
 000005c4 <__vector_20>:
-
-ISR(TIMER1_OVF_vect)			//Motor steht
-{
      5c4:	1f 92       	push	r1
      5c6:	0f 92       	push	r0
      5c8:	0f b6       	in	r0, 0x3f	; 63
@@ -579,43 +570,32 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      5cc:	11 24       	eor	r1, r1
      5ce:	8f 93       	push	r24
      5d0:	9f 93       	push	r25
-	
-	overflow = 1;
      5d2:	81 e0       	ldi	r24, 0x01	; 1
      5d4:	80 93 55 01 	sts	0x0155, r24	; 0x800155 <overflow>
-	
-	steps = 15500;
      5d8:	8c e8       	ldi	r24, 0x8C	; 140
      5da:	9c e3       	ldi	r25, 0x3C	; 60
      5dc:	90 93 57 01 	sts	0x0157, r25	; 0x800157 <steps+0x1>
      5e0:	80 93 56 01 	sts	0x0156, r24	; 0x800156 <steps>
-	geschwindigkeit = 0;
      5e4:	10 92 47 01 	sts	0x0147, r1	; 0x800147 <geschwindigkeit>
      5e8:	10 92 48 01 	sts	0x0148, r1	; 0x800148 <geschwindigkeit+0x1>
      5ec:	10 92 49 01 	sts	0x0149, r1	; 0x800149 <geschwindigkeit+0x2>
      5f0:	10 92 4a 01 	sts	0x014A, r1	; 0x80014a <geschwindigkeit+0x3>
-	geschwindigkeit_ausgabe = 0;
      5f4:	10 92 5d 01 	sts	0x015D, r1	; 0x80015d <geschwindigkeit_ausgabe+0x1>
      5f8:	10 92 5c 01 	sts	0x015C, r1	; 0x80015c <geschwindigkeit_ausgabe>
-	drehzahl = 0;
      5fc:	10 92 35 01 	sts	0x0135, r1	; 0x800135 <drehzahl>
      600:	10 92 36 01 	sts	0x0136, r1	; 0x800136 <drehzahl+0x1>
      604:	10 92 37 01 	sts	0x0137, r1	; 0x800137 <drehzahl+0x2>
      608:	10 92 38 01 	sts	0x0138, r1	; 0x800138 <drehzahl+0x3>
-	drehzahl_ausgabe_01 = 0;
      60c:	10 92 3a 01 	sts	0x013A, r1	; 0x80013a <drehzahl_ausgabe_01+0x1>
      610:	10 92 39 01 	sts	0x0139, r1	; 0x800139 <drehzahl_ausgabe_01>
-	drehzahl_pro_sekunde = 0;
      614:	10 92 66 01 	sts	0x0166, r1	; 0x800166 <drehzahl_pro_sekunde>
      618:	10 92 67 01 	sts	0x0167, r1	; 0x800167 <drehzahl_pro_sekunde+0x1>
      61c:	10 92 68 01 	sts	0x0168, r1	; 0x800168 <drehzahl_pro_sekunde+0x2>
      620:	10 92 69 01 	sts	0x0169, r1	; 0x800169 <drehzahl_pro_sekunde+0x3>
-	step_dauer = 0;
      624:	10 92 5e 01 	sts	0x015E, r1	; 0x80015e <step_dauer>
      628:	10 92 5f 01 	sts	0x015F, r1	; 0x80015f <step_dauer+0x1>
      62c:	10 92 60 01 	sts	0x0160, r1	; 0x800160 <step_dauer+0x2>
      630:	10 92 61 01 	sts	0x0161, r1	; 0x800161 <step_dauer+0x3>
-	
      634:	9f 91       	pop	r25
      636:	8f 91       	pop	r24
      638:	0f 90       	pop	r0
@@ -625,6 +605,12 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      640:	18 95       	reti
 
 00000642 <akku_ladestand>:
+	return ladestand;
+	
+}
+
+void akku_daten_einbeziehen (uint8_t ladestand, uint8_t temp)
+{
      642:	a0 e0       	ldi	r26, 0x00	; 0
      644:	b0 e0       	ldi	r27, 0x00	; 0
      646:	bc 01       	movw	r22, r24
@@ -643,6 +629,12 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      662:	08 95       	ret
 
 00000664 <geschwindigkeits_regulierung>:
+		
+	}
+}
+
+char geschwindigkeits_regulierung(char adc_wert)
+{
      664:	2f 92       	push	r2
      666:	3f 92       	push	r3
      668:	4f 92       	push	r4
@@ -662,9 +654,21 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      684:	cf 93       	push	r28
      686:	df 93       	push	r29
      688:	38 2e       	mov	r3, r24
+	float angleich_gerade_gas;
+	float angleich_gerade_bremsen;
+	
+	//float drehzahl_regelung = gemittelte_drehzahl_holen();
+	//float drehzahl_regelung_alt = drehzahl_alt_holen();
+	float drehzahl_regelung = drehzahl_holen();
      68a:	0e 94 d9 02 	call	0x5b2	; 0x5b2 <drehzahl_holen>
      68e:	6b 01       	movw	r12, r22
      690:	7c 01       	movw	r14, r24
+	uint16_t ges_spannung_regelung;
+	uint16_t niedrigste_zell_spannung_regelung;
+	uint8_t temperatur_regelung;
+	
+		
+	if (drehzahl_regelung >= MAXDREHZAHL)		//Überdrehzahl abfangen
      692:	20 e0       	ldi	r18, 0x00	; 0
      694:	30 e4       	ldi	r19, 0x40	; 64
      696:	4c e9       	ldi	r20, 0x9C	; 156
@@ -673,6 +677,12 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      69e:	88 23       	and	r24, r24
      6a0:	0c f0       	brlt	.+2      	; 0x6a4 <geschwindigkeits_regulierung+0x40>
      6a2:	00 c1       	rjmp	.+512    	; 0x8a4 <geschwindigkeits_regulierung+0x240>
+	{
+		drehzahl_regelung = MAXDREHZAHL;			//5000 U/min
+	}
+	
+
+	kennlinie_voltage = (float)(drehzahl_regelung/DREHZAHLTEILER3);			//Teiler 106
      6a4:	20 e0       	ldi	r18, 0x00	; 0
      6a6:	30 e0       	ldi	r19, 0x00	; 0
      6a8:	44 ed       	ldi	r20, 0xD4	; 212
@@ -682,12 +692,20 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      6b0:	0e 94 eb 0a 	call	0x15d6	; 0x15d6 <__divsf3>
      6b4:	4b 01       	movw	r8, r22
      6b6:	5c 01       	movw	r10, r24
+
+
+	ges_spannung_regelung = ges_spannung_uebertragung();
      6b8:	0e 94 5f 05 	call	0xabe	; 0xabe <ges_spannung_uebertragung>
      6bc:	8c 01       	movw	r16, r24
+	niedrigste_zell_spannung_regelung = niedrigste_akku_voltage_uebertragung();
      6be:	0e 94 78 05 	call	0xaf0	; 0xaf0 <niedrigste_akku_voltage_uebertragung>
      6c2:	ec 01       	movw	r28, r24
+	temperatur_regelung = temperatur_uebertragung();
      6c4:	0e 94 91 05 	call	0xb22	; 0xb22 <temperatur_uebertragung>
      6c8:	28 2e       	mov	r2, r24
+	
+	
+	if (kennlinie_voltage >= 40 && ges_spannung_regelung <=44000)			//Wenn Spannung zu niedrig wird && voll betrieb
      6ca:	20 e0       	ldi	r18, 0x00	; 0
      6cc:	30 e0       	ldi	r19, 0x00	; 0
      6ce:	40 e2       	ldi	r20, 0x20	; 32
@@ -700,6 +718,8 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      6de:	01 3e       	cpi	r16, 0xE1	; 225
      6e0:	1b 4a       	sbci	r17, 0xAB	; 171
      6e2:	40 f4       	brcc	.+16     	; 0x6f4 <geschwindigkeits_regulierung+0x90>
+	{
+		kennlinie_voltage = 40;
      6e4:	0f 2e       	mov	r0, r31
      6e6:	81 2c       	mov	r8, r1
      6e8:	91 2c       	mov	r9, r1
@@ -708,6 +728,12 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      6ee:	f2 e4       	ldi	r31, 0x42	; 66
      6f0:	bf 2e       	mov	r11, r31
      6f2:	f0 2d       	mov	r31, r0
+	{
+		angleich_gerade_gas = SICHERHEITSBEREICH;		// * (gesamtspannung_kom/NENNSPANNUNG)
+	}
+	*/
+	 
+	 angleich_gerade_gas = (WEGFAHR_WERT-0.0035*drehzahl) + 21; ;		// * (gesamtspannung_kom/NENNSPANNUNG) //12A sicherung bei + 7
      6f4:	60 91 35 01 	lds	r22, 0x0135	; 0x800135 <drehzahl>
      6f8:	70 91 36 01 	lds	r23, 0x0136	; 0x800136 <drehzahl+0x1>
      6fc:	80 91 37 01 	lds	r24, 0x0137	; 0x800137 <drehzahl+0x2>
@@ -726,24 +752,36 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      71c:	0e 94 62 0a 	call	0x14c4	; 0x14c4 <__subsf3>
      720:	20 e0       	ldi	r18, 0x00	; 0
      722:	30 e0       	ldi	r19, 0x00	; 0
-     724:	40 e6       	ldi	r20, 0x60	; 96
+     724:	48 ea       	ldi	r20, 0xA8	; 168
      726:	51 e4       	ldi	r21, 0x41	; 65
      728:	0e 94 63 0a 	call	0x14c6	; 0x14c6 <__addsf3>
      72c:	2b 01       	movw	r4, r22
      72e:	3c 01       	movw	r6, r24
+		 
+	 if (angleich_gerade_gas <= 0)
      730:	20 e0       	ldi	r18, 0x00	; 0
      732:	30 e0       	ldi	r19, 0x00	; 0
      734:	a9 01       	movw	r20, r18
      736:	0e 94 e6 0a 	call	0x15cc	; 0x15cc <__cmpsf2>
      73a:	18 16       	cp	r1, r24
      73c:	1c f0       	brlt	.+6      	; 0x744 <geschwindigkeits_regulierung+0xe0>
+	 {
+		 angleich_gerade_gas=0;
      73e:	41 2c       	mov	r4, r1
      740:	51 2c       	mov	r5, r1
      742:	32 01       	movw	r6, r4
+		
+	}
+	
+	
+	//		Sicherheit niedrigeste Zellspannung
+	if (niedrigste_zell_spannung_regelung <= (MINZELLSPANNUNG+1))				//2801
      744:	c2 3f       	cpi	r28, 0xF2	; 242
      746:	8a e0       	ldi	r24, 0x0A	; 10
      748:	d8 07       	cpc	r29, r24
      74a:	58 f4       	brcc	.+22     	; 0x762 <geschwindigkeits_regulierung+0xfe>
+	{
+		angleich_gerade_gas = (angleich_gerade_gas*0.60);		//15% weniger gas
      74c:	2a e9       	ldi	r18, 0x9A	; 154
      74e:	39 e9       	ldi	r19, 0x99	; 153
      750:	49 e1       	ldi	r20, 0x19	; 25
@@ -754,10 +792,14 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      75c:	2b 01       	movw	r4, r22
      75e:	3c 01       	movw	r6, r24
      760:	1c c0       	rjmp	.+56     	; 0x79a <geschwindigkeits_regulierung+0x136>
+	}
+	else if (niedrigste_zell_spannung_regelung <= (MINZELLSPANNUNG+100))		//2900
      762:	c5 35       	cpi	r28, 0x55	; 85
      764:	8b e0       	ldi	r24, 0x0B	; 11
      766:	d8 07       	cpc	r29, r24
      768:	58 f4       	brcc	.+22     	; 0x780 <geschwindigkeits_regulierung+0x11c>
+	{
+		angleich_gerade_gas = (angleich_gerade_gas*0.65);		//10% weniger gas
      76a:	26 e6       	ldi	r18, 0x66	; 102
      76c:	36 e6       	ldi	r19, 0x66	; 102
      76e:	46 e2       	ldi	r20, 0x26	; 38
@@ -768,9 +810,13 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      77a:	2b 01       	movw	r4, r22
      77c:	3c 01       	movw	r6, r24
      77e:	0d c0       	rjmp	.+26     	; 0x79a <geschwindigkeits_regulierung+0x136>
+	}
+	else if (niedrigste_zell_spannung_regelung <= (MINZELLSPANNUNG+200))	//3000
      780:	c9 3b       	cpi	r28, 0xB9	; 185
      782:	db 40       	sbci	r29, 0x0B	; 11
      784:	50 f4       	brcc	.+20     	; 0x79a <geschwindigkeits_regulierung+0x136>
+	{
+		angleich_gerade_gas = (angleich_gerade_gas*0.70);		//5% weniger gas
      786:	23 e3       	ldi	r18, 0x33	; 51
      788:	33 e3       	ldi	r19, 0x33	; 51
      78a:	43 e3       	ldi	r20, 0x33	; 51
@@ -780,9 +826,16 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      792:	0e 94 84 0c 	call	0x1908	; 0x1908 <__mulsf3>
      796:	2b 01       	movw	r4, r22
      798:	3c 01       	movw	r6, r24
+	}
+
+	
+	//	Sicherheit Temperatur
+	if (temperatur_regelung >= 55)
      79a:	86 e3       	ldi	r24, 0x36	; 54
      79c:	82 15       	cp	r24, r2
      79e:	50 f4       	brcc	.+20     	; 0x7b4 <geschwindigkeits_regulierung+0x150>
+	{
+		angleich_gerade_gas = (angleich_gerade_gas*0.2);
      7a0:	2d ec       	ldi	r18, 0xCD	; 205
      7a2:	3c ec       	ldi	r19, 0xCC	; 204
      7a4:	4c e4       	ldi	r20, 0x4C	; 76
@@ -792,6 +845,12 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      7ac:	0e 94 84 0c 	call	0x1908	; 0x1908 <__mulsf3>
      7b0:	2b 01       	movw	r4, r22
      7b2:	3c 01       	movw	r6, r24
+	}
+	
+	
+	
+	//		Fahrbetrieb	
+	if (drehzahl_regelung == 0 && adc_wert > 20)		//Stillstand
      7b4:	20 e0       	ldi	r18, 0x00	; 0
      7b6:	30 e0       	ldi	r19, 0x00	; 0
      7b8:	a9 01       	movw	r20, r18
@@ -804,6 +863,12 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      7c8:	83 15       	cp	r24, r3
      7ca:	08 f4       	brcc	.+2      	; 0x7ce <geschwindigkeits_regulierung+0x16a>
      7cc:	66 c0       	rjmp	.+204    	; 0x89a <geschwindigkeits_regulierung+0x236>
+		kennlinie_voltage = 40;
+	}
+	
+	//Leerlaufkennlinie erstellen	
+	kennlinie_wert_float = kennlinie_voltage * (253/48);			//5,27  //Hier wurde eine änderung von 48V auf 56V hervorgenommen
+	kennlinie_wert = (char)kennlinie_wert_float;
      7ce:	20 e0       	ldi	r18, 0x00	; 0
      7d0:	30 e0       	ldi	r19, 0x00	; 0
      7d2:	40 ea       	ldi	r20, 0xA0	; 160
@@ -813,6 +878,12 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      7da:	0e 94 84 0c 	call	0x1908	; 0x1908 <__mulsf3>
      7de:	0e 94 5d 0b 	call	0x16ba	; 0x16ba <__fixunssfsi>
      7e2:	c6 2f       	mov	r28, r22
+	{		
+		regulierter_wert = WEGFAHR_WERT;	//Wegfahrwert
+	}
+	else
+	{
+		if (kennlinie_wert >= (255-angleich_gerade_gas))			//Overflows vermeiden //bei gas
      7e4:	70 e0       	ldi	r23, 0x00	; 0
      7e6:	80 e0       	ldi	r24, 0x00	; 0
      7e8:	90 e0       	ldi	r25, 0x00	; 0
@@ -835,11 +906,15 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      80e:	0e 94 7f 0c 	call	0x18fe	; 0x18fe <__gesf2>
      812:	88 23       	and	r24, r24
      814:	34 f0       	brlt	.+12     	; 0x822 <geschwindigkeits_regulierung+0x1be>
+		{
+			kennlinie_wert = (255-angleich_gerade_gas);
      816:	c5 01       	movw	r24, r10
      818:	b4 01       	movw	r22, r8
      81a:	0e 94 5d 0b 	call	0x16ba	; 0x16ba <__fixunssfsi>
      81e:	c6 2f       	mov	r28, r22
      820:	0b c0       	rjmp	.+22     	; 0x838 <geschwindigkeits_regulierung+0x1d4>
+		}
+		else if (kennlinie_wert <= (0+angleich_gerade_bremsen))		//beim bremsen 
      822:	20 e0       	ldi	r18, 0x00	; 0
      824:	30 e0       	ldi	r19, 0x00	; 0
      826:	40 e2       	ldi	r20, 0x20	; 32
@@ -849,7 +924,13 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      82e:	0e 94 e6 0a 	call	0x15cc	; 0x15cc <__cmpsf2>
      832:	18 16       	cp	r1, r24
      834:	0c f0       	brlt	.+2      	; 0x838 <geschwindigkeits_regulierung+0x1d4>
+		{
+			kennlinie_wert = (0+angleich_gerade_bremsen);
      836:	ca e0       	ldi	r28, 0x0A	; 10
+		}
+		
+		
+		if (adc_wert > (kennlinie_wert+(char)angleich_gerade_gas))				//Überbereich
      838:	e3 2c       	mov	r14, r3
      83a:	f1 2c       	mov	r15, r1
      83c:	0c 2f       	mov	r16, r28
@@ -863,9 +944,16 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      84e:	8e 15       	cp	r24, r14
      850:	9f 05       	cpc	r25, r15
      852:	1c f4       	brge	.+6      	; 0x85a <geschwindigkeits_regulierung+0x1f6>
+		{
+			
+			regulierter_wert = kennlinie_wert+(char)angleich_gerade_gas; //*  NENNspannung/ges-spannung(gelesen)
      854:	3c 2e       	mov	r3, r28
      856:	36 0e       	add	r3, r22
      858:	42 c0       	rjmp	.+132    	; 0x8de <geschwindigkeits_regulierung+0x27a>
+			
+			
+		}
+		else if (adc_wert < (kennlinie_wert-angleich_gerade_bremsen))			//Unterberreich		//kann im Stillstand nicht eintretten
      85a:	b8 01       	movw	r22, r16
      85c:	11 0f       	add	r17, r17
      85e:	88 0b       	sbc	r24, r24
@@ -888,22 +976,51 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      886:	0e 94 e6 0a 	call	0x15cc	; 0x15cc <__cmpsf2>
      88a:	88 23       	and	r24, r24
      88c:	44 f5       	brge	.+80     	; 0x8de <geschwindigkeits_regulierung+0x27a>
+		{
+		
+			regulierter_wert = kennlinie_wert-angleich_gerade_bremsen;
      88e:	c5 01       	movw	r24, r10
      890:	b4 01       	movw	r22, r8
      892:	0e 94 5d 0b 	call	0x16ba	; 0x16ba <__fixunssfsi>
      896:	36 2e       	mov	r3, r22
      898:	22 c0       	rjmp	.+68     	; 0x8de <geschwindigkeits_regulierung+0x27a>
+	
+	
+	//		Fahrbetrieb	
+	if (drehzahl_regelung == 0 && adc_wert > 20)		//Stillstand
+	{		
+		regulierter_wert = WEGFAHR_WERT;	//Wegfahrwert
      89a:	0f 2e       	mov	r0, r31
      89c:	fe e0       	ldi	r31, 0x0E	; 14
      89e:	3f 2e       	mov	r3, r31
      8a0:	f0 2d       	mov	r31, r0
+	
+	//drehzahl_save(drehzahl_regelung);
+	
+	
+	
+	return regulierter_wert;
      8a2:	1d c0       	rjmp	.+58     	; 0x8de <geschwindigkeits_regulierung+0x27a>
+	
+
+	kennlinie_voltage = (float)(drehzahl_regelung/DREHZAHLTEILER3);			//Teiler 106
+
+
+	ges_spannung_regelung = ges_spannung_uebertragung();
      8a4:	0e 94 5f 05 	call	0xabe	; 0xabe <ges_spannung_uebertragung>
      8a8:	8c 01       	movw	r16, r24
+	niedrigste_zell_spannung_regelung = niedrigste_akku_voltage_uebertragung();
      8aa:	0e 94 78 05 	call	0xaf0	; 0xaf0 <niedrigste_akku_voltage_uebertragung>
      8ae:	ec 01       	movw	r28, r24
+	temperatur_regelung = temperatur_uebertragung();
      8b0:	0e 94 91 05 	call	0xb22	; 0xb22 <temperatur_uebertragung>
      8b4:	28 2e       	mov	r2, r24
+	{
+		drehzahl_regelung = MAXDREHZAHL;			//5000 U/min
+	}
+	
+
+	kennlinie_voltage = (float)(drehzahl_regelung/DREHZAHLTEILER3);			//Teiler 106
      8b6:	0f 2e       	mov	r0, r31
      8b8:	f3 ee       	ldi	r31, 0xE3	; 227
      8ba:	8f 2e       	mov	r8, r31
@@ -914,6 +1031,12 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      8c4:	f2 e4       	ldi	r31, 0x42	; 66
      8c6:	bf 2e       	mov	r11, r31
      8c8:	f0 2d       	mov	r31, r0
+	uint8_t temperatur_regelung;
+	
+		
+	if (drehzahl_regelung >= MAXDREHZAHL)		//Überdrehzahl abfangen
+	{
+		drehzahl_regelung = MAXDREHZAHL;			//5000 U/min
      8ca:	0f 2e       	mov	r0, r31
      8cc:	c1 2c       	mov	r12, r1
      8ce:	f0 e4       	ldi	r31, 0x40	; 64
@@ -924,6 +1047,12 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      8d8:	ff 2e       	mov	r15, r31
      8da:	f0 2d       	mov	r31, r0
      8dc:	00 cf       	rjmp	.-512    	; 0x6de <geschwindigkeits_regulierung+0x7a>
+	
+	
+	
+	return regulierter_wert;
+	
+}
      8de:	83 2d       	mov	r24, r3
      8e0:	df 91       	pop	r29
      8e2:	cf 91       	pop	r28
@@ -946,6 +1075,10 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      904:	08 95       	ret
 
 00000906 <ladestand_ausgabe>:
+
+void ladestand_ausgabe (uint8_t ladestand_ubernahme)
+{
+		sprintf(ausgabe_02,"%d",ladestand_ubernahme);
      906:	1f 92       	push	r1
      908:	8f 93       	push	r24
      90a:	87 e1       	ldi	r24, 0x17	; 23
@@ -957,11 +1090,14 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      916:	9f 93       	push	r25
      918:	8f 93       	push	r24
      91a:	0e 94 41 0d 	call	0x1a82	; 0x1a82 <sprintf>
+		LCD_cmd(0xC0);   //gehe zu 2. Zeile, 1. Position
      91e:	80 ec       	ldi	r24, 0xC0	; 192
      920:	0e 94 50 07 	call	0xea0	; 0xea0 <LCD_cmd>
+		LCD_string(ausgabe_02);
      924:	8a e6       	ldi	r24, 0x6A	; 106
      926:	91 e0       	ldi	r25, 0x01	; 1
      928:	0e 94 89 07 	call	0xf12	; 0xf12 <LCD_string>
+}
      92c:	0f 90       	pop	r0
      92e:	0f 90       	pop	r0
      930:	0f 90       	pop	r0
@@ -1371,12 +1507,6 @@ ISR(TIMER1_OVF_vect)			//Motor steht
      ca2:	18 95       	reti
 
 00000ca4 <delay_ms>:
-
-
-
-void delay_ms (unsigned int ms)   //Hilfsfunktion: Zeitvernichtung 
-{  
-	for (unsigned int i=0; i<ms; i++)
      ca4:	00 97       	sbiw	r24, 0x00	; 0
      ca6:	69 f0       	breq	.+26     	; 0xcc2 <delay_ms+0x1e>
      ca8:	20 e0       	ldi	r18, 0x00	; 0
@@ -1401,44 +1531,22 @@ void delay_ms (unsigned int ms)   //Hilfsfunktion: Zeitvernichtung
      cc2:	08 95       	ret
 
 00000cc4 <Enable>:
-
-}
-
-void Enable(void)  //Hilfsfunktion: H=>L Flanke der Enable Leitung (E) 
-{  
-	PORTF = PORTF | (1<<E); //E = 1     
      cc4:	89 9a       	sbi	0x11, 1	; 17
-	PORTF = PORTF &~(1<<E); //E = 0  
      cc6:	89 98       	cbi	0x11, 1	; 17
      cc8:	08 95       	ret
 
 00000cca <LCD_init>:
-{  
-	//DDRF = DDRF | (1<<E);										//E als Ausgang
-	//DDRB = DDRB | (1<<RS);										//RS als Ausgang
-	//DDRF = DDRF | (1<<DB7) | (1<<DB6) | (1<<DB5) | (1<<DB4);	//DB7..DB4 als Ausgang
-	
-	delay_ms(50);									//lt. Datenblatt min. 15ms nach Power ON warten  
      cca:	82 e3       	ldi	r24, 0x32	; 50
      ccc:	90 e0       	ldi	r25, 0x00	; 0
      cce:	0e 94 52 06 	call	0xca4	; 0xca4 <delay_ms>
-	PORTF = PORTF &~ (1<<E);			//E=0 (RW=0 per HW)
      cd2:	89 98       	cbi	0x11, 1	; 17
-	PORTB = PORTB &~ (1<<RS);			//RS=0
      cd4:	28 98       	cbi	0x05, 0	; 5
-	
-	
-	// Function Set  
-		//DB7..DB4 = 0011  
-		PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6));	//Interface auf 8 Bit  
      cd6:	81 b3       	in	r24, 0x11	; 17
      cd8:	8f 73       	andi	r24, 0x3F	; 63
      cda:	81 bb       	out	0x11, r24	; 17
-		PORTF = PORTF | (1<<DB5) | (1<<DB4);    
      cdc:	81 b3       	in	r24, 0x11	; 17
      cde:	80 63       	ori	r24, 0x30	; 48
      ce0:	81 bb       	out	0x11, r24	; 17
-		Enable();
      ce2:	0e 94 62 06 	call	0xcc4	; 0xcc4 <Enable>
      ce6:	8f e3       	ldi	r24, 0x3F	; 63
      ce8:	9c e9       	ldi	r25, 0x9C	; 156
@@ -1446,18 +1554,12 @@ void Enable(void)  //Hilfsfunktion: H=>L Flanke der Enable Leitung (E)
      cec:	f1 f7       	brne	.-4      	; 0xcea <LCD_init+0x20>
      cee:	00 c0       	rjmp	.+0      	; 0xcf0 <LCD_init+0x26>
      cf0:	00 00       	nop
-		_delay_ms(10);
-	
-		//DB7..DB4 = 0011  #
-		PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6));	//Interface auf 8 Bit  
      cf2:	81 b3       	in	r24, 0x11	; 17
      cf4:	8f 73       	andi	r24, 0x3F	; 63
      cf6:	81 bb       	out	0x11, r24	; 17
-		PORTF = PORTF | (1<<DB5) | (1<<DB4);    
      cf8:	81 b3       	in	r24, 0x11	; 17
      cfa:	80 63       	ori	r24, 0x30	; 48
      cfc:	81 bb       	out	0x11, r24	; 17
-		Enable();
      cfe:	0e 94 62 06 	call	0xcc4	; 0xcc4 <Enable>
      d02:	8f e3       	ldi	r24, 0x3F	; 63
      d04:	9c e9       	ldi	r25, 0x9C	; 156
@@ -1465,18 +1567,12 @@ void Enable(void)  //Hilfsfunktion: H=>L Flanke der Enable Leitung (E)
      d08:	f1 f7       	brne	.-4      	; 0xd06 <LCD_init+0x3c>
      d0a:	00 c0       	rjmp	.+0      	; 0xd0c <LCD_init+0x42>
      d0c:	00 00       	nop
-		_delay_ms(10);
-	
-		//DB7..DB4 = 0011  
-		PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6));	//Interface auf 8 Bit  
      d0e:	81 b3       	in	r24, 0x11	; 17
      d10:	8f 73       	andi	r24, 0x3F	; 63
      d12:	81 bb       	out	0x11, r24	; 17
-		PORTF = PORTF | (1<<DB5) | (1<<DB4);    
      d14:	81 b3       	in	r24, 0x11	; 17
      d16:	80 63       	ori	r24, 0x30	; 48
      d18:	81 bb       	out	0x11, r24	; 17
-		Enable();
      d1a:	0e 94 62 06 	call	0xcc4	; 0xcc4 <Enable>
      d1e:	8f e3       	ldi	r24, 0x3F	; 63
      d20:	9c e9       	ldi	r25, 0x9C	; 156
@@ -1484,16 +1580,10 @@ void Enable(void)  //Hilfsfunktion: H=>L Flanke der Enable Leitung (E)
      d24:	f1 f7       	brne	.-4      	; 0xd22 <LCD_init+0x58>
      d26:	00 c0       	rjmp	.+0      	; 0xd28 <LCD_init+0x5e>
      d28:	00 00       	nop
-		_delay_ms(10);
-	
-		//DB7..DB4 = 0010  
-		PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6) &~(1<<DB4));  
      d2a:	81 b3       	in	r24, 0x11	; 17
      d2c:	8f 72       	andi	r24, 0x2F	; 47
      d2e:	81 bb       	out	0x11, r24	; 17
-		PORTF = PORTF | (1<<DB5);					//Interface auf 4 Bit  
      d30:	8d 9a       	sbi	0x11, 5	; 17
-		Enable();
      d32:	0e 94 62 06 	call	0xcc4	; 0xcc4 <Enable>
      d36:	8f e3       	ldi	r24, 0x3F	; 63
      d38:	9c e9       	ldi	r25, 0x9C	; 156
@@ -1501,18 +1591,10 @@ void Enable(void)  //Hilfsfunktion: H=>L Flanke der Enable Leitung (E)
      d3c:	f1 f7       	brne	.-4      	; 0xd3a <LCD_init+0x70>
      d3e:	00 c0       	rjmp	.+0      	; 0xd40 <LCD_init+0x76>
      d40:	00 00       	nop
-		_delay_ms(10);
-		
-	// 2-zeilig, 5x8 Matrix //  
-	
-	//DB7..DB4 = 0010  
-	PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6) &~(1<<DB4));  
      d42:	81 b3       	in	r24, 0x11	; 17
      d44:	8f 72       	andi	r24, 0x2F	; 47
      d46:	81 bb       	out	0x11, r24	; 17
-	PORTF = PORTF | (1<<DB5);   //Upper Nibble  
      d48:	8d 9a       	sbi	0x11, 5	; 17
-	Enable();
      d4a:	0e 94 62 06 	call	0xcc4	; 0xcc4 <Enable>
      d4e:	8f e3       	ldi	r24, 0x3F	; 63
      d50:	9c e9       	ldi	r25, 0x9C	; 156
@@ -1520,16 +1602,10 @@ void Enable(void)  //Hilfsfunktion: H=>L Flanke der Enable Leitung (E)
      d54:	f1 f7       	brne	.-4      	; 0xd52 <LCD_init+0x88>
      d56:	00 c0       	rjmp	.+0      	; 0xd58 <LCD_init+0x8e>
      d58:	00 00       	nop
-	_delay_ms(10);
-	
-	//DB7..DB4 = 1000  
-	PORTF = PORTF | (1<<DB7);   //Lower Nibble  
      d5a:	8f 9a       	sbi	0x11, 7	; 17
-	PORTF = PORTF & (~(1<<DB6) & ~(1<<DB5) & ~(1<<DB4));  
      d5c:	81 b3       	in	r24, 0x11	; 17
      d5e:	8f 78       	andi	r24, 0x8F	; 143
      d60:	81 bb       	out	0x11, r24	; 17
-	Enable();
      d62:	0e 94 62 06 	call	0xcc4	; 0xcc4 <Enable>
      d66:	8f e3       	ldi	r24, 0x3F	; 63
      d68:	9c e9       	ldi	r25, 0x9C	; 156
@@ -1537,15 +1613,9 @@ void Enable(void)  //Hilfsfunktion: H=>L Flanke der Enable Leitung (E)
      d6c:	f1 f7       	brne	.-4      	; 0xd6a <LCD_init+0xa0>
      d6e:	00 c0       	rjmp	.+0      	; 0xd70 <LCD_init+0xa6>
      d70:	00 00       	nop
-	_delay_ms(10);
-	
-	//Display Off //  
-	//DB7..DB4 = 0000  
-	PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6) & ~(1<<DB5) & ~(1<<DB4)); //Upper Nibble  
      d72:	81 b3       	in	r24, 0x11	; 17
      d74:	8f 70       	andi	r24, 0x0F	; 15
      d76:	81 bb       	out	0x11, r24	; 17
-	Enable();
      d78:	0e 94 62 06 	call	0xcc4	; 0xcc4 <Enable>
      d7c:	8f e3       	ldi	r24, 0x3F	; 63
      d7e:	9c e9       	ldi	r25, 0x9C	; 156
@@ -1553,16 +1623,10 @@ void Enable(void)  //Hilfsfunktion: H=>L Flanke der Enable Leitung (E)
      d82:	f1 f7       	brne	.-4      	; 0xd80 <LCD_init+0xb6>
      d84:	00 c0       	rjmp	.+0      	; 0xd86 <LCD_init+0xbc>
      d86:	00 00       	nop
-	_delay_ms(10);
-	
-	//DB7..DB4 = 1000  
-	PORTF = PORTF | (1<<DB7);   //Lower Nibble  
      d88:	8f 9a       	sbi	0x11, 7	; 17
-	PORTF = PORTF & (~(1<<DB6) & ~(1<<DB5) & ~(1<<DB4));  
      d8a:	81 b3       	in	r24, 0x11	; 17
      d8c:	8f 78       	andi	r24, 0x8F	; 143
      d8e:	81 bb       	out	0x11, r24	; 17
-	Enable();
      d90:	0e 94 62 06 	call	0xcc4	; 0xcc4 <Enable>
      d94:	8f e3       	ldi	r24, 0x3F	; 63
      d96:	9c e9       	ldi	r25, 0x9C	; 156
@@ -1570,15 +1634,9 @@ void Enable(void)  //Hilfsfunktion: H=>L Flanke der Enable Leitung (E)
      d9a:	f1 f7       	brne	.-4      	; 0xd98 <LCD_init+0xce>
      d9c:	00 c0       	rjmp	.+0      	; 0xd9e <LCD_init+0xd4>
      d9e:	00 00       	nop
-	_delay_ms(10);
-	
-	//Clear Display //  
-	//DB7..DB4 = 0000  
-	PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6) & ~(1<<DB5) & ~(1<<DB4)); //Upper Nibble  
      da0:	81 b3       	in	r24, 0x11	; 17
      da2:	8f 70       	andi	r24, 0x0F	; 15
      da4:	81 bb       	out	0x11, r24	; 17
-	Enable();
      da6:	0e 94 62 06 	call	0xcc4	; 0xcc4 <Enable>
      daa:	8f e3       	ldi	r24, 0x3F	; 63
      dac:	9c e9       	ldi	r25, 0x9C	; 156
@@ -1586,16 +1644,10 @@ void Enable(void)  //Hilfsfunktion: H=>L Flanke der Enable Leitung (E)
      db0:	f1 f7       	brne	.-4      	; 0xdae <LCD_init+0xe4>
      db2:	00 c0       	rjmp	.+0      	; 0xdb4 <LCD_init+0xea>
      db4:	00 00       	nop
-	_delay_ms(10);
-	
-	//DB7..DB4 = 0001  
-	PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6) & ~(1<<DB5)); //Lower Nibble  
      db6:	81 b3       	in	r24, 0x11	; 17
      db8:	8f 71       	andi	r24, 0x1F	; 31
      dba:	81 bb       	out	0x11, r24	; 17
-	PORTF = PORTF | (1<<DB4);  
      dbc:	8c 9a       	sbi	0x11, 4	; 17
-	Enable();
      dbe:	0e 94 62 06 	call	0xcc4	; 0xcc4 <Enable>
      dc2:	8f e3       	ldi	r24, 0x3F	; 63
      dc4:	9c e9       	ldi	r25, 0x9C	; 156
@@ -1603,15 +1655,9 @@ void Enable(void)  //Hilfsfunktion: H=>L Flanke der Enable Leitung (E)
      dc8:	f1 f7       	brne	.-4      	; 0xdc6 <LCD_init+0xfc>
      dca:	00 c0       	rjmp	.+0      	; 0xdcc <LCD_init+0x102>
      dcc:	00 00       	nop
-	_delay_ms(10);
-	
-	//No Display Shift //  
-	//DB7..DB4 = 0000  
-	PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6) & ~(1<<DB5) & ~(1<<DB4)); //Upper Nibble  
      dce:	81 b3       	in	r24, 0x11	; 17
      dd0:	8f 70       	andi	r24, 0x0F	; 15
      dd2:	81 bb       	out	0x11, r24	; 17
-	Enable();
      dd4:	0e 94 62 06 	call	0xcc4	; 0xcc4 <Enable>
      dd8:	8f e3       	ldi	r24, 0x3F	; 63
      dda:	9c e9       	ldi	r25, 0x9C	; 156
@@ -1619,18 +1665,12 @@ void Enable(void)  //Hilfsfunktion: H=>L Flanke der Enable Leitung (E)
      dde:	f1 f7       	brne	.-4      	; 0xddc <LCD_init+0x112>
      de0:	00 c0       	rjmp	.+0      	; 0xde2 <LCD_init+0x118>
      de2:	00 00       	nop
-	_delay_ms(10);
-	
-	//DB7..DB4 = 0011  
-	PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6)); //Lower Nibble  
      de4:	81 b3       	in	r24, 0x11	; 17
      de6:	8f 73       	andi	r24, 0x3F	; 63
      de8:	81 bb       	out	0x11, r24	; 17
-	PORTF = PORTF | (1<<DB5) | (1<<DB4);  
      dea:	81 b3       	in	r24, 0x11	; 17
      dec:	80 63       	ori	r24, 0x30	; 48
      dee:	81 bb       	out	0x11, r24	; 17
-	Enable();
      df0:	0e 94 62 06 	call	0xcc4	; 0xcc4 <Enable>
      df4:	8f e3       	ldi	r24, 0x3F	; 63
      df6:	9c e9       	ldi	r25, 0x9C	; 156
@@ -1638,15 +1678,9 @@ void Enable(void)  //Hilfsfunktion: H=>L Flanke der Enable Leitung (E)
      dfa:	f1 f7       	brne	.-4      	; 0xdf8 <LCD_init+0x12e>
      dfc:	00 c0       	rjmp	.+0      	; 0xdfe <LCD_init+0x134>
      dfe:	00 00       	nop
-	_delay_ms(10);
-	
-	// Display ON , Cursor ON, Blinken ON //  
-	//DB7..DB4 = 0000  
-	PORTF = PORTF & (~(1<<DB7) & ~(1<<DB6) & ~(1<<DB5) & ~(1<<DB4)); //Upper Nibble  
      e00:	81 b3       	in	r24, 0x11	; 17
      e02:	8f 70       	andi	r24, 0x0F	; 15
      e04:	81 bb       	out	0x11, r24	; 17
-	Enable();
      e06:	0e 94 62 06 	call	0xcc4	; 0xcc4 <Enable>
      e0a:	8f e3       	ldi	r24, 0x3F	; 63
      e0c:	9c e9       	ldi	r25, 0x9C	; 156
@@ -1654,14 +1688,9 @@ void Enable(void)  //Hilfsfunktion: H=>L Flanke der Enable Leitung (E)
      e10:	f1 f7       	brne	.-4      	; 0xe0e <LCD_init+0x144>
      e12:	00 c0       	rjmp	.+0      	; 0xe14 <LCD_init+0x14a>
      e14:	00 00       	nop
-	_delay_ms(10);
-	
-	//DB7..DB4 = 1111  
-	PORTF = PORTF | (1<<DB7) | (1<<DB6) | (1<<DB5) | (1<<DB4); //Lower Nibble  
      e16:	81 b3       	in	r24, 0x11	; 17
      e18:	80 6f       	ori	r24, 0xF0	; 240
      e1a:	81 bb       	out	0x11, r24	; 17
-	Enable(); 
      e1c:	0e 94 62 06 	call	0xcc4	; 0xcc4 <Enable>
      e20:	8f e3       	ldi	r24, 0x3F	; 63
      e22:	9c e9       	ldi	r25, 0x9C	; 156
@@ -1672,310 +1701,171 @@ void Enable(void)  //Hilfsfunktion: H=>L Flanke der Enable Leitung (E)
      e2c:	08 95       	ret
 
 00000e2e <LCD_send>:
-// LCD_send(..) sendet 1 Byte im 4-Bit Mode 
-// 
-////////////////////////////////////////////////////////////////////////////
-
-void LCD_send(char data) 
-{  
      e2e:	cf 93       	push	r28
      e30:	c8 2f       	mov	r28, r24
-	char temp = data;
-	
-	PORTB = PORTB | (1<<RS); //SFR vom LCD mit RS auf Daten umschalten      
      e32:	28 9a       	sbi	0x05, 0	; 5
-	
-	//Upper Nibble senden   
-	if (temp & 0b10000000) { PORTF = PORTF | (1<<DB7);}   
      e34:	88 23       	and	r24, r24
      e36:	14 f4       	brge	.+4      	; 0xe3c <LCD_send+0xe>
      e38:	8f 9a       	sbi	0x11, 7	; 17
      e3a:	01 c0       	rjmp	.+2      	; 0xe3e <LCD_send+0x10>
-	else { PORTF = PORTF & ~(1<<DB7); }
      e3c:	8f 98       	cbi	0x11, 7	; 17
-	
-	if (temp & 0b01000000) { PORTF = PORTF | (1<<DB6); }   
      e3e:	c6 ff       	sbrs	r28, 6
      e40:	02 c0       	rjmp	.+4      	; 0xe46 <LCD_send+0x18>
      e42:	8e 9a       	sbi	0x11, 6	; 17
      e44:	01 c0       	rjmp	.+2      	; 0xe48 <LCD_send+0x1a>
-	else { PORTF = PORTF & ~(1<<DB6); }
      e46:	8e 98       	cbi	0x11, 6	; 17
-	
-	if (temp & 0b00100000) { PORTF = PORTF | (1<<DB5); }   
      e48:	c5 ff       	sbrs	r28, 5
      e4a:	02 c0       	rjmp	.+4      	; 0xe50 <LCD_send+0x22>
      e4c:	8d 9a       	sbi	0x11, 5	; 17
      e4e:	01 c0       	rjmp	.+2      	; 0xe52 <LCD_send+0x24>
-	else { PORTF = PORTF & ~(1<<DB5); }
      e50:	8d 98       	cbi	0x11, 5	; 17
-	
-	if (temp & 0b00010000) { PORTF = PORTF | (1<<DB4); }   
      e52:	c4 ff       	sbrs	r28, 4
      e54:	02 c0       	rjmp	.+4      	; 0xe5a <LCD_send+0x2c>
      e56:	8c 9a       	sbi	0x11, 4	; 17
      e58:	01 c0       	rjmp	.+2      	; 0xe5c <LCD_send+0x2e>
-	else { PORTF = PORTF & ~(1<<DB4); }
      e5a:	8c 98       	cbi	0x11, 4	; 17
-	
-	Enable();   
      e5c:	0e 94 62 06 	call	0xcc4	; 0xcc4 <Enable>
-	delay_ms(1);       
      e60:	81 e0       	ldi	r24, 0x01	; 1
      e62:	90 e0       	ldi	r25, 0x00	; 0
      e64:	0e 94 52 06 	call	0xca4	; 0xca4 <delay_ms>
-	
-	//Lower Nibble senden   
-	if (temp & 0b00001000) { PORTF = PORTF | (1<<DB7); }
      e68:	c3 ff       	sbrs	r28, 3
      e6a:	02 c0       	rjmp	.+4      	; 0xe70 <LCD_send+0x42>
      e6c:	8f 9a       	sbi	0x11, 7	; 17
      e6e:	01 c0       	rjmp	.+2      	; 0xe72 <LCD_send+0x44>
-	else { PORTF = PORTF & ~(1<<DB7); }
      e70:	8f 98       	cbi	0x11, 7	; 17
-	
-	if (temp & 0b00000100) { PORTF = PORTF | (1<<DB6); }
      e72:	c2 ff       	sbrs	r28, 2
      e74:	02 c0       	rjmp	.+4      	; 0xe7a <LCD_send+0x4c>
      e76:	8e 9a       	sbi	0x11, 6	; 17
      e78:	01 c0       	rjmp	.+2      	; 0xe7c <LCD_send+0x4e>
-	else { PORTF = PORTF & ~(1<<DB6); }
      e7a:	8e 98       	cbi	0x11, 6	; 17
-	
-	if (temp & 0b00000010) { PORTF = PORTF | (1<<DB5); }
      e7c:	c1 ff       	sbrs	r28, 1
      e7e:	02 c0       	rjmp	.+4      	; 0xe84 <LCD_send+0x56>
      e80:	8d 9a       	sbi	0x11, 5	; 17
      e82:	01 c0       	rjmp	.+2      	; 0xe86 <LCD_send+0x58>
-	else { PORTF = PORTF & ~(1<<DB5); }
      e84:	8d 98       	cbi	0x11, 5	; 17
-	
-	if (temp & 0b00000001) { PORTF = PORTF | (1<<DB4); }   
      e86:	c0 ff       	sbrs	r28, 0
      e88:	02 c0       	rjmp	.+4      	; 0xe8e <LCD_send+0x60>
      e8a:	8c 9a       	sbi	0x11, 4	; 17
      e8c:	01 c0       	rjmp	.+2      	; 0xe90 <LCD_send+0x62>
-	else { PORTF = PORTF & ~(1<<DB4); }
      e8e:	8c 98       	cbi	0x11, 4	; 17
-	
-	Enable();   
      e90:	0e 94 62 06 	call	0xcc4	; 0xcc4 <Enable>
-	delay_ms(1);
      e94:	81 e0       	ldi	r24, 0x01	; 1
      e96:	90 e0       	ldi	r25, 0x00	; 0
      e98:	0e 94 52 06 	call	0xca4	; 0xca4 <delay_ms>
-	
-}
      e9c:	cf 91       	pop	r28
      e9e:	08 95       	ret
 
 00000ea0 <LCD_cmd>:
-// LCD_cmd(..) Befehl senden im 4-Bit Mode 
-// 
-////////////////////////////////////////////////////////////////////////////
-
-void LCD_cmd(char data) 
-{  
      ea0:	cf 93       	push	r28
      ea2:	c8 2f       	mov	r28, r24
-	char temp = data;
-	
-	PORTB = PORTB &~ (1<<RS); //SFR vom LCD mit RS auf Befehle umschalten
      ea4:	28 98       	cbi	0x05, 0	; 5
-	      
-	//Upper Nibble senden   
-	if (temp & 0b10000000) { PORTF = PORTF | (1<<DB7); }   
      ea6:	88 23       	and	r24, r24
      ea8:	14 f4       	brge	.+4      	; 0xeae <LCD_cmd+0xe>
      eaa:	8f 9a       	sbi	0x11, 7	; 17
      eac:	01 c0       	rjmp	.+2      	; 0xeb0 <LCD_cmd+0x10>
-	else { PORTF = PORTF & ~(1<<DB7); }
      eae:	8f 98       	cbi	0x11, 7	; 17
-	
-	if (temp & 0b01000000) { PORTF = PORTF | (1<<DB6); }
      eb0:	c6 ff       	sbrs	r28, 6
      eb2:	02 c0       	rjmp	.+4      	; 0xeb8 <LCD_cmd+0x18>
      eb4:	8e 9a       	sbi	0x11, 6	; 17
      eb6:	01 c0       	rjmp	.+2      	; 0xeba <LCD_cmd+0x1a>
-	else { PORTF = PORTF & ~(1<<DB6); }
      eb8:	8e 98       	cbi	0x11, 6	; 17
-	
-	if (temp & 0b00100000) { PORTF = PORTF | (1<<DB5); }
      eba:	c5 ff       	sbrs	r28, 5
      ebc:	02 c0       	rjmp	.+4      	; 0xec2 <LCD_cmd+0x22>
      ebe:	8d 9a       	sbi	0x11, 5	; 17
      ec0:	01 c0       	rjmp	.+2      	; 0xec4 <LCD_cmd+0x24>
-	else { PORTF = PORTF & ~(1<<DB5); }
      ec2:	8d 98       	cbi	0x11, 5	; 17
-	
-	if (temp & 0b00010000) { PORTF = PORTF | (1<<DB4); }
      ec4:	c4 ff       	sbrs	r28, 4
      ec6:	02 c0       	rjmp	.+4      	; 0xecc <LCD_cmd+0x2c>
      ec8:	8c 9a       	sbi	0x11, 4	; 17
      eca:	01 c0       	rjmp	.+2      	; 0xece <LCD_cmd+0x2e>
-	else { PORTF = PORTF & ~(1<<DB4); }
      ecc:	8c 98       	cbi	0x11, 4	; 17
-	
-	Enable();   
      ece:	0e 94 62 06 	call	0xcc4	; 0xcc4 <Enable>
-	delay_ms(1);       
      ed2:	81 e0       	ldi	r24, 0x01	; 1
      ed4:	90 e0       	ldi	r25, 0x00	; 0
      ed6:	0e 94 52 06 	call	0xca4	; 0xca4 <delay_ms>
-	
-	//Lower Nibble senden   
-	if (temp & 0b00001000) { PORTF = PORTF | (1<<DB7); }
      eda:	c3 ff       	sbrs	r28, 3
      edc:	02 c0       	rjmp	.+4      	; 0xee2 <LCD_cmd+0x42>
      ede:	8f 9a       	sbi	0x11, 7	; 17
      ee0:	01 c0       	rjmp	.+2      	; 0xee4 <LCD_cmd+0x44>
-	else { PORTF = PORTF & ~(1<<DB7); }
      ee2:	8f 98       	cbi	0x11, 7	; 17
-	
-	if (temp & 0b00000100) { PORTF = PORTF | (1<<DB6); }
      ee4:	c2 ff       	sbrs	r28, 2
      ee6:	02 c0       	rjmp	.+4      	; 0xeec <LCD_cmd+0x4c>
      ee8:	8e 9a       	sbi	0x11, 6	; 17
      eea:	01 c0       	rjmp	.+2      	; 0xeee <LCD_cmd+0x4e>
-	else { PORTF = PORTF & ~(1<<DB6); }
      eec:	8e 98       	cbi	0x11, 6	; 17
-	
-	if (temp & 0b00000010) { PORTF = PORTF | (1<<DB5); }
      eee:	c1 ff       	sbrs	r28, 1
      ef0:	02 c0       	rjmp	.+4      	; 0xef6 <LCD_cmd+0x56>
      ef2:	8d 9a       	sbi	0x11, 5	; 17
      ef4:	01 c0       	rjmp	.+2      	; 0xef8 <LCD_cmd+0x58>
-	else { PORTF = PORTF & ~(1<<DB5); }
      ef6:	8d 98       	cbi	0x11, 5	; 17
-	
-	if (temp & 0b00000001) { PORTF = PORTF | (1<<DB4); }   
      ef8:	c0 ff       	sbrs	r28, 0
      efa:	02 c0       	rjmp	.+4      	; 0xf00 <LCD_cmd+0x60>
      efc:	8c 9a       	sbi	0x11, 4	; 17
      efe:	01 c0       	rjmp	.+2      	; 0xf02 <LCD_cmd+0x62>
-	else { PORTF = PORTF & ~(1<<DB4); }
      f00:	8c 98       	cbi	0x11, 4	; 17
-	
-	Enable();   
      f02:	0e 94 62 06 	call	0xcc4	; 0xcc4 <Enable>
-	delay_ms(1);
      f06:	81 e0       	ldi	r24, 0x01	; 1
      f08:	90 e0       	ldi	r25, 0x00	; 0
      f0a:	0e 94 52 06 	call	0xca4	; 0xca4 <delay_ms>
-	
-}
      f0e:	cf 91       	pop	r28
      f10:	08 95       	ret
 
 00000f12 <LCD_string>:
-// LCD_string(..) sendet ganzen String im 4-Bit Mode 
-// 
-//////////////////////////////////////////////////////////////////////////// 
-
-void LCD_string(char *data) 
-{      
      f12:	cf 93       	push	r28
      f14:	df 93       	push	r29
      f16:	ec 01       	movw	r28, r24
-	while (*data != '\0') //bis zum letzten Zeichen            
      f18:	88 81       	ld	r24, Y
      f1a:	88 23       	and	r24, r24
      f1c:	31 f0       	breq	.+12     	; 0xf2a <LCD_string+0x18>
      f1e:	21 96       	adiw	r28, 0x01	; 1
-	{
-		LCD_send(*data++);
      f20:	0e 94 17 07 	call	0xe2e	; 0xe2e <LCD_send>
-// 
-//////////////////////////////////////////////////////////////////////////// 
-
-void LCD_string(char *data) 
-{      
-	while (*data != '\0') //bis zum letzten Zeichen            
      f24:	89 91       	ld	r24, Y+
      f26:	81 11       	cpse	r24, r1
      f28:	fb cf       	rjmp	.-10     	; 0xf20 <LCD_string+0xe>
-	{
-		LCD_send(*data++);
-	} 
-} 
      f2a:	df 91       	pop	r29
      f2c:	cf 91       	pop	r28
      f2e:	08 95       	ret
 
 00000f30 <LCD_Display>:
-
-void LCD_Display(void)
-{
-	LCD_cmd(0x80);   //gehe zu 1. Zeile, 1. Position
      f30:	80 e8       	ldi	r24, 0x80	; 128
      f32:	0e 94 50 07 	call	0xea0	; 0xea0 <LCD_cmd>
-	LCD_string("Akku:");
      f36:	8a e1       	ldi	r24, 0x1A	; 26
      f38:	91 e0       	ldi	r25, 0x01	; 1
      f3a:	0e 94 89 07 	call	0xf12	; 0xf12 <LCD_string>
-	
-	LCD_cmd(0xC3);   //gehe zu 2. Zeile, 1. Position
      f3e:	83 ec       	ldi	r24, 0xC3	; 195
      f40:	0e 94 50 07 	call	0xea0	; 0xea0 <LCD_cmd>
-	LCD_string("%");
      f44:	80 e2       	ldi	r24, 0x20	; 32
      f46:	91 e0       	ldi	r25, 0x01	; 1
      f48:	0e 94 89 07 	call	0xf12	; 0xf12 <LCD_string>
-	/*
-	LCD_cmd(0x80);   //gehe zu 1. Zeile, 1. Position
-	LCD_string("Drehzahl: ");
-	*/
-	
-	LCD_cmd(0x8f);
      f4c:	8f e8       	ldi	r24, 0x8F	; 143
      f4e:	0e 94 50 07 	call	0xea0	; 0xea0 <LCD_cmd>
-	LCD_string("U/m");
      f52:	82 e2       	ldi	r24, 0x22	; 34
      f54:	91 e0       	ldi	r25, 0x01	; 1
      f56:	0e 94 89 07 	call	0xf12	; 0xf12 <LCD_string>
-	/*
-	LCD_cmd(0xC0);   //gehe zu 2. Zeile, 1. Position
-	LCD_string("Speed:");
-	*/
-	
-	LCD_cmd(0xcf);
      f5a:	8f ec       	ldi	r24, 0xCF	; 207
      f5c:	0e 94 50 07 	call	0xea0	; 0xea0 <LCD_cmd>
-	LCD_string("km/h");
      f60:	86 e2       	ldi	r24, 0x26	; 38
      f62:	91 e0       	ldi	r25, 0x01	; 1
      f64:	0e 94 89 07 	call	0xf12	; 0xf12 <LCD_string>
      f68:	08 95       	ret
 
 00000f6a <init_timer_zeitlicher_ablauf>:
-
-void init_timer_zeitlicher_ablauf(void)
-{
-	
-	
-	TCCR3B = TCCR3B | (1<<CS10);		// Teiler 256 (16MHz / 64 = 4µs)
      f6a:	e1 e9       	ldi	r30, 0x91	; 145
      f6c:	f0 e0       	ldi	r31, 0x00	; 0
      f6e:	80 81       	ld	r24, Z
      f70:	81 60       	ori	r24, 0x01	; 1
      f72:	80 83       	st	Z, r24
-	TCCR3B = TCCR3B | (1<<CS11);		//Kleiner Schritt 4µs		(1*4µs)
      f74:	80 81       	ld	r24, Z
      f76:	82 60       	ori	r24, 0x02	; 2
      f78:	80 83       	st	Z, r24
-	TCCR3B = TCCR3B &~ (1<<CS12);		//Größter Schritt 262ms	(65535*4µs)
      f7a:	80 81       	ld	r24, Z
      f7c:	8b 7f       	andi	r24, 0xFB	; 251
      f7e:	80 83       	st	Z, r24
-	
-	TIMSK3 = TIMSK3 | (1<<OCIE3A);		//OC3A interrupt
      f80:	e1 e7       	ldi	r30, 0x71	; 113
      f82:	f0 e0       	ldi	r31, 0x00	; 0
      f84:	80 81       	ld	r24, Z
      f86:	82 60       	ori	r24, 0x02	; 2
      f88:	80 83       	st	Z, r24
-	
-	OCR3A = 2500;		//25000*4µs = 100ms
      f8a:	84 ec       	ldi	r24, 0xC4	; 196
      f8c:	99 e0       	ldi	r25, 0x09	; 9
      f8e:	90 93 99 00 	sts	0x0099, r25	; 0x800099 <__TEXT_REGION_LENGTH__+0x7e0099>
@@ -1983,146 +1873,57 @@ void init_timer_zeitlicher_ablauf(void)
      f96:	08 95       	ret
 
 00000f98 <main>:
-
-	uint16_t ges_spannung_main;
-	uint8_t ladestand_test = 0;
-
-	
-	CLKPR = 0x80;						//Clock prescaler 16MHz
      f98:	e1 e6       	ldi	r30, 0x61	; 97
      f9a:	f0 e0       	ldi	r31, 0x00	; 0
      f9c:	80 e8       	ldi	r24, 0x80	; 128
      f9e:	80 83       	st	Z, r24
-	CLKPR = 0x00;
      fa0:	10 82       	st	Z, r1
-
-	MCUCR = MCUCR | (1<<JTD);			//JTD Schnittstelle ausschalten für PWM6 Mode
      fa2:	85 b7       	in	r24, 0x35	; 53
      fa4:	80 68       	ori	r24, 0x80	; 128
      fa6:	85 bf       	out	0x35, r24	; 53
-	MCUCR = MCUCR | (1<<JTD);
      fa8:	85 b7       	in	r24, 0x35	; 53
      faa:	80 68       	ori	r24, 0x80	; 128
      fac:	85 bf       	out	0x35, r24	; 53
-	
-	//MOTOR PWM PINS
-	DDRC = DDRC | (1<<DDC7);	//OC4A -Pin (PC7) als OUTPUT	//PHASE A
      fae:	3f 9a       	sbi	0x07, 7	; 7
-	DDRC = DDRC | (1<<DDC6);	//OC4A#-Pin (PC6) als OUTPUT	//PHASE A
      fb0:	3e 9a       	sbi	0x07, 6	; 7
-	DDRB = DDRB | (1<<DDB6);	//OC4B -Pin (PB6) als OUTPUT	//PHASE B
      fb2:	26 9a       	sbi	0x04, 6	; 4
-	DDRB = DDRB | (1<<DDB5);	//OC4B#-Pin (PB5) als OUTPUT	//PHASE B
      fb4:	25 9a       	sbi	0x04, 5	; 4
-	DDRD = DDRD | (1<<DDD7);	//OC4D -Pin (PD7) als OUTPUT	//PHASE C
      fb6:	57 9a       	sbi	0x0a, 7	; 10
-	DDRD = DDRD | (1<<DDD6);	//OC4D#-Pin (PD6) als OUTPUT	//PHASE C
      fb8:	56 9a       	sbi	0x0a, 6	; 10
-	
-	//HALL SENSORS PINS
-	DDRB = DDRB &~ (1<<DDB1);	//PCINT1-Pin (PB1) als INPUT	//HALL A
      fba:	21 98       	cbi	0x04, 1	; 4
-	DDRB = DDRB &~ (1<<DDB2);	//PCINT2-Pin (PB2) als INPUT	//HALL B
      fbc:	22 98       	cbi	0x04, 2	; 4
-	DDRB = DDRB &~ (1<<DDB3);	//PCINT3-Pin (PB3) als INPUT	//HALL C
      fbe:	23 98       	cbi	0x04, 3	; 4
-	PORTB = PORTB &~ (1<<PORTB1);	//PULL-UP aus
      fc0:	29 98       	cbi	0x05, 1	; 5
-	PORTB = PORTB &~ (1<<PORTB2);	//PULL-UP aus
      fc2:	2a 98       	cbi	0x05, 2	; 5
-	PORTB = PORTB &~ (1<<PORTB3);	//PULL-UP aus
      fc4:	2b 98       	cbi	0x05, 3	; 5
-
-	//Vorwärts - Rückwärts Schalter
-	DDRB = DDRB &~ (1<<DDB4);	//PB4 als INPUT		//vorwärts / rückwärst Schalter
      fc6:	24 98       	cbi	0x04, 4	; 4
-	PORTB = PORTB | (1<<PORTB4);	//PULL-UP
      fc8:	2c 9a       	sbi	0x05, 4	; 5
-	
-	//Shutdown Pin	
-	DDRE = DDRE | (1<<DDE6);	//Shutdown-Pin (PE6) als OUTPUT
      fca:	6e 9a       	sbi	0x0d, 6	; 13
-	PORTE = PORTE &~ (1<<PORTE6);	//Shutdown-Pin auf HIGH -> da er LOW-AKTIVE ist 
      fcc:	76 98       	cbi	0x0e, 6	; 14
-	
-	//ADC
-	DDRF = DDRF &~ (1<<DDF0);	//ADC0-Pin (PF0) als INPUT
      fce:	80 98       	cbi	0x10, 0	; 16
-	
-	//LCD - Pins
-	DDRB = DDRB | (1<<PORTB0);		//RS (PB0) als OUTPUT
      fd0:	20 9a       	sbi	0x04, 0	; 4
-	DDRF = DDRF | (1<<PORTF1);		//Enable (PF1) als OUTPUT
      fd2:	81 9a       	sbi	0x10, 1	; 16
-	DDRF = DDRF | (1<<PORTF7);		//LCD-DB7 (PF7 µC) als OUTPUT
      fd4:	87 9a       	sbi	0x10, 7	; 16
-	DDRF = DDRF | (1<<PORTF6);		//LCD-DB6 (PF6 µC) als OUTPUT
      fd6:	86 9a       	sbi	0x10, 6	; 16
-	DDRF = DDRF | (1<<PORTF5);		//LCD-DB5 (PF5 µC) als OUTPUT
      fd8:	85 9a       	sbi	0x10, 5	; 16
-	DDRF = DDRF | (1<<PORTF4);		//LCD-DB4 (PF4 µC) als OUTPUT
      fda:	84 9a       	sbi	0x10, 4	; 16
-	
-	//UART
-	//PORTD = PORTD | (1<<PORTD2);		// pull up um keine störungen einzufangen
-	
-	//MOSFET für Relai
-	DDRD = DDRD | (1<<DDD4);	//MOSFET für Railai	
      fdc:	54 9a       	sbi	0x0a, 4	; 10
-	
-	//Modi Schalter
-	DDRD = DDRD &~ (1<<DDD0);
      fde:	50 98       	cbi	0x0a, 0	; 10
-	PORTD = PORTD | (1<<PORTD0);		//Pull-up
      fe0:	58 9a       	sbi	0x0b, 0	; 11
-	
-	//Kommunikation über EXT-Int
-	DDRD = DDRD &~ (1<<DDD2);		//Eingang INT2
      fe2:	52 98       	cbi	0x0a, 2	; 10
-	PORTD = PORTD | (1<<PORTD2);	//PULL-UP
      fe4:	5a 9a       	sbi	0x0b, 2	; 11
-	
-	
-	//Debug-Pins
-	DDRB = DDRB | (1<<DDB7);
      fe6:	27 9a       	sbi	0x04, 7	; 4
-	
-	
-	Init_Pinchange();	//Initialisierung Hallsensoren
      fe8:	0e 94 8b 08 	call	0x1116	; 0x1116 <Init_Pinchange>
-	
-	Init_PWM();			//Initialisierung 6-fach PWM signale
      fec:	0e 94 4a 08 	call	0x1094	; 0x1094 <Init_PWM>
-	
-	Init_ADC();			//Initialisierung ADC
      ff0:	0e 94 a8 08 	call	0x1150	; 0x1150 <Init_ADC>
-	
-	Init_Timer1();		//Initialisierung Berechnungen Geschw. Drehzahl
      ff4:	0e 94 75 00 	call	0xea	; 0xea <Init_Timer1>
-	
-	//init_usart();				//Initialisierung von Kommunikationsschnittstelle UART
-	//init_transmission_timer();	//Initaliesierung von Timer0 für UART
-	
-	
-	init_timer_zeitlicher_ablauf();
      ff8:	0e 94 b5 07 	call	0xf6a	; 0xf6a <init_timer_zeitlicher_ablauf>
-	
-	LCD_init();			//Initialisierung  LCD
      ffc:	0e 94 65 06 	call	0xcca	; 0xcca <LCD_init>
-	LCD_cmd(0x0C);		//Display ON, Cursor OFF, Blinking OFF 
     1000:	8c e0       	ldi	r24, 0x0C	; 12
     1002:	0e 94 50 07 	call	0xea0	; 0xea0 <LCD_cmd>
-	
-	Hallsensoren_abfragen();
     1006:	0e 94 dc 08 	call	0x11b8	; 0x11b8 <Hallsensoren_abfragen>
-	
-	init_ext_int_kommunikation();	//Initialiesierung des externen interrupt für akkuüberwachung
     100a:	0e 94 9a 05 	call	0xb34	; 0xb34 <init_ext_int_kommunikation>
-		
-	sei();
     100e:	78 94       	sei
-	
-	LCD_Display();		//Drezahl, Geschwindkeit schreiben
     1010:	0e 94 98 07 	call	0xf30	; 0xf30 <LCD_Display>
     1014:	2f ef       	ldi	r18, 0xFF	; 255
     1016:	87 ea       	ldi	r24, 0xA7	; 167
@@ -2133,94 +1934,40 @@ void init_timer_zeitlicher_ablauf(void)
     1020:	e1 f7       	brne	.-8      	; 0x101a <main+0x82>
     1022:	00 c0       	rjmp	.+0      	; 0x1024 <main+0x8c>
     1024:	00 00       	nop
-	
-	
-	_delay_ms(2000);
-	
-	PORTE = PORTE &~ (1<<PORTE6);	//Shutdown-Pin auf HIGH -> da er LOW-AKTIVE ist   //muss noch geändert werden!!!!!
     1026:	76 98       	cbi	0x0e, 6	; 14
-	
-	//Für Anfangsausgabe
-	preset_drehzahl_gesch();
     1028:	0e 94 b4 02 	call	0x568	; 0x568 <preset_drehzahl_gesch>
-	
-	zeitlicher_ablauf=0;
     102c:	10 92 32 01 	sts	0x0132, r1	; 0x800132 <zeitlicher_ablauf>
-	
-    while (1) 
-    {	
-		kommunikations_daten_mitteln();
     1030:	0e 94 f4 04 	call	0x9e8	; 0x9e8 <kommunikations_daten_mitteln>
-						
-		if(zeitlicher_ablauf >= 10)
     1034:	80 91 32 01 	lds	r24, 0x0132	; 0x800132 <zeitlicher_ablauf>
     1038:	8a 30       	cpi	r24, 0x0A	; 10
     103a:	d0 f3       	brcs	.-12     	; 0x1030 <main+0x98>
-		{
-		
-			
-			ges_spannung_main=ges_spannung_uebertragung();
     103c:	0e 94 5f 05 	call	0xabe	; 0xabe <ges_spannung_uebertragung>
     1040:	ec 01       	movw	r28, r24
-
-			geschwindigkeit_berechnung();
     1042:	0e 94 96 01 	call	0x32c	; 0x32c <geschwindigkeit_berechnung>
-			ladestand_test = akku_ladestand(ges_spannung_main);
     1046:	ce 01       	movw	r24, r28
     1048:	0e 94 21 03 	call	0x642	; 0x642 <akku_ladestand>
-			ladestand_ausgabe(ladestand_test);
     104c:	0e 94 83 04 	call	0x906	; 0x906 <ladestand_ausgabe>
-			
-			
-
-			//dtostrf((float)drehzahl, 5, 0, ausgabe);
-			drehzahl_ausgabe();	
     1050:	0e 94 56 02 	call	0x4ac	; 0x4ac <drehzahl_ausgabe>
-		
-			//dtostrf((float)geschwindigkeit, 5, 0, ausgabe);
-			geschwindigkeits_ausgabe();
     1054:	0e 94 85 02 	call	0x50a	; 0x50a <geschwindigkeits_ausgabe>
-			
-		
-			zeitlicher_ablauf=0;
     1058:	10 92 32 01 	sts	0x0132, r1	; 0x800132 <zeitlicher_ablauf>
     105c:	e9 cf       	rjmp	.-46     	; 0x1030 <main+0x98>
 
 0000105e <__vector_32>:
-	//OCR3AL = 168;
-	
-}
-
-ISR(TIMER3_COMPA_vect)
-{
     105e:	1f 92       	push	r1
     1060:	0f 92       	push	r0
     1062:	0f b6       	in	r0, 0x3f	; 63
     1064:	0f 92       	push	r0
     1066:	11 24       	eor	r1, r1
     1068:	8f 93       	push	r24
-	TCNT3 = 0;
     106a:	10 92 95 00 	sts	0x0095, r1	; 0x800095 <__TEXT_REGION_LENGTH__+0x7e0095>
     106e:	10 92 94 00 	sts	0x0094, r1	; 0x800094 <__TEXT_REGION_LENGTH__+0x7e0094>
-	
-	
-	if(zeitlicher_ablauf >= 25)
     1072:	80 91 32 01 	lds	r24, 0x0132	; 0x800132 <zeitlicher_ablauf>
     1076:	89 31       	cpi	r24, 0x19	; 25
     1078:	10 f0       	brcs	.+4      	; 0x107e <__vector_32+0x20>
-	{
-		
-		zeitlicher_ablauf=0;
     107a:	10 92 32 01 	sts	0x0132, r1	; 0x800132 <zeitlicher_ablauf>
-	}
-	
-	zeitlicher_ablauf++;
     107e:	80 91 32 01 	lds	r24, 0x0132	; 0x800132 <zeitlicher_ablauf>
     1082:	8f 5f       	subi	r24, 0xFF	; 255
     1084:	80 93 32 01 	sts	0x0132, r24	; 0x800132 <zeitlicher_ablauf>
-	
-
-}
     1088:	8f 91       	pop	r24
     108a:	0f 90       	pop	r0
     108c:	0f be       	out	0x3f, r0	; 63
@@ -2739,7 +2486,7 @@ ISR(ADC_vect)						//Löst aus, wenn die Konversation beendet ist
     1446:	82 e0       	ldi	r24, 0x02	; 2
     1448:	80 93 33 01 	sts	0x0133, r24	; 0x800133 <phasen_flag>
 		
-		PORTD = PORTD | (1<<PORTD4);
+		PORTD = PORTD | (1<<PORTD4);	 //MOSFET wird geschalten
     144c:	5c 9a       	sbi	0x0b, 4	; 11
 		
 		PCICR =  PCICR | (1<<PCIE0);	//pin change interrupt enable

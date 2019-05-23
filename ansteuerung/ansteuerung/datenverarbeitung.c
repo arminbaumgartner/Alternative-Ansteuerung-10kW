@@ -109,7 +109,7 @@ char geschwindigkeits_regulierung(char adc_wert)
 	}
 	*/
 	 
-	 angleich_gerade_gas = (WEGFAHR_WERT-0.0035*drehzahl) + 14; ;		// * (gesamtspannung_kom/NENNSPANNUNG) //12A sicherung bei + 7
+	 angleich_gerade_gas = (WEGFAHR_WERT-0.0035*drehzahl) + 21; ;		// * (gesamtspannung_kom/NENNSPANNUNG) //12A sicherung bei + 7
 		 
 	 if (angleich_gerade_gas <= 0)
 	 {

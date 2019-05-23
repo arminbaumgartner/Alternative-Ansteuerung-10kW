@@ -322,7 +322,7 @@ ISR(ADC_vect)						//Löst aus, wenn die Konversation beendet ist
 	{
 		phasen_flag = 2;
 		
-		PORTD = PORTD | (1<<PORTD4);
+		PORTD = PORTD | (1<<PORTD4);	 //MOSFET wird geschalten
 		
 		PCICR =  PCICR | (1<<PCIE0);	//pin change interrupt enable
 		

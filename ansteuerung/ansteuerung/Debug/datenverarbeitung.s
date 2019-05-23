@@ -246,7 +246,7 @@ geschwindigkeits_regulierung:
 .LVL19:
 	ldi r18,0
 	ldi r19,0
-	ldi r20,lo8(96)
+	ldi r20,lo8(-88)
 	ldi r21,lo8(65)
 	call __addsf3
 .LVL20:
@@ -1977,6 +1977,8 @@ nennspannung:
 	.string	"angleich_gerade_bremsen"
 .LASF43:
 	.string	".././datenverarbeitung.c"
+.LASF44:
+	.string	"C:\\\\Users\\\\Armin Baumgartner\\\\Desktop\\\\ansteuerung_alternativ\\\\ansteuerung\\\\Debug"
 .LASF13:
 	.string	"temp"
 .LASF33:
@@ -2035,8 +2037,6 @@ nennspannung:
 	.string	"spannung"
 .LASF10:
 	.string	"char"
-.LASF44:
-	.string	"C:\\\\Users\\\\Armin Baumgartner\\\\Desktop\\\\10kW-master\\\\10kW-master\\\\ansteuerung\\\\ansteuerung\\\\Debug"
 .LASF35:
 	.string	"drehzahl_holen"
 .LASF34:

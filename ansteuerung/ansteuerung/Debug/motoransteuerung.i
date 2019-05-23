@@ -1,5 +1,5 @@
 # 1 ".././motoransteuerung.c"
-# 1 "C:\\Users\\Armin Baumgartner\\Desktop\\ansteuerung\\ansteuerung\\Debug//"
+# 1 "C:\\Users\\Armin Baumgartner\\Desktop\\ansteuerung_alternativ\\ansteuerung\\Debug//"
 # 1 "<built-in>"
 # 1 "<command-line>"
 # 1 ".././motoransteuerung.c"
